@@ -1,0 +1,13 @@
+
+.vs/ActyIn/v17/.suo
+*.vsidx
+ActyIn/obj/ActyIn.csproj.nuget.dgspec.json
+ActyIn/obj/ActyIn.csproj.nuget.g.props
+ActyIn/obj/ActyIn.csproj.nuget.g.targets
+ActyIn/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+ActyIn/obj/Debug/net8.0/ActyIn.AssemblyInfo.cs
+ActyIn/obj/Debug/net8.0/ActyIn.AssemblyInfoInputs.cache
+ActyIn/obj/Debug/net8.0/ActyIn.assets.cache
+ActyIn/obj/Debug/net8.0/ActyIn.csproj.AssemblyReference.cache
+ActyIn/obj/Debug/net8.0/ActyIn.GeneratedMSBuildEditorConfig.editorconfig
+ActyIn/obj/Debug/net8.0/ActyIn.GlobalUsings.g.cs
