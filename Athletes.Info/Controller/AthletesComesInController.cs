@@ -5,6 +5,7 @@ using Athletes.Info.Request;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Postgres.Context.Entities;
 
 namespace Athletes.Info.Controller
 {
@@ -26,15 +27,20 @@ namespace Athletes.Info.Controller
         }
 
         [HttpPost("actyin/registerUser")]
-        public async Task<IActionResult> RegisterUser([FromBody] AthletesRegisterRequest registerRequest)
+        public ActionResult RegisterUser([FromBody] AthletesRegisterRequest registerRequest)
         {
-            return await _athleteInfoService.RegisterAthlete(registerRequest);
+            var register = _mapper.Map<AthletesEntity>(registerRequest);
+            _athleteInfoService.RegisterAthlete(register);
+
+            return Ok();
         }
 
         [HttpPost("actyin/loginUser")]
-        public async Task<IActionResult> LoginUser([FromBody] AthletesLoginRequest loginRequest)
+        public ActionResult LoginUser([FromBody] AthletesLoginRequest loginRequest)
         {
-            return await _athleteInfoService.LoginAthlete(loginRequest);
+            _athleteInfoService.LoginAthlete(loginRequest);
+
+            return Ok();
         }
 
     }

@@ -3,9 +3,10 @@ using Athletes.Info.Model;
 using Athletes.Info.Repository;
 using Athletes.Info.Request;
 using AutoMapper;
+using Define.Common.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
+using Postgres.Context.Entities;
 
 namespace Athletes.Info.Controller
 {
@@ -27,24 +28,24 @@ namespace Athletes.Info.Controller
         }
 
         [HttpGet("actyin/getAllUsers")]
-        public async Task<ActionResult<IEnumerable<AthleteInfoDTO>>> GetAllUsersAsync()
+        public async Task<ActionResult<IEnumerable<AthletesEntity>>> GetAllUsersAsync()
         {
             var users = await _athletesInfo.GetAllAthletesAsync();
             if (users == null)
             {
-                _logger.LogInformation("We have no users on Db");
+                _logger.LogInformation(AthletesExceptionMesseges.UndefinedUsers);
                 return NoContent();
             }
             return Ok(_mapper.Map<IEnumerable<AthleteInfoDTO>>(users));
         }
 
         [HttpGet("actyin/getUserById/{id}")]
-        public async Task<ActionResult<AthleteInfoDTO>> GetUserInfoByIdAsync(int id)
+        public async Task<ActionResult<AthletesEntity>> GetUserInfoByIdAsync(int id)
         {
             var user = await _athletesInfo.GetAthletesInfoByIdAsync(id);
             if (user == null)
             {
-                _logger.LogInformation($"We have no user on Db with this id: {id} ");
+                _logger.LogInformation(AthletesExceptionMesseges.UndefinedUserId + $"{id}");
                 return NoContent();
             }
             var getUset = _mapper.Map<AthleteInfoDTO>(user);
@@ -54,24 +55,26 @@ namespace Athletes.Info.Controller
         [HttpPost("actyin/createUser")]
         public async Task<ActionResult<AthleteInfo>> CreateUserAsync([FromBody] AthletesRegisterRequest athleteInfoRequest)
         {
-            var newUser = _mapper.Map<AthleteInfo>(athleteInfoRequest);
-            await _athletesInfo.RegisterAthlete(athleteInfoRequest);
-            await _athleteInfoService.SaveChangesAsync();
+            var newUser = _mapper.Map<AthletesEntity>(athleteInfoRequest);
+            _athletesInfo.RegisterAthlete(newUser);
+            await _athleteInfoService.SaveChangesAsync(AthletesExceptionMesseges.AthleteCanNotCreated);
             return Ok(newUser);
         }
 
         [HttpDelete("actyin/deleteUserById/{id}")]
         public async Task<ActionResult> DeleteUser(int id)
-        {            
+        {
             var users = await _athletesInfo.GetAthletesInfoByIdAsync(id);
 
             if (users == null)
             {
-                _logger.LogInformation($"We have no user on Db with this id: {id} ");
+                _logger.LogInformation(AthletesExceptionMesseges.UndefinedUserId + $"{id}");
                 return NoContent();
             }
-            await _athletesInfo.DeleteAthletesByIdAsync(id);
-            await _athleteInfoService.SaveChangesAsync();
+            var newUser = _mapper.Map<AthletesEntity>(users);
+            _athletesInfo.DeleteAthletesByIdAsync(newUser);
+
+            await _athleteInfoService.SaveChangesAsync(AthletesExceptionMesseges.AthleteCanNotDeleted);
             return Ok(users);
         }
     }

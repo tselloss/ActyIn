@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Athletes.Info.Model
 {
-    public record AthleteInfoDTO :AthletesInfoBase
-    {       
+    public record AthleteInfoDTO : AthletesInfoBase
+    {
         [Required]
         public string Address { get; set; }
         [Required]
@@ -13,8 +13,6 @@ namespace Athletes.Info.Model
         public int PostalCode { get; set; }
         [Required]
         public string FavoriteActivity { get; set; }
-        [Required]
-        public string ChoosenActivity { get; set; }
         [Required]
         public Roles Role { get; set; }
     }

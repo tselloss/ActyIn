@@ -1,8 +1,13 @@
-﻿using Athletes.Info.Interface;
+﻿using Athletes.Info.Extension.Methods;
+using Athletes.Info.Interface;
 using Athletes.Info.Model;
 using Athletes.Info.Request;
+using Define.Common.Exceptions;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Postgres.Context.DBContext;
+using Postgres.Context.Entities;
 
 namespace Athletes.Info.Repository
 {
@@ -11,39 +16,72 @@ namespace Athletes.Info.Repository
 
         private readonly NpgsqlContext _context;
 
-        public Task<IActionResult> DeleteAthletesByIdAsync(int id)
+        public void DeleteAthletesByIdAsync(AthletesEntity athletesEntity)
+        {
+            _context.AthletesInfoEntity.Remove(athletesEntity);
+        }
+
+        public void EditAthletes(AthletesEditRequest editRequest)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IActionResult> EditAthletes(AthletesEditRequest editRequest)
+        public async Task<ActionResult<IEnumerable<AthletesEntity>>> GetAllAthletesAsync()
         {
-            throw new NotImplementedException();
+            return await _context.AthletesInfoEntity.OrderBy(_ => _.AthletesId).ToListAsync();
         }
 
-        public Task<ActionResult<IEnumerable<AthleteInfoDTO>>> GetAllAthletesAsync()
+        public async Task<ActionResult<AthletesEntity>> GetAthletesInfoByIdAsync(int athleteId)
         {
-            throw new NotImplementedException();
+            return await _context.AthletesInfoEntity.Where(_ => _.AthletesId == athleteId).FirstOrDefaultAsync();
         }
 
-        public Task<ActionResult<AthleteInfoDTO>> GetAthletesInfoByIdAsync(int athleteId)
+        public void LoginAthlete(AthletesLoginRequest loginRequest)
         {
-            throw new NotImplementedException();
+            if (!_context.AthletesInfoEntity.Any(_ => _.Username == loginRequest.Username) || !_context.AthletesInfoEntity.Any(_ => _.Email == loginRequest.Email))
+            {
+                throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserId, loginRequest.Email.ToString());
+            }
+            AthletesEntity user = _context.AthletesInfoEntity.Where(_ => _.Username == loginRequest.Username || _.Email == loginRequest.Email).First();
+            var verifyHashedPass = VerifyPassword.PasswordVerification(loginRequest.Password);
+            if (user.Password != verifyHashedPass)
+            {
+                throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserPassword, loginRequest.Username);
+            }
         }
 
-        public Task<IActionResult> LoginAthlete(AthletesLoginRequest loginRequest)
+        public void RegisterAthlete(AthletesEntity registerRequest)
         {
-            throw new NotImplementedException();
+            if (registerRequest.Email == null || registerRequest.Username == null || registerRequest.Password == null)
+            {
+                throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserId, registerRequest.AthletesId.ToString());
+            }
+            if (_context.AthletesInfoEntity.Any(u => u.Username == registerRequest.Username))
+            {
+                throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserUsername, registerRequest.Username);
+            }
+            if (_context.AthletesInfoEntity.Any(u => u.Email == registerRequest.Email))
+            {
+                throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserEmail, registerRequest.Email);
+            }
+
+            var hashedPass = PasswordHash.CreatePasswordHash(registerRequest.Password);
+            registerRequest.Password = hashedPass;
+            _context.AthletesInfoEntity.Add(registerRequest);
+            _context.SaveChanges();
         }
 
-        public Task<IActionResult> RegisterAthlete(AthletesRegisterRequest registerRequest)
-        {
-            throw new NotImplementedException();
-        }
 
-        public async Task<bool> SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync(string message)
         {
-            return await _context.SaveChangesAsync() >= 0;
+            try
+            {
+                return await _context.SaveChangesAsync() >= 0;
+            }
+            catch (ControllerExceptionMessage ex)
+            {
+                throw new ControllerExceptionMessage(message);
+            }             
         }
     }
 }
