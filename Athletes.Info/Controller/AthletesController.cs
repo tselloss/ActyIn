@@ -10,7 +10,7 @@ using Postgres.Context.Entities;
 
 namespace Athletes.Info.Controller
 {
-    [Route("api/[controller]")]
+    [Route("actyin/[controller]")]
     [ApiController]
     public class AthletesController : ControllerBase
     {
