@@ -26,7 +26,7 @@ namespace Postgres.Context.Entities
         [Required]
         public int PostalCode { get; set; }
         [Required]
-        public string FavoriteActivity { get; set; }
+        public string ChoosenActivity { get; set; }
         [Required]
         public Roles Role { get; set; }
     }

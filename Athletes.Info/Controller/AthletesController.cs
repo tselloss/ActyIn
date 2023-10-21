@@ -1,9 +1,11 @@
 ﻿using Athletes.Info.Interface;
 using Athletes.Info.Model;
 using Athletes.Info.Repository;
+using Athletes.Info.Request;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Athletes.Info.Controller
 {
@@ -24,7 +26,7 @@ namespace Athletes.Info.Controller
             _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
         }
 
-        [HttpGet("api/users")]
+        [HttpGet("actyin/getAllUsers")]
         public async Task<ActionResult<IEnumerable<AthleteInfoDTO>>> GetAllUsersAsync()
         {
             var users = await _athletesInfo.GetAllAthletesAsync();
@@ -36,7 +38,7 @@ namespace Athletes.Info.Controller
             return Ok(_mapper.Map<IEnumerable<AthleteInfoDTO>>(users));
         }
 
-        [HttpGet("api/userById/{id}")]
+        [HttpGet("actyin/getUserById/{id}")]
         public async Task<ActionResult<AthleteInfoDTO>> GetUserInfoByIdAsync(int id)
         {
             var user = await _athletesInfo.GetAthletesInfoByIdAsync(id);
@@ -45,30 +47,31 @@ namespace Athletes.Info.Controller
                 _logger.LogInformation($"We have no user on Db with this id: {id} ");
                 return NoContent();
             }
-            return Ok(_mapper.Map<AthleteInfoDTO>(user));
+            var getUset = _mapper.Map<AthleteInfoDTO>(user);
+            return Ok(getUset);
         }
 
-        [HttpPost("api/createUser")]
-        public async Task<ActionResult<AthleteInfo>> CreateUserAsync([FromBody] AthleteInfo athleteInfo)
+        [HttpPost("actyin/createUser")]
+        public async Task<ActionResult<AthleteInfo>> CreateUserAsync([FromBody] AthletesRegisterRequest athleteInfoRequest)
         {
-            var newUser = _mapper.Map<AthleteInfo>(athleteInfo);
-            //await _userInfo.CreateUser(newUser);
-            //await _userInfoService.SaveChangesAsync();
+            var newUser = _mapper.Map<AthleteInfo>(athleteInfoRequest);
+            await _athletesInfo.RegisterAthlete(athleteInfoRequest);
+            await _athleteInfoService.SaveChangesAsync();
             return Ok(newUser);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("actyin/deleteUserById/{id}")]
         public async Task<ActionResult> DeleteUser(int id)
-        {
-            var users = await _athletesInfo.DeleteAthletesByIdAsync(id);
+        {            
+            var users = await _athletesInfo.GetAthletesInfoByIdAsync(id);
 
             if (users == null)
             {
                 _logger.LogInformation($"We have no user on Db with this id: {id} ");
                 return NoContent();
             }
-            //_athletesInfo.DeleteUserAsync(users);
-            //await _athleteInfoService.SaveChangesAsync();
+            await _athletesInfo.DeleteAthletesByIdAsync(id);
+            await _athleteInfoService.SaveChangesAsync();
             return Ok(users);
         }
     }

@@ -1,6 +1,9 @@
-﻿namespace Athletes.Info.Request
+﻿using Athletes.Info.Model;
+
+namespace Athletes.Info.Request
 {
-    public class AthletesRegisterRequest
+    public record AthletesRegisterRequest : AthleteInfo
     {
+
     }
 }
