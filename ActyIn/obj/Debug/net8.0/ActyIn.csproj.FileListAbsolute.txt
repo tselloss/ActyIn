@@ -54,3 +54,12 @@ C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\Microsoft.DotNet.Plat
 C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\Athletes.Info.dll
 C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\Athletes.Info.pdb
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\Castle.Core.dll
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\FakeItEasy.dll
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\System.Web.Mvc.dll
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\System.Web.Razor.dll
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\System.Web.Helpers.dll
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\System.Web.WebPages.Deployment.dll
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\System.Web.WebPages.Razor.dll
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\System.Web.WebPages.dll
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\Microsoft.Web.Infrastructure.dll

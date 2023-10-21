@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Define.Common", "Define.Com
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Postgres.Context", "Postgres.Context\Postgres.Context.csproj", "{C798C955-28B2-439C-AC79-B1F5647EB62D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D1D90E4F-5DAC-4615-918C-E06AE3C5F3D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AthletesTests", "AthletesTests\AthletesTests.csproj", "{4E5B3492-2895-4493-A47A-580813A9AF6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +37,16 @@ Global
 		{C798C955-28B2-439C-AC79-B1F5647EB62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C798C955-28B2-439C-AC79-B1F5647EB62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C798C955-28B2-439C-AC79-B1F5647EB62D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E5B3492-2895-4493-A47A-580813A9AF6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E5B3492-2895-4493-A47A-580813A9AF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E5B3492-2895-4493-A47A-580813A9AF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E5B3492-2895-4493-A47A-580813A9AF6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E5B3492-2895-4493-A47A-580813A9AF6C} = {D1D90E4F-5DAC-4615-918C-E06AE3C5F3D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {81B8FDC8-A466-4D0B-B4DB-334545631F94}

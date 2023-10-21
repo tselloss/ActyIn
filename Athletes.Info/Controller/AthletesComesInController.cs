@@ -9,7 +9,7 @@ using Postgres.Context.Entities;
 
 namespace Athletes.Info.Controller
 {
-    [Route("api/[controller]")]
+    [Route("actyin/[controller]")]
     [ApiController]
     public class AthletesComesInController : ControllerBase
     {
@@ -24,6 +24,12 @@ namespace Athletes.Info.Controller
             _athletesInfo = athleteInfo ?? throw new ArgumentException(nameof(athleteInfo));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
+        }
+
+        public AthletesComesInController(IAthletes athleteInfo, IMapper mapper)
+        {
+            _athletesInfo = athleteInfo ?? throw new ArgumentException(nameof(athleteInfo));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpPost("actyin/registerUser")]

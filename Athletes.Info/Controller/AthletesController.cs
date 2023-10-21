@@ -27,6 +27,12 @@ namespace Athletes.Info.Controller
             _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
         }
 
+        public AthletesController(IAthletes athleteInfo, IMapper mapper)
+        {
+            _athletesInfo = athleteInfo ?? throw new ArgumentException(nameof(athleteInfo));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
+
         [HttpGet("actyin/getAllUsers")]
         public async Task<ActionResult<IEnumerable<AthletesEntity>>> GetAllUsersAsync()
         {
