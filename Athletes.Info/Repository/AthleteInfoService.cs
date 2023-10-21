@@ -78,7 +78,7 @@ namespace Athletes.Info.Repository
             {
                 return await _context.SaveChangesAsync() >= 0;
             }
-            catch (ControllerExceptionMessage ex)
+            catch (ControllerExceptionMessage)
             {
                 throw new ControllerExceptionMessage(message);
             }             
