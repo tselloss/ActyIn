@@ -37,7 +37,7 @@ namespace AthletesTests
                 PostalCode=registerRequest.PostalCode,
                 City=registerRequest.City,  
                 Address=registerRequest.Address,
-                ChoosenActivity = "testChoosenActivity",
+                FavoriteActivity = "testChoosenActivity",
             };
 
             var mapperMock = new Mock<IMapper>();

@@ -23,7 +23,6 @@ C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\System.Web.Web
 C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\System.Web.WebPages.dll
 C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
-C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
@@ -131,3 +130,8 @@ C:\Users\karac\source\repos\ActyIn\AthletesTests\obj\Debug\net8.0\refint\Athlete
 C:\Users\karac\source\repos\ActyIn\AthletesTests\obj\Debug\net8.0\AthletesTests.pdb
 C:\Users\karac\source\repos\ActyIn\AthletesTests\obj\Debug\net8.0\AthletesTests.genruntimeconfig.cache
 C:\Users\karac\source\repos\ActyIn\AthletesTests\obj\Debug\net8.0\ref\AthletesTests.dll
+C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\Humanizer.dll
+C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll
+C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\System.CodeDom.dll

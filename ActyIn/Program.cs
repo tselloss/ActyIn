@@ -26,6 +26,8 @@ builder.Services.AddAuthentication("Bearer")
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:Token"]))
     });
 
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 builder.Services.AddDbContext<NpgsqlContext>(options =>
 options.UseNpgsql(builder.Configuration["ConnectionStrings:PostgreSQL"], b => b.MigrationsAssembly("ActyIn")));
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);

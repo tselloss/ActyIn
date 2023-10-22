@@ -16,3 +16,5 @@ C:\Users\karac\source\repos\ActyIn\Athletes.Info\obj\Debug\net8.0\Athletes.Info.
 C:\Users\karac\source\repos\ActyIn\Athletes.Info\obj\Debug\net8.0\refint\Athletes.Info.dll
 C:\Users\karac\source\repos\ActyIn\Athletes.Info\obj\Debug\net8.0\Athletes.Info.pdb
 C:\Users\karac\source\repos\ActyIn\Athletes.Info\obj\Debug\net8.0\ref\Athletes.Info.dll
+C:\Users\karac\source\repos\ActyIn\Athletes.Info\bin\Debug\net8.0\Athletes.Info.runtimeconfig.json
+C:\Users\karac\source\repos\ActyIn\Athletes.Info\obj\Debug\net8.0\Athletes.Info.genruntimeconfig.cache

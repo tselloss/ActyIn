@@ -14,3 +14,5 @@ C:\Users\karac\source\repos\ActyIn\Postgres.Context\obj\Debug\net8.0\Postgres.Co
 C:\Users\karac\source\repos\ActyIn\Postgres.Context\obj\Debug\net8.0\refint\Postgres.Context.dll
 C:\Users\karac\source\repos\ActyIn\Postgres.Context\obj\Debug\net8.0\Postgres.Context.pdb
 C:\Users\karac\source\repos\ActyIn\Postgres.Context\obj\Debug\net8.0\ref\Postgres.Context.dll
+C:\Users\karac\source\repos\ActyIn\Postgres.Context\bin\Debug\net8.0\Postgres.Context.runtimeconfig.json
+C:\Users\karac\source\repos\ActyIn\Postgres.Context\obj\Debug\net8.0\Postgres.Context.genruntimeconfig.cache

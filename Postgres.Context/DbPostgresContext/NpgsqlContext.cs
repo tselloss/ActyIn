@@ -29,7 +29,7 @@ namespace Postgres.Context.DBContext
                     Address = "123 Main St",
                     City = "City1",
                     PostalCode = 12345,
-                    ChoosenActivity = "Running",
+                    FavoriteActivity = "Running",
                     Role = Roles.User
                 }               
            );
