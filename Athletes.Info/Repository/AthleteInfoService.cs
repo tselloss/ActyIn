@@ -1,10 +1,7 @@
 ﻿using Athletes.Info.Extension.Methods;
 using Athletes.Info.Interface;
-using Athletes.Info.Model;
 using Athletes.Info.Request;
 using Define.Common.Exceptions;
-using Microsoft.AspNetCore.Identity.Data;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Postgres.Context.DBContext;
 using Postgres.Context.Entities;
@@ -16,9 +13,14 @@ namespace Athletes.Info.Repository
 
         private readonly NpgsqlContext _context;
 
+        public AthleteInfoService(NpgsqlContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
         public void DeleteAthletesByIdAsync(AthletesEntity athletesEntity)
         {
-            _context.AthletesInfoEntity.Remove(athletesEntity);
+            _context.AthletesInfo.Remove(athletesEntity);
         }
 
         public void EditAthletes(AthletesEditRequest editRequest)
@@ -26,23 +28,23 @@ namespace Athletes.Info.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<ActionResult<IEnumerable<AthletesEntity>>> GetAllAthletesAsync()
+        public async Task<IEnumerable<AthletesEntity>> GetAllAthletesAsync()
         {
-            return await _context.AthletesInfoEntity.OrderBy(_ => _.AthletesId).ToListAsync();
+            return await _context.AthletesInfo.OrderBy(_ => _.AthletesId).ToListAsync();
         }
 
-        public async Task<ActionResult<AthletesEntity>> GetAthletesInfoByIdAsync(int athleteId)
+        public async Task<AthletesEntity> GetAthletesInfoByIdAsync(int athleteId)
         {
-            return await _context.AthletesInfoEntity.Where(_ => _.AthletesId == athleteId).FirstOrDefaultAsync();
+            return await _context.AthletesInfo.Where(_ => _.AthletesId == athleteId).FirstOrDefaultAsync();
         }
 
         public void LoginAthlete(AthletesLoginRequest loginRequest)
         {
-            if (!_context.AthletesInfoEntity.Any(_ => _.Username == loginRequest.Username) || !_context.AthletesInfoEntity.Any(_ => _.Email == loginRequest.Email))
+            if (!_context.AthletesInfo.Any(_ => _.Username == loginRequest.Username) || !_context.AthletesInfo.Any(_ => _.Email == loginRequest.Email))
             {
                 throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserId, loginRequest.Email.ToString());
             }
-            AthletesEntity user = _context.AthletesInfoEntity.Where(_ => _.Username == loginRequest.Username || _.Email == loginRequest.Email).First();
+            AthletesEntity user = _context.AthletesInfo.Where(_ => _.Username == loginRequest.Username || _.Email == loginRequest.Email).First();
             var verifyHashedPass = VerifyPassword.PasswordVerification(loginRequest.Password);
             if (user.Password != verifyHashedPass)
             {
@@ -56,18 +58,18 @@ namespace Athletes.Info.Repository
             {
                 throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserId, registerRequest.AthletesId.ToString());
             }
-            if (_context.AthletesInfoEntity.Any(u => u.Username == registerRequest.Username))
+            if (_context.AthletesInfo.Any(u => u.Username == registerRequest.Username))
             {
                 throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserUsername, registerRequest.Username);
             }
-            if (_context.AthletesInfoEntity.Any(u => u.Email == registerRequest.Email))
+            if (_context.AthletesInfo.Any(u => u.Email == registerRequest.Email))
             {
                 throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserEmail, registerRequest.Email);
             }
 
             var hashedPass = PasswordHash.CreatePasswordHash(registerRequest.Password);
             registerRequest.Password = hashedPass;
-            _context.AthletesInfoEntity.Add(registerRequest);
+            _context.AthletesInfo.Add(registerRequest);
             _context.SaveChanges();
         }
 
@@ -81,7 +83,7 @@ namespace Athletes.Info.Repository
             catch (ControllerExceptionMessage)
             {
                 throw new ControllerExceptionMessage(message);
-            }             
+            }
         }
     }
 }

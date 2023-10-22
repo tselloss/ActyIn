@@ -6,8 +6,8 @@ namespace Athletes.Info.Interface
 {
     public interface IAthletes
     {
-        Task<ActionResult<IEnumerable<AthletesEntity>>> GetAllAthletesAsync();
-        Task<ActionResult<AthletesEntity>> GetAthletesInfoByIdAsync(int athleteId);
+        Task<IEnumerable<AthletesEntity>> GetAllAthletesAsync();
+        Task<AthletesEntity> GetAthletesInfoByIdAsync(int athleteId);
         void RegisterAthlete(AthletesEntity registerRequest);
         void LoginAthlete(AthletesLoginRequest loginRequest);
         void DeleteAthletesByIdAsync(AthletesEntity athletesEntity);

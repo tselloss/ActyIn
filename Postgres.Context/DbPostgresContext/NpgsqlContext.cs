@@ -11,7 +11,7 @@ namespace Postgres.Context.DBContext
 {
     public class NpgsqlContext : DbContext
     {
-        public DbSet<AthletesEntity> AthletesInfoEntity { get; set; }
+        public DbSet<AthletesEntity> AthletesInfo { get; set; }
 
         public NpgsqlContext(DbContextOptions<NpgsqlContext> options) : base(options) { }
 
@@ -19,6 +19,7 @@ namespace Postgres.Context.DBContext
         {
 
             modelBuilder.Entity<AthletesEntity>()
+                .ToTable("AthletesInfo")
                 .HasData(
                 new AthletesEntity
                 {

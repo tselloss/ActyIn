@@ -14,6 +14,7 @@ namespace Athletes.Info.Profiles
         public AthleteProfile() {
             CreateMap<AthletesEntity, AthleteInfo>().ReverseMap();
             CreateMap<AthletesEntity, AthleteInfoDTO>().ReverseMap();
+            CreateMap<AthleteInfo, AthletesEntity>().ReverseMap();
         }
     }
 }
