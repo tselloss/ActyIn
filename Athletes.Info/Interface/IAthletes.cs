@@ -11,6 +11,9 @@ namespace Athletes.Info.Interface
         void RegisterAthlete(AthletesEntity registerRequest);
         void LoginAthlete(AthletesLoginRequest loginRequest);
         void DeleteAthletesByIdAsync(AthletesEntity athletesEntity);
-        void EditAthletes(AthletesEditRequest editRequest);
+        void EditAthletesPassword(AthletesEditRequest editRequest);
+        void EditAthletesUsernameAndEmail(AthletesEditRequest editRequest);
+        void EditAthletesFavoriteActivity(AthletesEditRequest editRequest);
+        void EditAthletesLocation(AthletesEditRequest editRequest);
     }
 }

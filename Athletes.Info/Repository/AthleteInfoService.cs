@@ -28,6 +28,26 @@ namespace Athletes.Info.Repository
             throw new NotImplementedException();
         }
 
+        public void EditAthletesFavoriteActivity(AthletesEditRequest editRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditAthletesLocation(AthletesEditRequest editRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditAthletesPassword(AthletesEditRequest editRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditAthletesUsernameAndEmail(AthletesEditRequest editRequest)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<AthletesEntity>> GetAllAthletesAsync()
         {
             return await _context.AthletesInfo.OrderBy(_ => _.AthletesId).ToListAsync();
