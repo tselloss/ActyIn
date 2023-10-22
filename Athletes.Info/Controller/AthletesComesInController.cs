@@ -26,14 +26,8 @@ namespace Athletes.Info.Controller
             _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
         }
 
-        public AthletesComesInController(IAthletes athleteInfo, IMapper mapper)
-        {
-            _athletesInfo = athleteInfo ?? throw new ArgumentException(nameof(athleteInfo));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        }
-
         [HttpPost("actyin/registerUser")]
-        public ActionResult RegisterUser([FromBody] AthletesRegisterRequest registerRequest)
+        public ActionResult<AthleteInfo> RegisterUser([FromBody] AthletesRegisterRequest registerRequest)
         {
             var register = _mapper.Map<AthletesEntity>(registerRequest);
             _athleteInfoService.RegisterAthlete(register);

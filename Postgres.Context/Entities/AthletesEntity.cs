@@ -12,8 +12,7 @@ namespace Postgres.Context.Entities
         [MaxLength(50)]
         public string Username { get; set; }
         [EmailAddress]
-        public string Email { get; set; }
-        [MaxLength(16)]
+        public string Email { get; set; }        
         public string Password { get; set; }
         [MaxLength(50)]
         public string Address { get; set; }
