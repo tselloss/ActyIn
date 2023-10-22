@@ -1,6 +1,7 @@
 ﻿using Athletes.Info.Extension.Methods;
 using Athletes.Info.Interface;
 using Athletes.Info.Request;
+using Athletes.Info.Request.EditRequests;
 using Define.Common.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using Postgres.Context.DBContext;
@@ -23,27 +24,27 @@ namespace Athletes.Info.Repository
             _context.AthletesInfo.Remove(athletesEntity);
         }
 
-        public void EditAthletes(AthletesEditRequest editRequest)
+        public void EditAthletes(AthleteEditRequest editRequest)
         {
             throw new NotImplementedException();
         }
 
-        public void EditAthletesFavoriteActivity(AthletesEditRequest editRequest)
+        public void EditAthletesFavoriteActivity(AthleteEditRequest editRequest)
         {
             throw new NotImplementedException();
         }
 
-        public void EditAthletesLocation(AthletesEditRequest editRequest)
+        public void EditAthletesLocation(AthleteEditRequest editRequest)
         {
             throw new NotImplementedException();
         }
 
-        public void EditAthletesPassword(AthletesEditRequest editRequest)
+        public void EditAthletesPassword(AthleteEditRequest editRequest)
         {
             throw new NotImplementedException();
         }
 
-        public void EditAthletesUsernameAndEmail(AthletesEditRequest editRequest)
+        public void EditAthletesUsernameAndEmail(AthleteEditRequest editRequest)
         {
             throw new NotImplementedException();
         }
@@ -58,7 +59,7 @@ namespace Athletes.Info.Repository
             return await _context.AthletesInfo.Where(_ => _.AthletesId == athleteId).FirstOrDefaultAsync();
         }
 
-        public void LoginAthlete(AthletesLoginRequest loginRequest)
+        public void LoginAthlete(AthleteLoginRequest loginRequest)
         {
             if (!_context.AthletesInfo.Any(_ => _.Username == loginRequest.Username) || !_context.AthletesInfo.Any(_ => _.Email == loginRequest.Email))
             {

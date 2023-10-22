@@ -7,7 +7,7 @@ namespace Athletes.Info.Extension.Methods
 {
         public class Mapper
         {
-            public AthletesEntity ToRegisterAthlete(AthletesRegisterRequest athleteRegisterRequest)
+            public AthletesEntity ToRegisterAthlete(AthleteRegisterRequest athleteRegisterRequest)
             {
                 return new AthletesEntity
                 {

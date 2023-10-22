@@ -1,9 +1,13 @@
-﻿using Define.Common;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Athletes.Info.Model
+namespace Athletes.Info.Request.EditRequests
 {
-    public record AthleteInfoDTO : AthleteInfoBase
+    internal record AthleteEditLocationRequest
     {
         [Required]
         public string Address { get; set; }
@@ -11,9 +15,5 @@ namespace Athletes.Info.Model
         public string City { get; set; }
         [Required]
         public int PostalCode { get; set; }
-        [Required]
-        public string FavoriteActivity { get; set; }
-        [Required]
-        public Roles Role { get; set; }
     }
 }

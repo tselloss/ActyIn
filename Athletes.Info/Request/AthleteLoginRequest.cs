@@ -2,7 +2,7 @@
 
 namespace Athletes.Info.Request
 {
-    public record AthletesLoginRequest : AthletesInfoBase
+    public record AthleteLoginRequest : AthleteInfoBase
     {
         public string Password { get; set; }
     }

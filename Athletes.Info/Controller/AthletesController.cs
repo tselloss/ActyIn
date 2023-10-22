@@ -52,15 +52,6 @@ namespace Athletes.Info.Controller
             return Ok(getUset);
         }
 
-        [HttpPost("actyin/createUser")]
-        public async Task<ActionResult<AthleteInfo>> CreateUserAsync([FromBody] AthletesRegisterRequest athleteInfoRequest)
-        {
-            var newUser = _mapper.Map<AthletesEntity>(athleteInfoRequest);
-            _athletesInfo.RegisterAthlete(newUser);
-            await _athleteInfoService.SaveChangesAsync(AthletesExceptionMesseges.AthleteCanNotCreated);
-            return Ok(newUser);
-        }
-
         [HttpDelete("actyin/deleteUserById/{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {

@@ -27,7 +27,7 @@ namespace Athletes.Info.Controller
         }
 
         [HttpPost("actyin/registerUser")]
-        public ActionResult<AthleteInfo> RegisterUser([FromBody] AthletesRegisterRequest registerRequest)
+        public ActionResult<AthleteInfo> RegisterUser([FromBody] AthleteRegisterRequest registerRequest)
         {
             var register = _mapper.Map<AthletesEntity>(registerRequest);
             _athleteInfoService.RegisterAthlete(register);
@@ -36,7 +36,7 @@ namespace Athletes.Info.Controller
         }
 
         [HttpPost("actyin/loginUser")]
-        public ActionResult LoginUser([FromBody] AthletesLoginRequest loginRequest)
+        public ActionResult LoginUser([FromBody] AthleteLoginRequest loginRequest)
         {
             _athleteInfoService.LoginAthlete(loginRequest);
 

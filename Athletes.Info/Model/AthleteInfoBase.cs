@@ -2,7 +2,7 @@
 
 namespace Athletes.Info.Model
 {
-    public record AthletesInfoBase
+    public record AthleteInfoBase
     {
         [Required]
         public string Username { get; set; }

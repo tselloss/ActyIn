@@ -7,7 +7,7 @@ namespace Athletes.Info.Extension.Methods
 {
         public class ToLoginAnAthlete
         {
-            public AthletesEntity ToLoginAthlete(AthletesLoginRequest athleteLoginRequest)
+            public AthletesEntity ToLoginAthlete(AthleteLoginRequest athleteLoginRequest)
             {
                 return new AthletesEntity
                 {

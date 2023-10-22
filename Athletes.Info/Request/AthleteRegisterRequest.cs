@@ -2,7 +2,7 @@
 
 namespace Athletes.Info.Request
 {
-    public record AthletesRegisterRequest : AthleteInfo
+    public record AthleteRegisterRequest : AthleteInfo
     {
 
     }
