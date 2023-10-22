@@ -18,8 +18,7 @@ namespace Athletes.Info.Extension.Methods
                     PostalCode = athleteRegisterRequest.PostalCode,
                     Role = athleteRegisterRequest.Role,
                     Username = athleteRegisterRequest.Username,
-                };
-                        
+                };                        
             }
         }
 }
