@@ -1,4 +1,7 @@
 using Athletes.Info.Controller;
+using Athletes.Info.Interface;
+using Athletes.Info.Model;
+using Athletes.Info.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -28,6 +31,8 @@ options.UseNpgsql(builder.Configuration["ConnectionStrings:PostgreSQL"], b => b.
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<IAthletes, AthleteInfoService>();
+builder.Services.AddScoped<AthleteInfoService>();
 
 // Enable CORS to allow all origins, headers, and methods
 builder.Services.AddMvcCore().AddCors(options =>
