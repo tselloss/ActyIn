@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Athletes.Info.Request.EditRequests
 {
-    internal record AthleteEditLocationRequest
+    public record AthleteEditLocationRequest
     {
         [Required]
         public string Address { get; set; }

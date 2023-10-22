@@ -1,7 +1,6 @@
 ﻿using Athletes.Info.Extension.Methods;
 using Athletes.Info.Interface;
 using Athletes.Info.Request;
-using Athletes.Info.Request.EditRequests;
 using Define.Common.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using Postgres.Context.DBContext;
@@ -24,27 +23,27 @@ namespace Athletes.Info.Repository
             _context.AthletesInfo.Remove(athletesEntity);
         }
 
-        public void EditAthletes(AthleteEditRequest editRequest)
+        public void EditAthletes(AthletesEntity editRequest)
         {
             throw new NotImplementedException();
         }
 
-        public void EditAthletesFavoriteActivity(AthleteEditRequest editRequest)
+        public void EditAthletesFavoriteActivity(AthletesEntity editRequest)
         {
             throw new NotImplementedException();
         }
 
-        public void EditAthletesLocation(AthleteEditRequest editRequest)
+        public void EditAthletesLocation(AthletesEntity editRequest)
         {
             throw new NotImplementedException();
         }
 
-        public void EditAthletesPassword(AthleteEditRequest editRequest)
+        public void EditAthletesPassword(AthletesEntity editRequest)
         {
             throw new NotImplementedException();
         }
 
-        public void EditAthletesUsernameAndEmail(AthleteEditRequest editRequest)
+        public void EditAthletesUsernameAndEmail(AthletesEntity editRequest)
         {
             throw new NotImplementedException();
         }

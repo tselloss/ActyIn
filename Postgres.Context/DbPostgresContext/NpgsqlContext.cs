@@ -1,11 +1,6 @@
 ﻿using Define.Common;
 using Microsoft.EntityFrameworkCore;
 using Postgres.Context.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Postgres.Context.DBContext
 {
@@ -32,7 +27,7 @@ namespace Postgres.Context.DBContext
                     PostalCode = 12345,
                     FavoriteActivity = "Running",
                     Role = Roles.User
-                }               
+                }
            );
             base.OnModelCreating(modelBuilder);
         }

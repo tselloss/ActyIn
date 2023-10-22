@@ -1,13 +1,8 @@
 ﻿using Athletes.Info.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Athletes.Info.Request.EditRequests
 {
-    internal record AthleteEditPasswordRequest : AthleteInfo
+    public record AthleteEditPasswordRequest : AthleteInfo
     {
 
     }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Define.Common.Exceptions
+﻿namespace Define.Common.Exceptions
 {
     [Serializable]
     public class ControllerExceptionMessage : Exception
@@ -13,7 +7,7 @@ namespace Define.Common.Exceptions
         {
 
         }
-        public ControllerExceptionMessage(string athletesExceptionMesseges, string message) : base(String.Format(athletesExceptionMesseges,message))
+        public ControllerExceptionMessage(string athletesExceptionMesseges, string message) : base(String.Format(athletesExceptionMesseges, message))
         {
 
         }

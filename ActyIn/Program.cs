@@ -1,6 +1,4 @@
-using Athletes.Info.Controller;
 using Athletes.Info.Interface;
-using Athletes.Info.Model;
 using Athletes.Info.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;

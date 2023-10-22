@@ -2,7 +2,7 @@
 
 namespace Athletes.Info.Request.EditRequests
 {
-    internal class AthleteEditFavoriteActivityRequest
+    public class AthleteEditFavoriteActivityRequest
     {
         [Required]
         public string FavoriteActivity { get; set; }

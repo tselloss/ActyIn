@@ -1,7 +1,6 @@
 ﻿using Athletes.Info.Interface;
 using Athletes.Info.Model;
 using Athletes.Info.Repository;
-using Athletes.Info.Request;
 using AutoMapper;
 using Define.Common.Exceptions;
 using Microsoft.AspNetCore.Mvc;
