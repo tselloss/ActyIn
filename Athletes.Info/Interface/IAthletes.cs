@@ -1,4 +1,5 @@
 ﻿using Athletes.Info.Request;
+using Athletes.Info.Request.EditRequests;
 using Postgres.Context.Entities;
 
 namespace Athletes.Info.Interface
@@ -10,9 +11,9 @@ namespace Athletes.Info.Interface
         void RegisterAthlete(AthletesEntity registerRequest);
         void LoginAthlete(AthleteLoginRequest loginRequest);
         void DeleteAthletesByIdAsync(AthletesEntity athletesEntity);
-        void EditAthletesPassword(AthletesEntity editRequest);
-        void EditAthletesUsernameAndEmail(AthletesEntity editRequest);
-        void EditAthletesFavoriteActivity(AthletesEntity editRequest);
-        void EditAthletesLocation(AthletesEntity editRequest);
+        void EditAthletesPassword(AthleteEditPasswordRequest athleteEditPasswordRequest);
+        void EditAthletesUsernameAndEmail(AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest);
+        void EditAthletesFavoriteActivity(AthleteEditFavoriteActivityRequest editFavoriteActivityRequest);
+        void EditAthletesLocation(AthleteEditLocationRequest athleteEditLocationRequest);
     }
 }

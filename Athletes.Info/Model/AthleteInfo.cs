@@ -6,6 +6,7 @@ namespace Athletes.Info.Model
     {
         [Required]
         [MaxLength(16)]
+        [Display(Name = "User Password")]
         public string Password { get; set; }
     }
 }

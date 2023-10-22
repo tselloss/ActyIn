@@ -1,7 +1,9 @@
 ﻿using Athletes.Info.Extension.Methods;
 using Athletes.Info.Interface;
 using Athletes.Info.Request;
+using Athletes.Info.Request.EditRequests;
 using Define.Common.Exceptions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Postgres.Context.DBContext;
 using Postgres.Context.Entities;
@@ -12,10 +14,12 @@ namespace Athletes.Info.Repository
     {
 
         private readonly NpgsqlContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AthleteInfoService(NpgsqlContext context)
+        public AthleteInfoService(NpgsqlContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
         public void DeleteAthletesByIdAsync(AthletesEntity athletesEntity)
@@ -23,27 +27,33 @@ namespace Athletes.Info.Repository
             _context.AthletesInfo.Remove(athletesEntity);
         }
 
-        public void EditAthletes(AthletesEntity editRequest)
+        public void EditAthletesFavoriteActivity(AthleteEditFavoriteActivityRequest editFavoriteActivityRequest)
+        {
+            var editFavActivity = _context.AthletesInfo.Any(_ => _.FavoriteActivity == editFavoriteActivityRequest.FavoriteActivity);
+            if (!editFavActivity.Equals(null))
+            {
+                throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserId);
+            }
+
+            var favAct = _context.AthletesInfo.Where(_ => _.FavoriteActivity == editFavoriteActivityRequest.FavoriteActivity).First();
+            if (favAct != null)
+                favAct.FavoriteActivity = editFavoriteActivityRequest.FavoriteActivity;
+            _context.AthletesInfo.Add(favAct);
+            _context.SaveChanges();
+
+        }
+
+        public void EditAthletesLocation(AthleteEditLocationRequest athleteEditLocationRequest)
         {
             throw new NotImplementedException();
         }
 
-        public void EditAthletesFavoriteActivity(AthletesEntity editRequest)
+        public void EditAthletesPassword(AthleteEditPasswordRequest athleteEditPasswordRequest)
         {
             throw new NotImplementedException();
         }
 
-        public void EditAthletesLocation(AthletesEntity editRequest)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EditAthletesPassword(AthletesEntity editRequest)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EditAthletesUsernameAndEmail(AthletesEntity editRequest)
+        public void EditAthletesUsernameAndEmail(AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest)
         {
             throw new NotImplementedException();
         }

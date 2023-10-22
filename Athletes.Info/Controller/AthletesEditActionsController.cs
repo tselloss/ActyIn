@@ -29,7 +29,7 @@ namespace Athletes.Info.Controller
         [HttpPost("actyin/editFavouriteActivity")]
         public ActionResult<AthleteInfo> EditFavouriteActivity([FromBody] AthleteEditFavoriteActivityRequest athleteEditFavoriteActivityRequest)
         {
-            var register = _mapper.Map<AthletesEntity>(athleteEditFavoriteActivityRequest);
+            var register = _mapper.Map<AthleteEditFavoriteActivityRequest>(athleteEditFavoriteActivityRequest);
             _athleteInfoService.EditAthletesFavoriteActivity(register);
 
             return Ok();
@@ -38,7 +38,7 @@ namespace Athletes.Info.Controller
         [HttpPost("actyin/editAthleteLocation")]
         public ActionResult<AthleteInfo> EditAthleteLocation([FromBody] AthleteEditLocationRequest athleteEditLocationRequest)
         {
-            var register = _mapper.Map<AthletesEntity>(athleteEditLocationRequest);
+            var register = _mapper.Map<AthleteEditLocationRequest>(athleteEditLocationRequest);
             _athleteInfoService.EditAthletesLocation(register);
 
             return Ok();
@@ -47,7 +47,7 @@ namespace Athletes.Info.Controller
         [HttpPost("actyin/editAthletePassword")]
         public ActionResult<AthleteInfo> EditAthletePassword([FromBody] AthleteEditPasswordRequest athleteEditPasswordRequest)
         {
-            var register = _mapper.Map<AthletesEntity>(athleteEditPasswordRequest);
+            var register = _mapper.Map<AthleteEditPasswordRequest>(athleteEditPasswordRequest);
             _athleteInfoService.EditAthletesPassword(register);
 
             return Ok();
@@ -56,7 +56,7 @@ namespace Athletes.Info.Controller
         [HttpPost("actyin/editAthleteUsernameAndEmailRequest")]
         public ActionResult<AthleteInfo> EditUsernameAndEmailRequest([FromBody] AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest)
         {
-            var register = _mapper.Map<AthletesEntity>(editUsernameAndEmailRequest);
+            var register = _mapper.Map<AthleteEditUsernameAndEmailRequest>(editUsernameAndEmailRequest);
             _athleteInfoService.EditAthletesUsernameAndEmail(register);
 
             return Ok();
