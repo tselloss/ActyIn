@@ -1,61 +1,81 @@
-//using Athletes.Info.Controller;
-//using Athletes.Info.Interface;
-//using Athletes.Info.Repository;
-//using Athletes.Info.Request;
-//using AutoMapper;
-//using Microsoft.AspNetCore.Mvc;
-//using Moq;
-//using Postgres.Context.DBContext;
-//using Postgres.Context.Entities;
+using Athletes.Info.Controller;
+using Athletes.Info.Interface;
+using Athletes.Info.Model;
+using Athletes.Info.Repository;
+using AutoMapper;
+using Define.Common;
+using FakeItEasy;
+using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using NUnit.Framework;
+using Postgres.Context.Entities;
+using System.Net;
 
-//namespace AthletesTests
-//{
-//    public class IAthletesTests
-//    {
-//        [TestCase]
-//        public void RegisterUser_ValidRequest_ReturnsOkResult()
-//        {
-//            Arrange
-//           var registerRequest = new AthletesRegisterRequest
-//           {
-//               Email = "test@example.com",
-//               Username = "testuser",
-//               Password = "testpassword",
-//               Address = "testAddress",
-//               City = "testCity",
-//               FavoriteActivity = "test",
-//               PostalCode = 10000,
-//               Role = Define.Common.Roles.User
-//           };
+namespace AthletesTests
+{
+    public class AthletesControllerTests
+    {
+        AthletesController _controller;
+        IAthletes _athletesService;
+        ILogger<AthletesController> _logger;
+        IMapper _mapper;
+        AthleteInfoService _athleteInfoService;
 
-//            var mappedEntity = new AthletesEntity
-//            {
-//                Email = registerRequest.Email,
-//                Username = registerRequest.Username,
-//                Password = registerRequest.Password,
-//                Role = registerRequest.Role,
-//                PostalCode = registerRequest.PostalCode,
-//                City = registerRequest.City,
-//                Address = registerRequest.Address,
-//                FavoriteActivity = "testChoosenActivity",
-//            };
+        [SetUp]
+        public void Setup()
+        {
+            _athletesService = A.Fake<IAthletes>();
+            _logger = A.Fake<ILogger<AthletesController>>();
+            _mapper = A.Fake<IMapper>();
+            _athleteInfoService = A.Fake<AthleteInfoService>();
 
-//            var mapperMock = new Mock<IMapper>();
-//            mapperMock.Setup(m => m.Map<AthletesEntity>(registerRequest))
-//                      .Returns(mappedEntity);
+            _controller = new AthletesController(_athletesService, _logger, _mapper, _athleteInfoService);
+        }
 
-//            var athleteInfoServiceMock = new Mock<IAthletes>();
-//            athleteInfoServiceMock.Setup(s => s.RegisterAthlete(mappedEntity))
-//                                 .Verifiable();
+        [Test]
+        public async Task GetAllUsersAsync_Test()
+        {
+            // Arrange
+            var athletesList = new List<AthletesEntity>
+            {
+                new AthletesEntity
+                {
+                    AthletesId = 1,
+                    Username = "user1",
+                    Email = "user1@example.com",
+                    Password = "password1",
+                    Address = "123 Main St",
+                    City = "City1",
+                    PostalCode = 12345,
+                    FavoriteActivity = "Running",
+                    Role = Roles.User
+                },
+                new AthletesEntity
+                {
+                    AthletesId = 2,
+                    Username = "user2",
+                    Email = "user2@example.com",
+                    Password = "password2",
+                    Address = "456 Oak St",
+                    City = "City2",
+                    PostalCode = 67890,
+                    FavoriteActivity = "Swimming",
+                    Role = Roles.User
+                }
+            };
 
-//            var controller = new AthletesController((IAthletes)mapperMock.Object, (IMapper)athleteInfoServiceMock.Object);
+            A.CallTo(() => _athletesService.GetAllAthletesAsync()).Returns(athletesList);
 
-//            Act
-//           var result = controller.CreateUserAsync(registerRequest);
+            // Act
+            var response = await _controller.GetAllUsersAsync();
 
-//            Assert
-//            Assert.NotNull(result);
-//            athleteInfoServiceMock.Verify();
-//        }
-//    }
-//}
+            // Assert
+            Assert.IsInstanceOf<OkResult>(response.Result);
+            var okResult = response.Result as OkResult;
+
+            okResult.Should().NotBeNull();
+            okResult.StatusCode.Should().Be((int)HttpStatusCode.OK);    
+        }
+    }
+}
