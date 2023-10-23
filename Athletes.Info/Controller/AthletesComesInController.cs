@@ -1,7 +1,7 @@
 ﻿using Athletes.Info.Interface;
 using Athletes.Info.Model;
 using Athletes.Info.Repository;
-using Athletes.Info.Request;
+using Athletes.Info.Request.ComesInRequests;
 using AutoMapper;
 using Define.Common.Extension.Routes;
 using Microsoft.AspNetCore.Http;

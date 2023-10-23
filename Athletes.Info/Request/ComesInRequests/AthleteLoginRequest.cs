@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Athletes.Info.Request
+namespace Athletes.Info.Request.ComesInRequests
 {
     public record AthleteLoginRequest : AthleteInfoBase
     {

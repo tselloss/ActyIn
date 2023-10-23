@@ -1,10 +1,11 @@
 ﻿using Athletes.Info.Extension.Methods;
 using Athletes.Info.Interface;
-using Athletes.Info.Request;
+using Athletes.Info.Request.ComesInRequests;
 using Athletes.Info.Request.EditRequests;
 using Define.Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Postgres.Context.DBContext;
 using Postgres.Context.Entities;
 
@@ -14,12 +15,10 @@ namespace Athletes.Info.Repository
     {
 
         private readonly NpgsqlContext _context;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public AthleteInfoService(NpgsqlContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
-            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
         public void DeleteAthletesByIdAsync(AthletesEntity athletesEntity)
@@ -28,7 +27,7 @@ namespace Athletes.Info.Repository
         }
 
         public void EditAthletesFavoriteActivity(AthleteEditFavoriteActivityRequest editFavoriteActivityRequest)
-        {            
+        {
             var favAct = _context.AthletesInfo.Where(_ => _.FavoriteActivity == editFavoriteActivityRequest.FavoriteActivity).First();
             if (favAct != null)
                 favAct.FavoriteActivity = editFavoriteActivityRequest.FavoriteActivity;
@@ -71,12 +70,16 @@ namespace Athletes.Info.Repository
             {
                 throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserId, loginRequest.Email.ToString());
             }
+
             AthletesEntity user = _context.AthletesInfo.Where(_ => _.Username == loginRequest.Username || _.Email == loginRequest.Email).First();
             var verifyHashedPass = VerifyPassword.PasswordVerification(loginRequest.Password);
             if (user.Password != verifyHashedPass)
             {
                 throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserPassword, loginRequest.Username);
             }
+
+
+
         }
 
         public void RegisterAthlete(AthletesEntity registerRequest)

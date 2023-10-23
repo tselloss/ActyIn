@@ -21,7 +21,7 @@ builder.Services.AddAuthentication("Bearer")
         ValidateIssuerSigningKey = true,
         ValidateAudience = false,
         ValidateIssuer = false,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:Token"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:SecretForKey"]))
     });
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

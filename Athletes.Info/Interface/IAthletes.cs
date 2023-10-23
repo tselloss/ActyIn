@@ -1,4 +1,4 @@
-﻿using Athletes.Info.Request;
+﻿using Athletes.Info.Request.ComesInRequests;
 using Athletes.Info.Request.EditRequests;
 using Postgres.Context.Entities;
 
