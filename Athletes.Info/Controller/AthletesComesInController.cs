@@ -27,6 +27,11 @@ namespace Athletes.Info.Controller
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
         }
+        /// <summary>
+        /// Register a user on our DB, access to our API functions
+        /// </summary>
+        /// <param name="registerRequest"></param>
+        /// <returns></returns>
 
         [HttpPost(ActionNames.RegisterUser)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -38,6 +43,11 @@ namespace Athletes.Info.Controller
             return Ok();
         }
 
+        /// <summary>
+        /// User Login to our API functions
+        /// </summary>
+        /// <param name="loginRequest"></param>
+        /// <returns></returns>
         [HttpPost(ActionNames.LoginUser)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult LoginUser([FromBody] AthleteLoginRequest loginRequest)

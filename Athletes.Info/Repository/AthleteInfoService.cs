@@ -28,24 +28,21 @@ namespace Athletes.Info.Repository
         }
 
         public void EditAthletesFavoriteActivity(AthleteEditFavoriteActivityRequest editFavoriteActivityRequest)
-        {
-            var editFavActivity = _context.AthletesInfo.Any(_ => _.FavoriteActivity == editFavoriteActivityRequest.FavoriteActivity);
-            if (!editFavActivity.Equals(null))
-            {
-                throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserId);
-            }
-
+        {            
             var favAct = _context.AthletesInfo.Where(_ => _.FavoriteActivity == editFavoriteActivityRequest.FavoriteActivity).First();
             if (favAct != null)
                 favAct.FavoriteActivity = editFavoriteActivityRequest.FavoriteActivity;
             _context.AthletesInfo.Add(favAct);
             _context.SaveChanges();
-
         }
 
         public void EditAthletesLocation(AthleteEditLocationRequest athleteEditLocationRequest)
         {
-            throw new NotImplementedException();
+            var favAct = _context.AthletesInfo.Where(_ => _.PostalCode == athleteEditLocationRequest.PostalCode).First();
+            if (favAct != null)
+                favAct.PostalCode = athleteEditLocationRequest.PostalCode;
+            _context.AthletesInfo.Add(favAct);
+            _context.SaveChanges();
         }
 
         public void EditAthletesPassword(AthleteEditPasswordRequest athleteEditPasswordRequest)
