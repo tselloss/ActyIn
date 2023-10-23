@@ -3,13 +3,14 @@ using Athletes.Info.Model;
 using Athletes.Info.Repository;
 using Athletes.Info.Request.EditRequests;
 using AutoMapper;
+using Define.Common.Extension.Routes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Postgres.Context.Entities;
 
 namespace Athletes.Info.Controller
 {
-    [Route("actyin/[controller]")]
+    [Route(Actions.Controller)]
     [ApiController]
     public class AthletesEditActionsController : ControllerBase
     {
@@ -26,8 +27,8 @@ namespace Athletes.Info.Controller
             _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
         }
 
-        [HttpPost("actyin/editFavouriteActivity")]
-        public ActionResult<AthleteInfo> EditFavouriteActivity([FromBody] AthleteEditFavoriteActivityRequest athleteEditFavoriteActivityRequest)
+        [HttpPost(Actions.EditFavoriteActivity)]
+        public ActionResult<AthleteInfo> EditFavoriteActivity([FromBody] AthleteEditFavoriteActivityRequest athleteEditFavoriteActivityRequest)
         {
             var register = _mapper.Map<AthleteEditFavoriteActivityRequest>(athleteEditFavoriteActivityRequest);
             _athleteInfoService.EditAthletesFavoriteActivity(register);
@@ -35,7 +36,7 @@ namespace Athletes.Info.Controller
             return Ok();
         }
 
-        [HttpPost("actyin/editAthleteLocation")]
+        [HttpPost(Actions.EditAthleteLocation)]
         public ActionResult<AthleteInfo> EditAthleteLocation([FromBody] AthleteEditLocationRequest athleteEditLocationRequest)
         {
             var register = _mapper.Map<AthleteEditLocationRequest>(athleteEditLocationRequest);
@@ -44,7 +45,7 @@ namespace Athletes.Info.Controller
             return Ok();
         }
 
-        [HttpPost("actyin/editAthletePassword")]
+        [HttpPost(Actions.EditAthletePassword)]
         public ActionResult<AthleteInfo> EditAthletePassword([FromBody] AthleteEditPasswordRequest athleteEditPasswordRequest)
         {
             var register = _mapper.Map<AthleteEditPasswordRequest>(athleteEditPasswordRequest);
@@ -53,7 +54,7 @@ namespace Athletes.Info.Controller
             return Ok();
         }
 
-        [HttpPost("actyin/editAthleteUsernameAndEmailRequest")]
+        [HttpPost(Actions.EditAthleteUsernameAndEmailRequest)]
         public ActionResult<AthleteInfo> EditUsernameAndEmailRequest([FromBody] AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest)
         {
             var register = _mapper.Map<AthleteEditUsernameAndEmailRequest>(editUsernameAndEmailRequest);

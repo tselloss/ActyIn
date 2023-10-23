@@ -3,6 +3,8 @@ using Athletes.Info.Model;
 using Athletes.Info.Repository;
 using Athletes.Info.Request;
 using AutoMapper;
+using Define.Common.Extension.Routes;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Postgres.Context.Entities;
@@ -26,7 +28,8 @@ namespace Athletes.Info.Controller
             _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
         }
 
-        [HttpPost("actyin/registerUser")]
+        [HttpPost(Actions.RegisterUser)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<AthleteInfo> RegisterUser([FromBody] AthleteRegisterRequest registerRequest)
         {
             var register = _mapper.Map<AthletesEntity>(registerRequest);
@@ -35,7 +38,8 @@ namespace Athletes.Info.Controller
             return Ok();
         }
 
-        [HttpPost("actyin/loginUser")]
+        [HttpPost(Actions.LoginUser)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult LoginUser([FromBody] AthleteLoginRequest loginRequest)
         {
             _athleteInfoService.LoginAthlete(loginRequest);

@@ -3,13 +3,14 @@ using Athletes.Info.Model;
 using Athletes.Info.Repository;
 using AutoMapper;
 using Define.Common.Exceptions;
+using Define.Common.Extension.Routes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Postgres.Context.Entities;
 
 namespace Athletes.Info.Controller
 {
-    [Route("actyin/[controller]")]
+    [Route(Actions.Controller)]
     [ApiController]
     public class AthletesController : ControllerBase
     {
@@ -26,7 +27,7 @@ namespace Athletes.Info.Controller
             _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
         }
 
-        [HttpGet("actyin/getAllUsers")]
+        [HttpGet(Actions.GetAllUsers)]
         public async Task<ActionResult<IEnumerable<AthleteInfoDTO>>> GetAllUsersAsync()
         {
             var users = await _athletesInfo.GetAllAthletesAsync();
@@ -38,7 +39,7 @@ namespace Athletes.Info.Controller
             return Ok(_mapper.Map<IEnumerable<AthleteInfoDTO>>(users));
         }
 
-        [HttpGet("actyin/getUserById/{id}")]
+        [HttpGet(Actions.GetUserById)]
         public async Task<ActionResult<AthletesEntity>> GetUserInfoByIdAsync(int id)
         {
             var user = await _athletesInfo.GetAthletesInfoByIdAsync(id);
@@ -51,7 +52,7 @@ namespace Athletes.Info.Controller
             return Ok(getUset);
         }
 
-        [HttpDelete("actyin/deleteUserById/{id}")]
+        [HttpDelete(Actions.DeleteUser)]
         public async Task<ActionResult> DeleteUser(int id)
         {
             var users = await _athletesInfo.GetAthletesInfoByIdAsync(id);
