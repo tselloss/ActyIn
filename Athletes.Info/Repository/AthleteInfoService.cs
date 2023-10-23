@@ -32,7 +32,7 @@ namespace Athletes.Info.Repository
             var editFavActivity = _context.AthletesInfo.Any(_ => _.FavoriteActivity == editFavoriteActivityRequest.FavoriteActivity);
             if (!editFavActivity.Equals(null))
             {
-                throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserId);
+                throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserId);
             }
 
             var favAct = _context.AthletesInfo.Where(_ => _.FavoriteActivity == editFavoriteActivityRequest.FavoriteActivity).First();
@@ -72,13 +72,13 @@ namespace Athletes.Info.Repository
         {
             if (!_context.AthletesInfo.Any(_ => _.Username == loginRequest.Username) || !_context.AthletesInfo.Any(_ => _.Email == loginRequest.Email))
             {
-                throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserId, loginRequest.Email.ToString());
+                throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserId, loginRequest.Email.ToString());
             }
             AthletesEntity user = _context.AthletesInfo.Where(_ => _.Username == loginRequest.Username || _.Email == loginRequest.Email).First();
             var verifyHashedPass = VerifyPassword.PasswordVerification(loginRequest.Password);
             if (user.Password != verifyHashedPass)
             {
-                throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserPassword, loginRequest.Username);
+                throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserPassword, loginRequest.Username);
             }
         }
 
@@ -86,15 +86,15 @@ namespace Athletes.Info.Repository
         {
             if (registerRequest.Email == null || registerRequest.Username == null || registerRequest.Password == null)
             {
-                throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserId, registerRequest.AthletesId.ToString());
+                throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserId, registerRequest.AthletesId.ToString());
             }
             if (_context.AthletesInfo.Any(u => u.Username == registerRequest.Username))
             {
-                throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserUsername, registerRequest.Username);
+                throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserUsername, registerRequest.Username);
             }
             if (_context.AthletesInfo.Any(u => u.Email == registerRequest.Email))
             {
-                throw new ControllerExceptionMessage(AthletesExceptionMesseges.UndefinedUserEmail, registerRequest.Email);
+                throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserEmail, registerRequest.Email);
             }
 
             var hashedPass = PasswordHash.CreatePasswordHash(registerRequest.Password);

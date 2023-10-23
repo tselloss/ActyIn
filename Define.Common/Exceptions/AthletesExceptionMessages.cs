@@ -1,6 +1,6 @@
 ﻿namespace Define.Common.Exceptions
 {
-    public class AthletesExceptionMesseges
+    public class AthletesExceptionMessages
     {
         public const string UndefinedUserId = "User does not exist for this ID ";
         public const string UndefinedUserEmail = "User does not exist for this Email ";

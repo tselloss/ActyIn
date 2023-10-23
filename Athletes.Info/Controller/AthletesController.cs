@@ -33,7 +33,7 @@ namespace Athletes.Info.Controller
             var users = await _athletesInfo.GetAllAthletesAsync();
             if (users == null)
             {
-                _logger.LogInformation(AthletesExceptionMesseges.UndefinedUsers);
+                _logger.LogInformation(AthletesExceptionMessages.UndefinedUsers);
                 return NoContent();
             }
             return Ok(_mapper.Map<IEnumerable<AthleteInfoDTO>>(users));
@@ -45,7 +45,7 @@ namespace Athletes.Info.Controller
             var user = await _athletesInfo.GetAthletesInfoByIdAsync(id);
             if (user == null)
             {
-                _logger.LogInformation(AthletesExceptionMesseges.UndefinedUserId + $"{id}");
+                _logger.LogInformation(AthletesExceptionMessages.UndefinedUserId + $"{id}");
                 return NoContent();
             }
             var getUset = _mapper.Map<AthleteInfoDTO>(user);
@@ -59,13 +59,13 @@ namespace Athletes.Info.Controller
 
             if (users == null)
             {
-                _logger.LogInformation(AthletesExceptionMesseges.UndefinedUserId + $"{id}");
+                _logger.LogInformation(AthletesExceptionMessages.UndefinedUserId + $"{id}");
                 return NoContent();
             }
             var newUser = _mapper.Map<AthletesEntity>(users);
             _athletesInfo.DeleteAthletesByIdAsync(newUser);
 
-            await _athleteInfoService.SaveChangesAsync(AthletesExceptionMesseges.AthleteCanNotDeleted);
+            await _athleteInfoService.SaveChangesAsync(AthletesExceptionMessages.AthleteCanNotDeleted);
             return Ok(users);
         }
     }
