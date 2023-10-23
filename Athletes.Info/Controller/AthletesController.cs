@@ -40,7 +40,7 @@ namespace Athletes.Info.Controller
         }
 
         [HttpGet(ActionNames.GetUserById)]
-        public async Task<ActionResult<AthletesEntity>> GetUserInfoByIdAsync(int id)
+        public async Task<ActionResult<AthleteInfoDTO>> GetUserInfoByIdAsync(int id)
         {
             var user = await _athletesInfo.GetAthletesInfoByIdAsync(id);
             if (user == null)

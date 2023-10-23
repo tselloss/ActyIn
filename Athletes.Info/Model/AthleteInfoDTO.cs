@@ -1,24 +1,25 @@
 ﻿using Define.Common;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Athletes.Info.Model
 {
     public record AthleteInfoDTO : AthleteInfoBase
     {
         [Required]
-        [Display(Name = "User Address")]
+        [JsonPropertyName("userAddress")]
         public string Address { get; set; }
         [Required]
-        [Display(Name = "User City")]
+        [JsonPropertyName("userCity")]
         public string City { get; set; }
         [Required]
-        [Display(Name = "User Postal Code")]
+        [JsonPropertyName("userPostalCode")]
         public int PostalCode { get; set; }
         [Required]
-        [Display(Name = "User Favorite Activity")]
+        [JsonPropertyName("userFavoriteActivity")]
         public string FavoriteActivity { get; set; }
         [Required]
-        [Display(Name = "User Role")]
+        [JsonPropertyName("actionRole")]
         public Roles Role { get; set; }
     }
 }

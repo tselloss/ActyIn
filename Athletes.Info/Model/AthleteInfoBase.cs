@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Athletes.Info.Model
 {
@@ -6,11 +7,11 @@ namespace Athletes.Info.Model
     {
         [Required]
         [RegularExpression(@"^[a-zA-Z0-9]*$")]
-        [Display(Name = "User Name")]
+        [JsonPropertyName("userName")]
         public string Username { get; set; }
         [Required]
         [EmailAddress]
-        [Display(Name = "Email Address")]
+        [JsonPropertyName("email")]
         public string Email { get; set; }
     }
 }

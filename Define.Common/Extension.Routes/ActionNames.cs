@@ -6,7 +6,7 @@
         public const string RegisterUser = "actyin/registerUser";
         public const string LoginUser = "actyin/loginUser";
         public const string DeleteUser = "actyin/deleteUserById/{id}";
-        public const string GetUserById = "actyin/deleteUserById/{id}";
+        public const string GetUserById = "actyin/getUserById/{id}";
         public const string GetAllUsers = "actyin/getAllUsers";
         public const string EditFavoriteActivity = "actyin/editFavoriteActivity";
         public const string EditAthleteLocation = "actyin/editAthleteLocation";

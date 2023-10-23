@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Athletes.Info.Model
 {
@@ -6,7 +7,7 @@ namespace Athletes.Info.Model
     {
         [Required]
         [MaxLength(16)]
-        [Display(Name = "User Password")]
+        [JsonPropertyName("password")]
         public string Password { get; set; }
     }
 }
