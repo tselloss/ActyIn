@@ -4,6 +4,7 @@ using Athletes.Info.Repository;
 using Athletes.Info.Request.EditRequests;
 using AutoMapper;
 using Define.Common.Extension.Routes;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Postgres.Context.Entities;
@@ -28,6 +29,7 @@ namespace Athletes.Info.Controller
         }
 
         [HttpPost(ActionNames.EditFavoriteActivity)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<AthleteInfo> EditFavoriteActivity([FromBody] AthleteEditFavoriteActivityRequest athleteEditFavoriteActivityRequest)
         {
             var register = _mapper.Map<AthleteEditFavoriteActivityRequest>(athleteEditFavoriteActivityRequest);
@@ -37,6 +39,7 @@ namespace Athletes.Info.Controller
         }
 
         [HttpPost(ActionNames.EditAthleteLocation)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<AthleteInfo> EditAthleteLocation([FromBody] AthleteEditLocationRequest athleteEditLocationRequest)
         {
             var register = _mapper.Map<AthleteEditLocationRequest>(athleteEditLocationRequest);
@@ -46,6 +49,7 @@ namespace Athletes.Info.Controller
         }
 
         [HttpPost(ActionNames.EditAthletePassword)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<AthleteInfo> EditAthletePassword([FromBody] AthleteEditPasswordRequest athleteEditPasswordRequest)
         {
             var register = _mapper.Map<AthleteEditPasswordRequest>(athleteEditPasswordRequest);
@@ -55,6 +59,7 @@ namespace Athletes.Info.Controller
         }
 
         [HttpPost(ActionNames.EditAthleteUsernameAndEmailRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<AthleteInfo> EditUsernameAndEmailRequest([FromBody] AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest)
         {
             var register = _mapper.Map<AthleteEditUsernameAndEmailRequest>(editUsernameAndEmailRequest);
