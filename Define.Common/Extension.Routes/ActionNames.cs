@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Define.Common.Extension.Routes
 {
-    public static class Actions
+    public static class ActionNames
     {
         public const string Controller = "actyin/[controller]";
         public const string RegisterUser = "actyin/registerUser";

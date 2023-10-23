@@ -10,7 +10,7 @@ using Postgres.Context.Entities;
 
 namespace Athletes.Info.Controller
 {
-    [Route(Actions.Controller)]
+    [Route(ActionNames.Controller)]
     [ApiController]
     public class AthletesController : ControllerBase
     {
@@ -27,7 +27,7 @@ namespace Athletes.Info.Controller
             _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
         }
 
-        [HttpGet(Actions.GetAllUsers)]
+        [HttpGet(ActionNames.GetAllUsers)]
         public async Task<ActionResult<IEnumerable<AthleteInfoDTO>>> GetAllUsersAsync()
         {
             var users = await _athletesInfo.GetAllAthletesAsync();
@@ -39,7 +39,7 @@ namespace Athletes.Info.Controller
             return Ok(_mapper.Map<IEnumerable<AthleteInfoDTO>>(users));
         }
 
-        [HttpGet(Actions.GetUserById)]
+        [HttpGet(ActionNames.GetUserById)]
         public async Task<ActionResult<AthletesEntity>> GetUserInfoByIdAsync(int id)
         {
             var user = await _athletesInfo.GetAthletesInfoByIdAsync(id);
@@ -52,7 +52,7 @@ namespace Athletes.Info.Controller
             return Ok(getUset);
         }
 
-        [HttpDelete(Actions.DeleteUser)]
+        [HttpDelete(ActionNames.DeleteUser)]
         public async Task<ActionResult> DeleteUser(int id)
         {
             var users = await _athletesInfo.GetAthletesInfoByIdAsync(id);

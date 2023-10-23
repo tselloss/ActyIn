@@ -28,7 +28,7 @@ namespace Athletes.Info.Controller
             _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
         }
 
-        [HttpPost(Actions.RegisterUser)]
+        [HttpPost(ActionNames.RegisterUser)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<AthleteInfo> RegisterUser([FromBody] AthleteRegisterRequest registerRequest)
         {
@@ -38,7 +38,7 @@ namespace Athletes.Info.Controller
             return Ok();
         }
 
-        [HttpPost(Actions.LoginUser)]
+        [HttpPost(ActionNames.LoginUser)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult LoginUser([FromBody] AthleteLoginRequest loginRequest)
         {
