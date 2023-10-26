@@ -202,7 +202,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.12": {
+      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.13": {
         "type": "package",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.15.1"
@@ -2701,7 +2701,7 @@
           "FakeItEasy": "7.4.0",
           "FluentAssertions": "6.12.0",
           "Microsoft.AspNet.Mvc": "5.2.9",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.12",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.13",
           "Microsoft.AspNetCore.Mvc.Core": "2.1.38",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "7.0.12",
@@ -2724,7 +2724,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "FakeItEasy": "7.4.0",
           "FluentAssertions": "6.12.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.12",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.13",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "7.0.12",
           "Npgsql": "7.0.6",
@@ -2746,7 +2746,7 @@
           "Define.Common": "1.0.0",
           "FakeItEasy": "7.4.0",
           "FluentAssertions": "6.12.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.12",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.13",
           "Microsoft.EntityFrameworkCore": "7.0.12",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "7.0.12",
@@ -2758,6 +2758,19 @@
         },
         "runtime": {
           "bin/placeholder/Postgres.Context.dll": {}
+        }
+      },
+      "User.Authorization/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Athletes.Info": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/User.Authorization.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/User.Authorization.dll": {}
         }
       }
     }
@@ -2966,10 +2979,10 @@
         "microsoft.aspnetcore.authentication.core.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.12": {
-      "sha512": "KlSupL6h5oUwjMAoNJO2vp0MrqGYeO6nfdGjAEriK8xUccQndmQW9zQwF7d1R80abrZD/T9b01hmhk3v3LX05g==",
+    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.13": {
+      "sha512": "h1B5heq5d7vRC/0CuXlcvNpKzIgZi11b9iURRBDAOSigWXTZlq62Tzix+zyIvOx5xeydE/tniTNSaqeJBQNB3Q==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.12",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.13",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2977,7 +2990,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
         "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
-        "microsoft.aspnetcore.authentication.jwtbearer.7.0.12.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.7.0.13.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
@@ -8317,6 +8330,11 @@
       "type": "project",
       "path": "../Postgres.Context/Postgres.Context.csproj",
       "msbuildProject": "../Postgres.Context/Postgres.Context.csproj"
+    },
+    "User.Authorization/1.0.0": {
+      "type": "project",
+      "path": "../User.Authorization/User.Authorization.csproj",
+      "msbuildProject": "../User.Authorization/User.Authorization.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -8326,7 +8344,7 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "FakeItEasy >= 7.4.0",
       "FluentAssertions >= 6.12.0",
-      "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.12",
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.13",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.12",
       "Microsoft.Extensions.DependencyInjection >= 7.0.0",
       "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore >= 7.0.12",
@@ -8334,7 +8352,8 @@
       "Npgsql >= 7.0.6",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 7.0.11",
       "Postgres.Context >= 1.0.0",
-      "Swashbuckle.AspNetCore >= 6.4.0"
+      "Swashbuckle.AspNetCore >= 6.4.0",
+      "User.Authorization >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -8375,6 +8394,9 @@
             },
             "C:\\Users\\karac\\source\\repos\\ActyIn\\Postgres.Context\\Postgres.Context.csproj": {
               "projectPath": "C:\\Users\\karac\\source\\repos\\ActyIn\\Postgres.Context\\Postgres.Context.csproj"
+            },
+            "C:\\Users\\karac\\source\\repos\\ActyIn\\User.Authorization\\User.Authorization.csproj": {
+              "projectPath": "C:\\Users\\karac\\source\\repos\\ActyIn\\User.Authorization\\User.Authorization.csproj"
             }
           }
         }
@@ -8410,7 +8432,7 @@
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
-            "version": "[7.0.12, )"
+            "version": "[7.0.13, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

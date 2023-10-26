@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "z+BgjCQfGi9YSH9lADUFuV8GLM0/Mb88tOa25SyZiMDYpSYizng4pHokq87pKBtKu+hmBcqhffWOqMwr3ZiRnQ==",
+  "dgSpecHash": "M97NBSVuJsN2NFTZPcxuxA5q3OihMD9SpO6CcWd7efnQtT9PeReBlEEzhfqIy8BUSLBvPLgts4qJQ/kwS2Y3mg==",
   "success": true,
   "projectFilePath": "C:\\Users\\karac\\source\\repos\\ActyIn\\Athletes.Info\\Athletes.Info.csproj",
   "expectedPackageFiles": [
@@ -15,7 +15,7 @@
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.aspnet.webpages\\3.2.9\\microsoft.aspnet.webpages.3.2.9.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.1.1\\microsoft.aspnetcore.authentication.abstractions.2.1.1.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.1.1\\microsoft.aspnetcore.authentication.core.2.1.1.nupkg.sha512",
-    "C:\\Users\\karac\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.12\\microsoft.aspnetcore.authentication.jwtbearer.7.0.12.nupkg.sha512",
+    "C:\\Users\\karac\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.13\\microsoft.aspnetcore.authentication.jwtbearer.7.0.13.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.1.1\\microsoft.aspnetcore.authorization.2.1.1.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.1.1\\microsoft.aspnetcore.authorization.policy.2.1.1.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.1.1\\microsoft.aspnetcore.hosting.abstractions.2.1.1.nupkg.sha512",

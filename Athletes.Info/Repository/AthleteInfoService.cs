@@ -1,8 +1,7 @@
-﻿using Athletes.Info.Extension.Methods;
-using Athletes.Info.Interface;
-using Athletes.Info.Request.ComesInRequests;
+﻿using Athletes.Info.Interface;
 using Athletes.Info.Request.EditRequests;
 using Define.Common.Exceptions;
+using Define.Common.Extension.Methods;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +14,7 @@ namespace Athletes.Info.Repository
     {
 
         private readonly NpgsqlContext _context;
+        private readonly IConfiguration _configuration;
 
         public AthleteInfoService(NpgsqlContext context, IHttpContextAccessor httpContextAccessor)
         {
@@ -64,33 +64,16 @@ namespace Athletes.Info.Repository
             return await _context.AthletesInfo.Where(_ => _.AthletesId == athleteId).FirstOrDefaultAsync();
         }
 
-        public void LoginAthlete(AthleteLoginRequest loginRequest)
+        public AthletesEntity RegisterAthlete(AthletesEntity registerRequest)
         {
-            if (!_context.AthletesInfo.Any(_ => _.Username == loginRequest.Username) || !_context.AthletesInfo.Any(_ => _.Email == loginRequest.Email))
-            {
-                throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserId, loginRequest.Email.ToString());
-            }
 
-            AthletesEntity user = _context.AthletesInfo.Where(_ => _.Username == loginRequest.Username || _.Email == loginRequest.Email).First();
-            var verifyHashedPass = VerifyPassword.PasswordVerification(loginRequest.Password);
-            if (user.Password != verifyHashedPass)
-            {
-                throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserPassword, loginRequest.Username);
-            }
-
-
-
-        }
-
-        public void RegisterAthlete(AthletesEntity registerRequest)
-        {
             if (registerRequest.Email == null || registerRequest.Username == null || registerRequest.Password == null)
             {
                 throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserId, registerRequest.AthletesId.ToString());
             }
             if (_context.AthletesInfo.Any(u => u.Username == registerRequest.Username))
             {
-                throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserUsername, registerRequest.Username);
+                throw new ControllerExceptionMessage(AthletesExceptionMessages.AthleteHaveSameUsername, registerRequest.Username);
             }
             if (_context.AthletesInfo.Any(u => u.Email == registerRequest.Email))
             {
@@ -101,6 +84,8 @@ namespace Athletes.Info.Repository
             registerRequest.Password = hashedPass;
             _context.AthletesInfo.Add(registerRequest);
             _context.SaveChanges();
+
+            return registerRequest;
         }
 
 

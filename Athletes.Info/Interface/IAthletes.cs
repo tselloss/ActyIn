@@ -1,5 +1,4 @@
-﻿using Athletes.Info.Request.ComesInRequests;
-using Athletes.Info.Request.EditRequests;
+﻿using Athletes.Info.Request.EditRequests;
 using Postgres.Context.Entities;
 
 namespace Athletes.Info.Interface
@@ -8,8 +7,7 @@ namespace Athletes.Info.Interface
     {
         Task<IEnumerable<AthletesEntity>> GetAllAthletesAsync();
         Task<AthletesEntity> GetAthletesInfoByIdAsync(int athleteId);
-        void RegisterAthlete(AthletesEntity registerRequest);
-        void LoginAthlete(AthleteLoginRequest loginRequest);
+        AthletesEntity RegisterAthlete(AthletesEntity registerRequest);
         void DeleteAthletesByIdAsync(AthletesEntity athletesEntity);
         void EditAthletesPassword(AthleteEditPasswordRequest athleteEditPasswordRequest);
         void EditAthletesUsernameAndEmail(AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest);

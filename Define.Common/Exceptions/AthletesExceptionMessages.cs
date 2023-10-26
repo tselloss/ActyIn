@@ -9,5 +9,8 @@
         public const string UndefinedUsers = "We have no users on our DB ";
         public const string AthleteCanNotCreated = "We can not manage to save your data";
         public const string AthleteCanNotDeleted = "We can not manage to delete your data";
+        public const string AthleteHaveSameUsername = "We can not make your registration, another user has this username";
+        public const string AthleteHaveSameEmail = "We can not make your registration, another user has this email";
+        public const string NullField = "A field is null try again";
     }
 }

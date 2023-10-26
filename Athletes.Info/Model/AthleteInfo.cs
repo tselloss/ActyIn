@@ -7,7 +7,6 @@ namespace Athletes.Info.Model
     {
         [Required]
         [MaxLength(16)]
-        [JsonPropertyName("password")]
         public string Password { get; set; }
     }
 }

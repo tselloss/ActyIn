@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ChKsphLVc+H7gFtvydzlBvLDEs+B/YoLm94YiuQrpqiQTA/ISpzlKihEdD0zYeUL/IDZBZ2ZDBPTbm+wWks9IQ==",
+  "dgSpecHash": "xu3M7KElrvsdsS24EyoCl/WtTqLmP+Ym29sL5dUyA/qUWGclkJoKNHfNRVlLEeeFoz04jzhRLzRSGzgglcfQ/g==",
   "success": true,
   "projectFilePath": "C:\\Users\\karac\\source\\repos\\ActyIn\\Define.Common\\Define.Common.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,7 @@
     "C:\\Users\\karac\\.nuget\\packages\\fakeiteasy\\7.4.0\\fakeiteasy.7.4.0.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\fluentassertions\\6.12.0\\fluentassertions.6.12.0.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
-    "C:\\Users\\karac\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.12\\microsoft.aspnetcore.authentication.jwtbearer.7.0.12.nupkg.sha512",
+    "C:\\Users\\karac\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.13\\microsoft.aspnetcore.authentication.jwtbearer.7.0.13.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.12\\microsoft.entityframeworkcore.7.0.12.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.12\\microsoft.entityframeworkcore.abstractions.7.0.12.nupkg.sha512",

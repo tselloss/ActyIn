@@ -5,7 +5,7 @@ namespace Define.Common.Extension.Methods
 {
     public class PasswordHash
     {
-        private string CreatePasswordHash(string password)
+        public static string CreatePasswordHash(string password)
         {
             byte[] inputBytes = Encoding.UTF8.GetBytes(password);
             using (SHA256 sha256 = SHA256.Create())
