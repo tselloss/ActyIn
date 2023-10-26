@@ -12,3 +12,13 @@ ActyIn/obj/Debug/net8.0/ActyIn.csproj.AssemblyReference.cache
 ActyIn/obj/Debug/net8.0/ActyIn.GeneratedMSBuildEditorConfig.editorconfig
 ActyIn/obj/Debug/net8.0/ActyIn.GlobalUsings.g.cs
 /.vs/ActyIn
+/Athletes.Info/obj/Debug/net8.0/Athletes.Info.csproj.AssemblyReference.cache
+/AthletesTests/bin/Debug/net8.0/CoverletSourceRootsMapping_AthletesTests
+/AthletesTests/obj/Debug/net8.0/AthletesTests.AssemblyInfo.cs
+/AthletesTests/obj/Debug/net8.0/AthletesTests.AssemblyInfoInputs.cache
+/AthletesTests/obj/Debug/net8.0/AthletesTests.csproj.AssemblyReference.cache
+/Define.Common/obj/Debug/net8.0/Define.Common.AssemblyInfo.cs
+/Define.Common/obj/Debug/net8.0/Define.Common.AssemblyInfoInputs.cache
+/Postgres.Context/obj/Debug/net8.0/Postgres.Context.AssemblyInfo.cs
+/Postgres.Context/obj/Debug/net8.0/Postgres.Context.AssemblyInfoInputs.cache
+/Postgres.Context/obj/Debug/net8.0/Postgres.Context.csproj.AssemblyReference.cache
