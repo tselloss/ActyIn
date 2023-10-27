@@ -146,20 +146,22 @@ namespace Athletes.Info.Repository
             return await _context.AthletesInfo.Where(_ => _.AthletesId == athleteId).FirstOrDefaultAsync();
         }
 
-        public AthletesEntity RegisterAthlete(AthletesEntity registerRequest)
+        public IActionResult RegisterAthlete(AthletesEntity registerRequest)
         {
 
-            if (registerRequest.Email == null || registerRequest.Username == null || registerRequest.Password == null)
+            if (registerRequest.Email == null || registerRequest.Username == null)
             {
-                throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserId, registerRequest.AthletesId.ToString());
+                return BadRequest(AthletesExceptionMessages.UndefinedUserEmail);
             }
+
             if (_context.AthletesInfo.Any(u => u.Username == registerRequest.Username))
             {
-                throw new ControllerExceptionMessage(AthletesExceptionMessages.AthleteHaveSameUsername, registerRequest.Username);
+                return BadRequest(string.Format(AthletesExceptionMessages.AthleteHaveSameUsername, registerRequest.Username));
             }
+
             if (_context.AthletesInfo.Any(u => u.Email == registerRequest.Email))
             {
-                throw new ControllerExceptionMessage(AthletesExceptionMessages.UndefinedUserEmail, registerRequest.Email);
+                return BadRequest(string.Format(AthletesExceptionMessages.UndefinedUserEmail, registerRequest.Email));
             }
 
             var hashedPass = PasswordHash.CreatePasswordHash(registerRequest.Password);
@@ -167,7 +169,7 @@ namespace Athletes.Info.Repository
             _context.AthletesInfo.Add(registerRequest);
             _context.SaveChanges();
 
-            return registerRequest;
+            return Ok(AthletesMessages.CompletedRequest);
         }
 
 

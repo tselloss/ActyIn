@@ -9,7 +9,7 @@ namespace Athletes.Info.Interface
     {
         Task<IEnumerable<AthletesEntity>> GetAllAthletesAsync();
         Task<AthletesEntity> GetAthletesInfoByIdAsync(int athleteId);
-        AthletesEntity RegisterAthlete(AthletesEntity registerRequest);
+        IActionResult RegisterAthlete(AthletesEntity registerRequest);
         void DeleteAthletesByIdAsync(AthletesEntity athletesEntity);
         IActionResult EditAthletesPassword(AthleteEditPasswordRequest athleteEditPasswordRequest);
         IActionResult EditAthletesEmail(AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest);

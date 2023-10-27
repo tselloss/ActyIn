@@ -1,6 +1,7 @@
 ﻿using Athletes.Info.Interface;
 using Athletes.Info.Repository;
 using AutoMapper;
+using Define.Common.Exceptions;
 using Define.Common.Extension.Routes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.Data;
@@ -47,8 +48,13 @@ namespace User.Authorization.Controller
             var register = _mapper.Map<AthletesEntity>(registerRequest);
             var entity = _athleteInfoService.RegisterAthlete(register);
 
+            if (entity is BadRequestObjectResult badRequest)
+            {
+                return BadRequest(new { Error = badRequest.Value });
+            }
+
             // Generate JWT token for the registered athlete
-            var token = _authorization.GenerateTokenForRegister(entity);
+            var token = _authorization.GenerateTokenForRegister(register);
 
             return Ok(new { Token = token });
         }
