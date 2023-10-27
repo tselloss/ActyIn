@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Athletes.Info.Model;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Athletes.Info.Request.EditRequests
 {
-    public record AthleteEditLocationRequest
+    public record AthleteEditLocationRequest 
     {
         [Required]
         [JsonPropertyName("userAddress")]

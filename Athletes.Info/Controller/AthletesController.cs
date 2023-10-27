@@ -4,6 +4,7 @@ using Athletes.Info.Repository;
 using AutoMapper;
 using Define.Common.Exceptions;
 using Define.Common.Extension.Routes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Postgres.Context.Entities;
@@ -27,6 +28,7 @@ namespace Athletes.Info.Controller
             _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
         }
 
+        [Authorize]
         [HttpGet(ActionNames.GetAllUsers)]
         public async Task<ActionResult<IEnumerable<AthleteInfoDTO>>> GetAllUsersAsync()
         {
@@ -39,6 +41,7 @@ namespace Athletes.Info.Controller
             return Ok(_mapper.Map<IEnumerable<AthleteInfoDTO>>(users));
         }
 
+        [Authorize]
         [HttpGet(ActionNames.GetUserById)]
         public async Task<ActionResult<AthleteInfoDTO>> GetUserInfoByIdAsync(int id)
         {
@@ -52,6 +55,7 @@ namespace Athletes.Info.Controller
             return Ok(getUset);
         }
 
+        [Authorize]
         [HttpDelete(ActionNames.DeleteUser)]
         public async Task<ActionResult> DeleteUser(int id)
         {
