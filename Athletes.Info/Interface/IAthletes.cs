@@ -1,5 +1,7 @@
 ﻿using Athletes.Info.Request.EditRequests;
+using Microsoft.AspNetCore.Mvc;
 using Postgres.Context.Entities;
+using System.Web.Mvc;
 
 namespace Athletes.Info.Interface
 {
@@ -9,9 +11,9 @@ namespace Athletes.Info.Interface
         Task<AthletesEntity> GetAthletesInfoByIdAsync(int athleteId);
         AthletesEntity RegisterAthlete(AthletesEntity registerRequest);
         void DeleteAthletesByIdAsync(AthletesEntity athletesEntity);
-        void EditAthletesPassword(AthleteEditPasswordRequest athleteEditPasswordRequest);
-        void EditAthletesUsernameAndEmail(AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest);
-        void EditAthletesFavoriteActivity(AthleteEditFavoriteActivityRequest editFavoriteActivityRequest);
-        void EditAthletesLocation(AthleteEditLocationRequest athleteEditLocationRequest);
+        IActionResult EditAthletesPassword(AthleteEditPasswordRequest athleteEditPasswordRequest);
+        IActionResult EditAthletesEmail(AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest);
+        IActionResult EditAthletesFavoriteActivity(AthleteEditFavoriteActivityRequest editFavoriteActivityRequest);
+        IActionResult EditAthletesLocation(AthleteEditLocationRequest athleteEditLocationRequest);
     }
 }

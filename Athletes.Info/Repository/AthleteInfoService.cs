@@ -2,21 +2,20 @@
 using Athletes.Info.Request.EditRequests;
 using Define.Common.Exceptions;
 using Define.Common.Extension.Methods;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Postgres.Context.DBContext;
 using Postgres.Context.Entities;
 
+
 namespace Athletes.Info.Repository
 {
-    public class AthleteInfoService : IAthletes
+    public class AthleteInfoService : ControllerBase, IAthletes
     {
 
         private readonly NpgsqlContext _context;
-        private readonly IConfiguration _configuration;
 
-        public AthleteInfoService(NpgsqlContext context, IHttpContextAccessor httpContextAccessor)
+        public AthleteInfoService(NpgsqlContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -26,32 +25,115 @@ namespace Athletes.Info.Repository
             _context.AthletesInfo.Remove(athletesEntity);
         }
 
-        public void EditAthletesFavoriteActivity(AthleteEditFavoriteActivityRequest editFavoriteActivityRequest)
+        public IActionResult EditAthletesFavoriteActivity(AthleteEditFavoriteActivityRequest editFavoriteActivityRequest)
         {
+            if (editFavoriteActivityRequest.Email == null || editFavoriteActivityRequest.Username == null)
+            {
+                return BadRequest(AthletesExceptionMessages.UndefinedUserEmail);
+            }
+            if (_context.AthletesInfo.Any(u => u.Username == editFavoriteActivityRequest.Username))
+            {
+                return BadRequest(string.Format(AthletesExceptionMessages.AthleteHaveSameUsername, editFavoriteActivityRequest.Username));
+            }
+
+            if (_context.AthletesInfo.Any(u => u.Email == editFavoriteActivityRequest.Email))
+            {
+                return BadRequest(string.Format(AthletesExceptionMessages.UndefinedUserEmail, editFavoriteActivityRequest.Email));
+            }
+
             var favAct = _context.AthletesInfo.Where(_ => _.FavoriteActivity == editFavoriteActivityRequest.FavoriteActivity).First();
             if (favAct != null)
                 favAct.FavoriteActivity = editFavoriteActivityRequest.FavoriteActivity;
-            _context.AthletesInfo.Add(favAct);
+
             _context.SaveChanges();
+
+            return Ok(AthletesMessages.CompletedRequest);
         }
 
-        public void EditAthletesLocation(AthleteEditLocationRequest athleteEditLocationRequest)
+        public IActionResult EditAthletesLocation(AthleteEditLocationRequest athleteEditLocationRequest)
         {
-            var favAct = _context.AthletesInfo.Where(_ => _.PostalCode == athleteEditLocationRequest.PostalCode).First();
-            if (favAct != null)
-                favAct.PostalCode = athleteEditLocationRequest.PostalCode;
-            _context.AthletesInfo.Add(favAct);
+            if (athleteEditLocationRequest.Email == null || athleteEditLocationRequest.Username == null)
+            {
+                return BadRequest(AthletesExceptionMessages.UndefinedUserEmail);
+            }
+
+            if (_context.AthletesInfo.Any(u => u.Username == athleteEditLocationRequest.Username))
+            {
+                return BadRequest(string.Format(AthletesExceptionMessages.AthleteHaveSameUsername, athleteEditLocationRequest.Username));
+            }
+
+            if (_context.AthletesInfo.Any(u => u.Email == athleteEditLocationRequest.Email))
+            {
+                return BadRequest(string.Format(AthletesExceptionMessages.UndefinedUserEmail, athleteEditLocationRequest.Email));
+            }
+
+            var editLocation = _context.AthletesInfo.Where(_ => _.Username == athleteEditLocationRequest.Username).First();
+            if (editLocation != null)
+            {
+                editLocation.Address = athleteEditLocationRequest.Address;
+                editLocation.PostalCode = athleteEditLocationRequest.PostalCode;
+                editLocation.City = athleteEditLocationRequest.City;
+            }
+
             _context.SaveChanges();
+
+            return Ok(AthletesMessages.CompletedRequest);
         }
 
-        public void EditAthletesPassword(AthleteEditPasswordRequest athleteEditPasswordRequest)
+        public IActionResult EditAthletesPassword(AthleteEditPasswordRequest athleteEditPasswordRequest)
         {
-            throw new NotImplementedException();
+            if (athleteEditPasswordRequest.Email == null || athleteEditPasswordRequest.Username == null)
+            {
+                return BadRequest(AthletesExceptionMessages.UndefinedUserEmail);
+            }
+
+            if (_context.AthletesInfo.Any(u => u.Username == athleteEditPasswordRequest.Username))
+            {
+                return BadRequest(string.Format(AthletesExceptionMessages.AthleteHaveSameUsername, athleteEditPasswordRequest.Username));
+            }
+
+            if (_context.AthletesInfo.Any(u => u.Email == athleteEditPasswordRequest.Email))
+            {
+                return BadRequest(string.Format(AthletesExceptionMessages.UndefinedUserEmail, athleteEditPasswordRequest.Email));
+            }
+
+            var editPassword = _context.AthletesInfo.Where(_ => _.Username == athleteEditPasswordRequest.Username).First();
+            if (editPassword != null)
+            {
+                editPassword.Password = athleteEditPasswordRequest.Password;
+            }
+
+            _context.SaveChanges();
+
+            return Ok(AthletesMessages.CompletedRequest);
         }
 
-        public void EditAthletesUsernameAndEmail(AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest)
+        public IActionResult EditAthletesEmail(AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest)
         {
-            throw new NotImplementedException();
+            if (editUsernameAndEmailRequest.Email == null || editUsernameAndEmailRequest.Username == null)
+            {
+                return BadRequest(AthletesExceptionMessages.UndefinedUserEmail);
+            }
+
+            if (_context.AthletesInfo.Any(u => u.Username == editUsernameAndEmailRequest.Username))
+            {
+                return BadRequest(string.Format(AthletesExceptionMessages.AthleteHaveSameUsername, editUsernameAndEmailRequest.Username));
+            }
+
+            if (_context.AthletesInfo.Any(u => u.Email == editUsernameAndEmailRequest.Email))
+            {
+                return BadRequest(string.Format(AthletesExceptionMessages.UndefinedUserEmail, editUsernameAndEmailRequest.Email));
+            }
+
+            var editEmail = _context.AthletesInfo.Where(_ => _.Username == editUsernameAndEmailRequest.Username).First();
+            if (editEmail != null)
+            {
+                editEmail.Email = editUsernameAndEmailRequest.Email;
+            }
+
+            _context.SaveChanges();
+
+            return Ok(AthletesMessages.CompletedRequest);
         }
 
         public async Task<IEnumerable<AthletesEntity>> GetAllAthletesAsync()

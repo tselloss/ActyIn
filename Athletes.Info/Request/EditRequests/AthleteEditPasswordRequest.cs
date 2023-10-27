@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Athletes.Info.Request.EditRequests
 {
-    public record AthleteEditPasswordRequest 
+    public record AthleteEditPasswordRequest : AthleteInfoBase
     {
         [Required]
         [MaxLength(16)]

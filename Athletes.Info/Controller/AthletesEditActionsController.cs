@@ -63,7 +63,7 @@ namespace Athletes.Info.Controller
         public ActionResult<AthleteInfo> EditUsernameAndEmailRequest([FromBody] AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest)
         {
             var register = _mapper.Map<AthleteEditUsernameAndEmailRequest>(editUsernameAndEmailRequest);
-            _athleteInfoService.EditAthletesUsernameAndEmail(register);
+            _athleteInfoService.EditAthletesEmail(register);
 
             return Ok();
         }

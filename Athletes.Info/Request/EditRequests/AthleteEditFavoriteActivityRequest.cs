@@ -4,10 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace Athletes.Info.Request.EditRequests
 {
-    public record AthleteEditFavoriteActivityRequest 
+    public record AthleteEditFavoriteActivityRequest : AthleteInfoBase
     {
         [Required]
-        [JsonPropertyName("userFavoriteActivity")]
         public string FavoriteActivity { get; set; }
     }
 }

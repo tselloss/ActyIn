@@ -7,6 +7,7 @@ namespace Athletes.Info.Model
     {
         [Required]
         [RegularExpression(@"^[a-zA-Z0-9]*$")]
+        [MaxLength(10)]
         public string Username { get; set; }
         [Required]
         [EmailAddress]

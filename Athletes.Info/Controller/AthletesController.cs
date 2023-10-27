@@ -51,8 +51,8 @@ namespace Athletes.Info.Controller
                 _logger.LogInformation(AthletesExceptionMessages.UndefinedUserId + $"{id}");
                 return NoContent();
             }
-            var getUset = _mapper.Map<AthleteInfoDTO>(user);
-            return Ok(getUset);
+            var getUser = _mapper.Map<AthleteInfoDTO>(user);
+            return Ok(getUser);
         }
 
         [Authorize]
