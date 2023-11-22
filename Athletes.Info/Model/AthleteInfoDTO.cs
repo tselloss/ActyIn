@@ -1,4 +1,5 @@
 ﻿using Define.Common;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -14,7 +15,8 @@ namespace Athletes.Info.Model
         public int PostalCode { get; set; }
         [Required]
         public string FavoriteActivity { get; set; }
-        [Required]
         public Roles Role { get; set; }
+
+        public IFormFile ProfileImage { get; set; }
     }
 }
