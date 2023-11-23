@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChooseActivity.Info")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+584eb511985d140d7e2b432da16523c85409aa3d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChooseActivity.Info")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChooseActivity.Info")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

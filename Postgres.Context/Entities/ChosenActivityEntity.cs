@@ -1,5 +1,4 @@
-﻿using Define.Common;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Postgres.Context.Entities
@@ -12,6 +11,9 @@ namespace Postgres.Context.Entities
 
         [Required]
         public string ChosenActivityName { get; set; }
+
+        [ForeignKey("AthleteFk")]
+        public int AthleteFK { get; set; }
 
         [Required]
         public AthletesEntity AthletesEntity { get; set; }

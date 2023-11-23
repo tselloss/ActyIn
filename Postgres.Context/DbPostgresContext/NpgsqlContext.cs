@@ -13,45 +13,22 @@ namespace Postgres.Context.DBContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<AthletesEntity>()
-                .ToTable("AthletesInfo")
-                .HasData(
-                new AthletesEntity
-                {
-                    AthletesId = 1,
-                    Username = "user1",
-                    Email = "user1@example.com",
-                    Password = "password1",
-                    Address = "123 Main St",
-                    City = "City1",
-                    PostalCode = 12345,
-                    FavoriteActivity = "Running",
-                    Role = Roles.User
-                },
-
-                modelBuilder.Entity<ChosenActivityEntity>()
-                .ToTable("ChosenActivityInfo")
-                .HasData(
-                new ChosenActivityEntity
-                {
-                    ChosenActivityId = 1,
-                    ChosenActivityName = "Pool",
-                    AthletesEntity = new AthletesEntity
-                    {
-                        AthletesId = 1,
-                        Username = "user1",
-                        Email = "user1@example.com",
-                        Password = "password1",
-                        Address = "123 Main St",
-                        City = "City1",
-                        PostalCode = 12345,
-                        FavoriteActivity = "Running",
-                        Role = Roles.User
-                    },
-                }
-           ));
-            base.OnModelCreating(modelBuilder);
+        .ToTable("AthletesInfo")
+        .HasData(
+            new AthletesEntity
+            {
+                AthletesId = 1,
+                Username = "user1",
+                Email = "user1@example.com",
+                Password = "password1",
+                Address = "123 Main St",
+                City = "City1",
+                PostalCode = 12345,
+                FavoriteActivity = "Running",
+                Role = Roles.User                
+            }
+        );
         }
     }
 }

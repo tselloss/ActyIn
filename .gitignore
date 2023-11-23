@@ -1,9 +1,14 @@
 
 .vs/ActyIn/v17/.suo
 *.vsidx
+*.dll
+*.pdb
+ActyIn/obj
+ActyIn/bin
 ActyIn/obj/ActyIn.csproj.nuget.dgspec.json
 ActyIn/obj/ActyIn.csproj.nuget.g.props
 ActyIn/obj/ActyIn.csproj.nuget.g.targets
+ActyIn/obj/Debug/net8.0/
 ActyIn/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
 ActyIn/obj/Debug/net8.0/ActyIn.AssemblyInfo.cs
 ActyIn/obj/Debug/net8.0/ActyIn.AssemblyInfoInputs.cache
