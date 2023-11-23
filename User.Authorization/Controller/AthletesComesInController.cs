@@ -1,10 +1,8 @@
 ﻿using Athletes.Info.Interface;
 using Athletes.Info.Repository;
 using AutoMapper;
-using Define.Common.Exceptions;
 using Define.Common.Extension.Routes;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Postgres.Context.Entities;
@@ -14,7 +12,7 @@ using User.Authorization.Request.ComesInRequests;
 
 namespace User.Authorization.Controller
 {
-    [Route("actyin/[controller]")]
+    [Route(ActionNames.Controller)]
     [ApiController]
     public class AthletesComesInController : ControllerBase
     {

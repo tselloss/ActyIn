@@ -1,5 +1,6 @@
 using Athletes.Info.Interface;
 using Athletes.Info.Repository;
+using ChooseActivity.Info.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -48,7 +49,9 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IAthletes, AthleteInfoService>();
 builder.Services.AddScoped<AthleteInfoService>();
 builder.Services.AddScoped<IAuthorizationToken, AuthorizationToken>();
+builder.Services.AddScoped<IChooseActivity, ChosenActivityInfoService>();
 builder.Services.AddScoped<AuthorizationToken>();
+builder.Services.AddScoped<ChosenActivityInfoService>();
 
 // Enable CORS to allow all origins, headers, and methods
 builder.Services.AddMvcCore().AddCors(options =>

@@ -7,6 +7,7 @@ namespace Postgres.Context.DBContext
     public class NpgsqlContext : DbContext
     {
         public DbSet<AthletesEntity> AthletesInfo { get; set; }
+        public DbSet<ChosenActivityEntity> ChooseActivityInfo { get; set; }
 
         public NpgsqlContext(DbContextOptions<NpgsqlContext> options) : base(options) { }
 
@@ -27,8 +28,29 @@ namespace Postgres.Context.DBContext
                     PostalCode = 12345,
                     FavoriteActivity = "Running",
                     Role = Roles.User
+                },
+
+                modelBuilder.Entity<ChosenActivityEntity>()
+                .ToTable("ChosenActivityInfo")
+                .HasData(
+                new ChosenActivityEntity
+                {
+                    ChosenActivityId = 1,
+                    ChosenActivityName = "Pool",
+                    AthletesEntity = new AthletesEntity
+                    {
+                        AthletesId = 1,
+                        Username = "user1",
+                        Email = "user1@example.com",
+                        Password = "password1",
+                        Address = "123 Main St",
+                        City = "City1",
+                        PostalCode = 12345,
+                        FavoriteActivity = "Running",
+                        Role = Roles.User
+                    },
                 }
-           );
+           ));
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -73,3 +73,5 @@ C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\runtimes\win\lib\nets
 C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\User.Authorization.dll
 C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\User.Authorization.pdb
 C:\Users\karac\source\repos\ActyIn\ActyIn\obj\Debug\net8.0\ActyIn.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\ChooseActivity.Info.dll
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\ChooseActivity.Info.pdb

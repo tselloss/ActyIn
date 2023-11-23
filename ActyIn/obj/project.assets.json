@@ -2716,6 +2716,19 @@
           "bin/placeholder/Athletes.Info.dll": {}
         }
       },
+      "ChooseActivity.Info/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Athletes.Info": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ChooseActivity.Info.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChooseActivity.Info.dll": {}
+        }
+      },
       "Define.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -8321,6 +8334,11 @@
       "path": "../Athletes.Info/Athletes.Info.csproj",
       "msbuildProject": "../Athletes.Info/Athletes.Info.csproj"
     },
+    "ChooseActivity.Info/1.0.0": {
+      "type": "project",
+      "path": "../ChooseActivity.Info/ChooseActivity.Info.csproj",
+      "msbuildProject": "../ChooseActivity.Info/ChooseActivity.Info.csproj"
+    },
     "Define.Common/1.0.0": {
       "type": "project",
       "path": "../Define.Common/Define.Common.csproj",
@@ -8342,6 +8360,7 @@
       "Athletes.Info >= 1.0.0",
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
+      "ChooseActivity.Info >= 1.0.0",
       "FakeItEasy >= 7.4.0",
       "FluentAssertions >= 6.12.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.13",
@@ -8391,6 +8410,9 @@
           "projectReferences": {
             "C:\\Users\\karac\\source\\repos\\ActyIn\\Athletes.Info\\Athletes.Info.csproj": {
               "projectPath": "C:\\Users\\karac\\source\\repos\\ActyIn\\Athletes.Info\\Athletes.Info.csproj"
+            },
+            "C:\\Users\\karac\\source\\repos\\ActyIn\\ChooseActivity.Info\\ChooseActivity.Info.csproj": {
+              "projectPath": "C:\\Users\\karac\\source\\repos\\ActyIn\\ChooseActivity.Info\\ChooseActivity.Info.csproj"
             },
             "C:\\Users\\karac\\source\\repos\\ActyIn\\Postgres.Context\\Postgres.Context.csproj": {
               "projectPath": "C:\\Users\\karac\\source\\repos\\ActyIn\\Postgres.Context\\Postgres.Context.csproj"

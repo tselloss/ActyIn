@@ -12,5 +12,9 @@
         public const string EditAthleteLocation = "actyin/editAthleteLocation";
         public const string EditAthletePassword = "actyin/editAthletePassword";
         public const string EditAthleteUsernameAndEmailRequest = "actyin/editAthleteUsernameAndEmailRequest";
+        public const string GetAllChosenActivities = "actyin/getAllChosenActivities";
+        public const string GetChosenActivitiesById = "actyin/getChosenActivitiesById";
+        public const string DeleteActivityUser = "actyin/deleteActivityUser";
+        public const string CreateNewActivity = "actyin/createNewActivity";
     }
 }
