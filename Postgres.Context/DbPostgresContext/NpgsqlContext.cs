@@ -12,6 +12,8 @@ namespace Postgres.Context.DBContext
         public DbSet<MatchModelEntity> MatchModels { get; set; }
         public DbSet<BookingEntity> Bookings { get; set; }
 
+        public DbSet<FileEntity> AthleteImageProfile { get; set; }
+
         public NpgsqlContext(DbContextOptions<NpgsqlContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

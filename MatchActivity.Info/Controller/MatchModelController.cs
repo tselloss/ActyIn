@@ -1,8 +1,4 @@
-﻿using Athletes.Info.Interface;
-using AutoMapper;
-using ChooseActivity.Info.Interface;
-using ChooseActivity.Info.Model;
-using ChooseActivity.Info.Repository;
+﻿using AutoMapper;
 using Define.Common.Extension.Routes;
 using MatchActivity.Info.Interface;
 using MatchActivity.Info.Model;
