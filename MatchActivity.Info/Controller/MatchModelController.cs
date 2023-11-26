@@ -8,18 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Postgres.Context.Entities;
 
-namespace ChooseActivity.Info.Controller
+namespace MatchActivity.Info.Controller
 {
     [Route(ActionNames.Controller)]
     [ApiController]
-    public class ChooseActivityController : ControllerBase
+    public class MatchModelController : ControllerBase
     {
         private readonly IChooseActivity _chooseActivity;
-        private readonly ILogger<ChooseActivityController> _logger;
+        private readonly ILogger<MatchModelController> _logger;
         private readonly IMapper _mapper;
         private readonly ChosenActivityInfoService _chosenActivityInfoService;
 
-        public ChooseActivityController(IChooseActivity chooseActivity, ILogger<ChooseActivityController> logger, IMapper mapper, ChosenActivityInfoService chosenActivityInfoService)
+        public MatchModelController(IChooseActivity chooseActivity, ILogger<MatchModelController> logger, IMapper mapper, ChosenActivityInfoService chosenActivityInfoService)
         {
             _logger = logger ?? throw new ArgumentException(nameof(logger));
             _chooseActivity = chooseActivity ?? throw new ArgumentException(nameof(chooseActivity));

@@ -1,9 +1,7 @@
-﻿using Athletes.Info.Request.EditRequests;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Postgres.Context.Entities;
-using System.Web.Mvc;
 
-namespace Athletes.Info.Interface
+namespace ChooseActivity.Info.Interface
 {
     public interface IChooseActivity
     {

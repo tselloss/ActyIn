@@ -1,8 +1,6 @@
-﻿using Athletes.Info.Interface;
-using Castle.Core.Internal;
+﻿using Castle.Core.Internal;
+using ChooseActivity.Info.Interface;
 using Define.Common.Exceptions;
-using Define.Common.Extension.Methods;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Postgres.Context.DBContext;
