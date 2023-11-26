@@ -1,8 +1,12 @@
 ﻿using Athletes.Info.Interface;
 using AutoMapper;
+using ChooseActivity.Info.Interface;
 using ChooseActivity.Info.Model;
 using ChooseActivity.Info.Repository;
 using Define.Common.Extension.Routes;
+using MatchActivity.Info.Interface;
+using MatchActivity.Info.Model;
+using MatchActivity.Info.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,75 +18,75 @@ namespace MatchActivity.Info.Controller
     [ApiController]
     public class MatchModelController : ControllerBase
     {
-        private readonly IChooseActivity _chooseActivity;
+        private readonly IMatchModel _matchModel;
         private readonly ILogger<MatchModelController> _logger;
         private readonly IMapper _mapper;
-        private readonly ChosenActivityInfoService _chosenActivityInfoService;
+        private readonly MatchModelService _matchModelInfoService;
 
-        public MatchModelController(IChooseActivity chooseActivity, ILogger<MatchModelController> logger, IMapper mapper, ChosenActivityInfoService chosenActivityInfoService)
+        public MatchModelController(IMatchModel matchModel, ILogger<MatchModelController> logger, IMapper mapper, MatchModelService matchModelService)
         {
             _logger = logger ?? throw new ArgumentException(nameof(logger));
-            _chooseActivity = chooseActivity ?? throw new ArgumentException(nameof(chooseActivity));
+            _matchModel = matchModel ?? throw new ArgumentException(nameof(matchModel));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _chosenActivityInfoService = chosenActivityInfoService ?? throw new ArgumentNullException(nameof(chosenActivityInfoService));
+            _matchModelInfoService = matchModelService ?? throw new ArgumentNullException(nameof(matchModelService));
         }
 
         [HttpGet(ActionNames.GetAllChosenActivities)]
-        public async Task<ActionResult<IEnumerable<ChooseActivityInfo>>> GetAllChosenActivitiesAsync()
+        public async Task<ActionResult<IEnumerable<MatchModelInfo>>> GetAllChosenActivitiesAsync()
         {
-            var activities = await _chosenActivityInfoService.GetAllChosenActivityOfAthletesAsync();
-            if (activities == null)
+            var matchModel = await _matchModelInfoService.GetAllMatchModelsOfAthletesAsync();
+            if (matchModel == null)
             {
                 _logger.LogInformation("We have no activities on db");
                 return NoContent();
             }
-            return Ok(_mapper.Map<IEnumerable<ChosenActivityEntity>>(activities));
+            return Ok(_mapper.Map<IEnumerable<MatchModelEntity>>(matchModel));
         }
 
         [HttpGet(ActionNames.GetUserById)]
-        public async Task<ActionResult<ChooseActivityInfo>> GetUserInfoByIdAsync(int id)
+        public async Task<ActionResult<MatchModelInfo>> GetUserInfoByIdAsync(int id)
         {
-            var activitiesById = await _chosenActivityInfoService.GetChosenActivityOfAthletesInfoByIdAsync(id);
-            if (activitiesById == null)
+            var matchModelById = await _matchModelInfoService.GetMatchModelsOfAthletesInfoByIdAsync(id);
+            if (matchModelById == null)
             {
                 _logger.LogInformation("This is the chosen activity with id: " + $"{id}");
                 return NoContent();
             }
-            var getActivity = _mapper.Map<ChosenActivityEntity>(activitiesById);
-            return Ok(getActivity);
+            var getMatchModel = _mapper.Map<ChosenActivityEntity>(matchModelById);
+            return Ok(getMatchModel);
         }
 
         [HttpDelete(ActionNames.DeleteUser)]
         public async Task<ActionResult> DeleteActivityUser(int id)
         {
-            var getActivityById = await _chosenActivityInfoService.GetChosenActivityOfAthletesInfoByIdAsync(id);
+            var getMatchModelById = await _matchModelInfoService.GetMatchModelsOfAthletesInfoByIdAsync(id);
 
-            if (getActivityById == null)
+            if (getMatchModelById == null)
             {
                 _logger.LogInformation("We have not found this Activity with the id: " + $"{id}");
                 return NoContent();
             }
-            var newActivity = _mapper.Map<ChosenActivityEntity>(getActivityById);
-            _chosenActivityInfoService.DeleteChosenActivityOfAthletesByIdAsync(newActivity);
+            var newActivity = _mapper.Map<MatchModelEntity>(getMatchModelById);
+            _matchModelInfoService.DeleteMatchModelOfAthleteByIdAsync(newActivity);
 
-            await _chosenActivityInfoService.SaveChangesAsync("We can not manage to delete the activity");
-            return Ok(getActivityById);
+            await _matchModelInfoService.SaveChangesAsync("We can not manage to delete the activity");
+            return Ok(getMatchModelById);
         }
 
-        [HttpPost(ActionNames.CreateNewActivity)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult RegisterUser([FromBody] ChooseActivityInfo chooseActivityInfo)
-        {
-            var mapper = _mapper.Map<ChosenActivityEntity>(chooseActivityInfo);
-            var entity = _chosenActivityInfoService.CreateAnActivity(mapper);
+        //[HttpPost(ActionNames.CreateNewActivity)]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public ActionResult RegisterUser([FromBody] ChooseActivityInfo chooseActivityInfo)
+        //{
+        //    var mapper = _mapper.Map<ChosenActivityEntity>(chooseActivityInfo);
+        //    var entity = _matchModelInfoService.CreateAnActivity(mapper);
 
-            if (entity is BadRequestObjectResult badRequest)
-            {
-                return BadRequest(new { Error = badRequest.Value });
-            }
+        //    if (entity is BadRequestObjectResult badRequest)
+        //    {
+        //        return BadRequest(new { Error = badRequest.Value });
+        //    }
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
     }
 }
 

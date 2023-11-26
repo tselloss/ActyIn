@@ -1,5 +1,6 @@
 ﻿using Athletes.Info.Interface;
 using AutoMapper;
+using ChooseActivity.Info.Interface;
 using ChooseActivity.Info.Model;
 using ChooseActivity.Info.Repository;
 using Define.Common.Extension.Routes;

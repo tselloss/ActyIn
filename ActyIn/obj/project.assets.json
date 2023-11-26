@@ -2716,6 +2716,19 @@
           "bin/placeholder/Athletes.Info.dll": {}
         }
       },
+      "BookingModel.Info/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "MatchActivity.Info": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BookingModel.Info.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookingModel.Info.dll": {}
+        }
+      },
       "ChooseActivity.Info/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -2748,6 +2761,19 @@
         },
         "runtime": {
           "bin/placeholder/Define.Common.dll": {}
+        }
+      },
+      "MatchActivity.Info/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "ChooseActivity.Info": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MatchActivity.Info.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MatchActivity.Info.dll": {}
         }
       },
       "Postgres.Context/1.0.0": {
@@ -8334,6 +8360,11 @@
       "path": "../Athletes.Info/Athletes.Info.csproj",
       "msbuildProject": "../Athletes.Info/Athletes.Info.csproj"
     },
+    "BookingModel.Info/1.0.0": {
+      "type": "project",
+      "path": "../BookingModel.Info/BookingModel.Info.csproj",
+      "msbuildProject": "../BookingModel.Info/BookingModel.Info.csproj"
+    },
     "ChooseActivity.Info/1.0.0": {
       "type": "project",
       "path": "../ChooseActivity.Info/ChooseActivity.Info.csproj",
@@ -8343,6 +8374,11 @@
       "type": "project",
       "path": "../Define.Common/Define.Common.csproj",
       "msbuildProject": "../Define.Common/Define.Common.csproj"
+    },
+    "MatchActivity.Info/1.0.0": {
+      "type": "project",
+      "path": "../MatchActivity.Info/MatchActivity.Info.csproj",
+      "msbuildProject": "../MatchActivity.Info/MatchActivity.Info.csproj"
     },
     "Postgres.Context/1.0.0": {
       "type": "project",
@@ -8360,6 +8396,7 @@
       "Athletes.Info >= 1.0.0",
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
+      "BookingModel.Info >= 1.0.0",
       "ChooseActivity.Info >= 1.0.0",
       "FakeItEasy >= 7.4.0",
       "FluentAssertions >= 6.12.0",
@@ -8410,6 +8447,9 @@
           "projectReferences": {
             "C:\\Users\\karac\\source\\repos\\ActyIn\\Athletes.Info\\Athletes.Info.csproj": {
               "projectPath": "C:\\Users\\karac\\source\\repos\\ActyIn\\Athletes.Info\\Athletes.Info.csproj"
+            },
+            "C:\\Users\\karac\\source\\repos\\ActyIn\\BookingModel.Info\\BookingModel.Info.csproj": {
+              "projectPath": "C:\\Users\\karac\\source\\repos\\ActyIn\\BookingModel.Info\\BookingModel.Info.csproj"
             },
             "C:\\Users\\karac\\source\\repos\\ActyIn\\ChooseActivity.Info\\ChooseActivity.Info.csproj": {
               "projectPath": "C:\\Users\\karac\\source\\repos\\ActyIn\\ChooseActivity.Info\\ChooseActivity.Info.csproj"

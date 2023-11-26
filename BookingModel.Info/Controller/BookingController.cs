@@ -1,7 +1,7 @@
-﻿using Athletes.Info.Interface;
-using Athletes.Info.Model;
-using Athletes.Info.Repository;
-using AutoMapper;
+﻿using AutoMapper;
+using BookingModel.Info.Interface;
+using BookingModel.Info.Model;
+using BookingModel.Info.Repository;
 using Define.Common.Exceptions;
 using Define.Common.Extension.Routes;
 using Microsoft.AspNetCore.Authorization;
@@ -15,43 +15,43 @@ namespace BookingModel.Info.Controller
     [ApiController]
     public class BookingController : ControllerBase
     {
-        private readonly IAthletes _athletesInfo;
+        private readonly IBookingInfo _bookingInfo;
         private readonly ILogger<BookingController> _logger;
         private readonly IMapper _mapper;
-        private readonly AthleteInfoService _athleteInfoService;
+        private readonly BookingInfoService _bookingInfoService;
 
-        public BookingController(IAthletes athleteInfo, ILogger<BookingController> logger, IMapper mapper, AthleteInfoService athletesInfoService)
+        public BookingController(IBookingInfo bookingInfo, ILogger<BookingController> logger, IMapper mapper, BookingInfoService bookingInfoService)
         {
             _logger = logger ?? throw new ArgumentException(nameof(logger));
-            _athletesInfo = athleteInfo ?? throw new ArgumentException(nameof(athleteInfo));
+            _bookingInfo = bookingInfo ?? throw new ArgumentException(nameof(bookingInfo));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
+            _bookingInfoService = bookingInfoService ?? throw new ArgumentNullException(nameof(bookingInfoService));
         }
 
         [Authorize]
         [HttpGet(ActionNames.GetAllUsers)]
-        public async Task<ActionResult<IEnumerable<AthleteInfoDTO>>> GetAllUsersAsync()
+        public async Task<ActionResult<IEnumerable<BookingModelInfo>>> GetAllBookingsAsync()
         {
-            var users = await _athletesInfo.GetAllAthletesAsync();
-            if (users == null)
+            var bookings = await _bookingInfo.GetAllBookingsAsync();
+            if (bookings == null)
             {
-                _logger.LogInformation(AthletesExceptionMessages.UndefinedUsers);
+                _logger.LogInformation("We have no any bookings");
                 return NoContent();
             }
-            return Ok(_mapper.Map<IEnumerable<AthleteInfoDTO>>(users));
+            return Ok(_mapper.Map<IEnumerable<BookingModelInfo>>(bookings));
         }
 
         [Authorize]
         [HttpGet(ActionNames.GetUserById)]
-        public async Task<ActionResult<AthleteInfoDTO>> GetUserInfoByIdAsync(int id)
+        public async Task<ActionResult<BookingModelInfo>> GetUserInfoByIdAsync(int id)
         {
-            var user = await _athletesInfo.GetAthletesInfoByIdAsync(id);
-            if (user == null)
+            var booking = await _bookingInfo.GetBookingOfAthletesInfoByIdAsync(id);
+            if (booking == null)
             {
                 _logger.LogInformation(AthletesExceptionMessages.UndefinedUserId + $"{id}");
                 return NoContent();
             }
-            var getUser = _mapper.Map<AthleteInfoDTO>(user);
+            var getUser = _mapper.Map<BookingModelInfo>(booking);
             return Ok(getUser);
         }
 
@@ -59,18 +59,18 @@ namespace BookingModel.Info.Controller
         [HttpDelete(ActionNames.DeleteUser)]
         public async Task<ActionResult> DeleteUser(int id)
         {
-            var users = await _athletesInfo.GetAthletesInfoByIdAsync(id);
+            var booking = await _bookingInfo.GetBookingOfAthletesInfoByIdAsync(id);
 
-            if (users == null)
+            if (booking == null)
             {
                 _logger.LogInformation(AthletesExceptionMessages.UndefinedUserId + $"{id}");
                 return NoContent();
             }
-            var newUser = _mapper.Map<AthletesEntity>(users);
-            _athletesInfo.DeleteAthletesByIdAsync(newUser);
+            var selectedBooking = _mapper.Map<BookingEntity>(booking);
+            _bookingInfo.CancelBooking(selectedBooking);
 
-            await _athleteInfoService.SaveChangesAsync(AthletesExceptionMessages.AthleteCanNotDeleted);
-            return Ok(users);
+            await _bookingInfoService.SaveChangesAsync(AthletesExceptionMessages.AthleteCanNotDeleted);
+            return Ok(booking);
         }
     }
 }

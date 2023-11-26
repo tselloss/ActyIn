@@ -1,7 +1,11 @@
 using Athletes.Info.Interface;
 using Athletes.Info.Repository;
+using BookingModel.Info.Interface;
+using BookingModel.Info.Repository;
 using ChooseActivity.Info.Interface;
 using ChooseActivity.Info.Repository;
+using MatchActivity.Info.Interface;
+using MatchActivity.Info.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -53,6 +57,10 @@ builder.Services.AddScoped<IAuthorizationToken, AuthorizationToken>();
 builder.Services.AddScoped<IChooseActivity, ChosenActivityInfoService>();
 builder.Services.AddScoped<AuthorizationToken>();
 builder.Services.AddScoped<ChosenActivityInfoService>();
+builder.Services.AddScoped<IBookingInfo, BookingInfoService>();
+builder.Services.AddScoped<BookingInfoService>();
+builder.Services.AddScoped<IMatchModel, MatchModelService>();
+builder.Services.AddScoped<MatchModelService>();
 
 // Enable CORS to allow all origins, headers, and methods
 builder.Services.AddMvcCore().AddCors(options =>

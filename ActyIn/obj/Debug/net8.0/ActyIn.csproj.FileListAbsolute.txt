@@ -75,3 +75,7 @@ C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\User.Authorization.pd
 C:\Users\karac\source\repos\ActyIn\ActyIn\obj\Debug\net8.0\ActyIn.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\ChooseActivity.Info.dll
 C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\ChooseActivity.Info.pdb
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\BookingModel.Info.dll
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\MatchActivity.Info.dll
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\BookingModel.Info.pdb
+C:\Users\karac\source\repos\ActyIn\ActyIn\bin\Debug\net8.0\MatchActivity.Info.pdb

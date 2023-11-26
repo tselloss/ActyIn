@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ChooseActivity.Info.Model;
+using MatchActivity.Info.Model;
 using Postgres.Context.Entities;
 
 namespace MatchActivity.Info.Profiles
@@ -8,8 +9,7 @@ namespace MatchActivity.Info.Profiles
     {
         public MatchModelProfile()
         {
-            CreateMap<ChooseActivityInfo, ChosenActivityEntity>().ReverseMap();
-            CreateMap<ChosenActivityEntity, ChooseActivityInfo>().ReverseMap();
+            CreateMap<MatchModelInfo, MatchModelEntity>().ReverseMap();
         }
     }
 }
