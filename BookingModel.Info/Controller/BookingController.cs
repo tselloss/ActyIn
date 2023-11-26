@@ -4,7 +4,9 @@ using BookingModel.Info.Model;
 using BookingModel.Info.Repository;
 using Define.Common.Exceptions;
 using Define.Common.Extension.Routes;
+using MatchActivity.Info.Model;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Postgres.Context.Entities;
@@ -29,7 +31,7 @@ namespace BookingModel.Info.Controller
         }
 
         [Authorize]
-        [HttpGet(ActionNames.GetAllUsers)]
+        [HttpGet(ActionNames.GetAllBookings)]
         public async Task<ActionResult<IEnumerable<BookingModelInfo>>> GetAllBookingsAsync()
         {
             var bookings = await _bookingInfo.GetAllBookingsAsync();
@@ -42,8 +44,8 @@ namespace BookingModel.Info.Controller
         }
 
         [Authorize]
-        [HttpGet(ActionNames.GetUserById)]
-        public async Task<ActionResult<BookingModelInfo>> GetUserInfoByIdAsync(int id)
+        [HttpGet(ActionNames.GetBookingsById)]
+        public async Task<ActionResult<BookingModelInfo>> GetBookingInfoByIdAsync(int id)
         {
             var booking = await _bookingInfo.GetBookingOfAthletesInfoByIdAsync(id);
             if (booking == null)
@@ -56,8 +58,8 @@ namespace BookingModel.Info.Controller
         }
 
         [Authorize]
-        [HttpDelete(ActionNames.DeleteUser)]
-        public async Task<ActionResult> DeleteUser(int id)
+        [HttpDelete(ActionNames.CancelBooking)]
+        public async Task<ActionResult> CancelBooking(int id)
         {
             var booking = await _bookingInfo.GetBookingOfAthletesInfoByIdAsync(id);
 
@@ -71,6 +73,21 @@ namespace BookingModel.Info.Controller
 
             await _bookingInfoService.SaveChangesAsync(AthletesExceptionMessages.AthleteCanNotDeleted);
             return Ok(booking);
+        }
+
+        [HttpPost(ActionNames.SaveBooking)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult SaveMatchModel([FromBody] BookingModelInfo bookingModelInfo)
+        {
+            var mapper = _mapper.Map<BookingEntity>(bookingModelInfo);
+            var entity = _bookingInfoService.CreateABooking(mapper);
+
+            if (entity is BadRequestObjectResult badRequest)
+            {
+                return BadRequest(new { Error = badRequest.Value });
+            }
+
+            return Ok();
         }
     }
 }

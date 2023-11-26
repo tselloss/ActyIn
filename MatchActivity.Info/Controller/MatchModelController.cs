@@ -31,7 +31,7 @@ namespace MatchActivity.Info.Controller
             _matchModelInfoService = matchModelService ?? throw new ArgumentNullException(nameof(matchModelService));
         }
 
-        [HttpGet(ActionNames.GetAllChosenActivities)]
+        [HttpGet(ActionNames.GetAllMatchModel)]
         public async Task<ActionResult<IEnumerable<MatchModelInfo>>> GetAllChosenActivitiesAsync()
         {
             var matchModel = await _matchModelInfoService.GetAllMatchModelsOfAthletesAsync();
@@ -43,8 +43,8 @@ namespace MatchActivity.Info.Controller
             return Ok(_mapper.Map<IEnumerable<MatchModelEntity>>(matchModel));
         }
 
-        [HttpGet(ActionNames.GetUserById)]
-        public async Task<ActionResult<MatchModelInfo>> GetUserInfoByIdAsync(int id)
+        [HttpGet(ActionNames.GetMatchModelById)]
+        public async Task<ActionResult<MatchModelInfo>> GetMatchModelInfoByIdAsync(int id)
         {
             var matchModelById = await _matchModelInfoService.GetMatchModelsOfAthletesInfoByIdAsync(id);
             if (matchModelById == null)
@@ -56,8 +56,8 @@ namespace MatchActivity.Info.Controller
             return Ok(getMatchModel);
         }
 
-        [HttpDelete(ActionNames.DeleteUser)]
-        public async Task<ActionResult> DeleteActivityUser(int id)
+        [HttpDelete(ActionNames.DeleteMatchModel)]
+        public async Task<ActionResult> DeleteMatchModel(int id)
         {
             var getMatchModelById = await _matchModelInfoService.GetMatchModelsOfAthletesInfoByIdAsync(id);
 
@@ -73,20 +73,20 @@ namespace MatchActivity.Info.Controller
             return Ok(getMatchModelById);
         }
 
-        //[HttpPost(ActionNames.CreateNewActivity)]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //public ActionResult RegisterUser([FromBody] ChooseActivityInfo chooseActivityInfo)
-        //{
-        //    var mapper = _mapper.Map<ChosenActivityEntity>(chooseActivityInfo);
-        //    var entity = _matchModelInfoService.CreateAnActivity(mapper);
+        [HttpPost(ActionNames.SaveMatchModel)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult SaveMatchModel([FromBody] MatchModelInfo matchModelInfo)
+        {
+            var mapper = _mapper.Map<MatchModelEntity>(matchModelInfo);
+            var entity = _matchModelInfoService.SaveMatchModelOfUser(mapper);
 
-        //    if (entity is BadRequestObjectResult badRequest)
-        //    {
-        //        return BadRequest(new { Error = badRequest.Value });
-        //    }
+            if (entity is BadRequestObjectResult badRequest)
+            {
+                return BadRequest(new { Error = badRequest.Value });
+            }
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
     }
 }
 
