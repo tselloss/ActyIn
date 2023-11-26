@@ -17,7 +17,10 @@ namespace Postgres.Context.Entities
         [Required]
         public bool LikeThePotentialAthlete { get; set; }
 
+        public int ChosenActivityId { get; set; }
+
         [Required]
         public IEnumerable<ChosenActivityEntity> ChosenActivities { get; set; }
+        public BookingEntity BookingEntity { get; internal set; }
     }
 }

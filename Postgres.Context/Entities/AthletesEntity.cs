@@ -14,8 +14,6 @@ namespace Postgres.Context.Entities
         [NotMapped]
         public IFormFile ProfileImage { get; set; }
 
-
-        [ForeignKey("AthleteFk")]
         public ICollection<ChosenActivityEntity> ChosenActivities { get; set; }
     }
 }

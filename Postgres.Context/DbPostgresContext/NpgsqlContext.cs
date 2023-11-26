@@ -9,6 +9,7 @@ namespace Postgres.Context.DBContext
         public DbSet<AthletesEntity> AthletesInfo { get; set; }
         public DbSet<ChosenActivityEntity> ChooseActivityInfo { get; set; }
         public DbSet<MatchModelEntity> MatchModels { get; set; }
+        public DbSet<BookingEntity> Bookings { get; set; }
 
         public NpgsqlContext(DbContextOptions<NpgsqlContext> options) : base(options) { }
 
@@ -27,9 +28,13 @@ namespace Postgres.Context.DBContext
                 City = "City1",
                 PostalCode = 12345,
                 FavoriteActivity = "Running",
-                Role = Roles.User                
+                Role = Roles.User,
+                ChosenActivities = null,
+                ProfileImage = null
             }
         );
+
+
         }
     }
 }

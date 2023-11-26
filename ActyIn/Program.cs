@@ -1,5 +1,6 @@
 using Athletes.Info.Interface;
 using Athletes.Info.Repository;
+using ChooseActivity.Info.Interface;
 using ChooseActivity.Info.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;

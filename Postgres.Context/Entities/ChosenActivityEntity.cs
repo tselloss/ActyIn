@@ -12,10 +12,12 @@ namespace Postgres.Context.Entities
         [Required]
         public string ChosenActivityName { get; set; }
 
-        [ForeignKey("AthleteFk")]
-        public int AthleteFK { get; set; }
-
-        [Required]
+        // Foreign key property
+        public int AthletesEntityId { get; set; }
         public AthletesEntity AthletesEntity { get; set; }
+
+        // Foreign key property
+        public int MatchModelId { get; set; }
+        public MatchModelEntity MatchModel { get; set; }
     }
 }
