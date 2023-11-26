@@ -8,6 +8,7 @@ namespace Postgres.Context.DBContext
     {
         public DbSet<AthletesEntity> AthletesInfo { get; set; }
         public DbSet<ChosenActivityEntity> ChooseActivityInfo { get; set; }
+        public DbSet<MatchModelEntity> MatchModels { get; set; }
 
         public NpgsqlContext(DbContextOptions<NpgsqlContext> options) : base(options) { }
 
