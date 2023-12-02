@@ -30,7 +30,7 @@ namespace MatchActivity.Info.Controller
         [HttpGet(ActionNames.GetAllMatchModel)]
         public async Task<ActionResult<IEnumerable<MatchModelInfo>>> GetAllChosenActivitiesAsync()
         {
-            var matchModel = await _matchModelInfoService.GetAllMatchModelsOfAthletesAsync();
+            var matchModel = await _matchModel.GetAllMatchModelsOfAthletesAsync();
             if (matchModel == null)
             {
                 _logger.LogInformation("We have no activities on db");
@@ -42,7 +42,7 @@ namespace MatchActivity.Info.Controller
         [HttpGet(ActionNames.GetMatchModelById)]
         public async Task<ActionResult<MatchModelInfo>> GetMatchModelInfoByIdAsync(int id)
         {
-            var matchModelById = await _matchModelInfoService.GetMatchModelsOfAthletesInfoByIdAsync(id);
+            var matchModelById = await _matchModel.GetMatchModelsOfAthletesInfoByIdAsync(id);
             if (matchModelById == null)
             {
                 _logger.LogInformation("This is the chosen activity with id: " + $"{id}");
@@ -55,7 +55,7 @@ namespace MatchActivity.Info.Controller
         [HttpDelete(ActionNames.DeleteMatchModel)]
         public async Task<ActionResult> DeleteMatchModel(int id)
         {
-            var getMatchModelById = await _matchModelInfoService.GetMatchModelsOfAthletesInfoByIdAsync(id);
+            var getMatchModelById = await _matchModel.GetMatchModelsOfAthletesInfoByIdAsync(id);
 
             if (getMatchModelById == null)
             {
@@ -63,7 +63,7 @@ namespace MatchActivity.Info.Controller
                 return NoContent();
             }
             var newActivity = _mapper.Map<MatchModelEntity>(getMatchModelById);
-            _matchModelInfoService.DeleteMatchModelOfAthleteByIdAsync(newActivity);
+            _matchModel.DeleteMatchModelOfAthleteByIdAsync(newActivity);
 
             await _matchModelInfoService.SaveChangesAsync("We can not manage to delete the activity");
             return Ok(getMatchModelById);
@@ -74,7 +74,7 @@ namespace MatchActivity.Info.Controller
         public ActionResult SaveMatchModel([FromBody] MatchModelInfo matchModelInfo)
         {
             var mapper = _mapper.Map<MatchModelEntity>(matchModelInfo);
-            var entity = _matchModelInfoService.SaveMatchModelOfUser(mapper);
+            var entity = _matchModel.SaveMatchModelOfUser(mapper);
 
             if (entity is BadRequestObjectResult badRequest)
             {

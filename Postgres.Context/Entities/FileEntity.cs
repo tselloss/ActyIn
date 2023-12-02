@@ -14,7 +14,9 @@ namespace Postgres.Context.Entities
 
         [Required]
         public string FileName { get; set; }
-        [Required]
+
         public string ContentType { get; set; }
+
+        public byte[] Photo {  get; set; }  
     }
 }

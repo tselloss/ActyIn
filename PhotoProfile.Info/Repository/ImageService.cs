@@ -1,6 +1,7 @@
 ﻿using Define.Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PhotoProfile.Info.Interface;
 using PhotoProfile.Info.Model;
 using Polly;
@@ -52,52 +53,49 @@ namespace PhotoProfile.Info.Repository
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex}");
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return BadRequest(string.Format("Something gone wrong"));
             }
 
             return File(b, fileEntity.ContentType);
         }
 
+        public async Task<IActionResult> PostFile(ImageModel request, string username)
+        {
+            try
+            {
+                FileEntity fileEntity = JsonConvert.DeserializeObject<FileEntity>(request.FileEntity);
+                string filename = username + Path.GetExtension(request.Image.FileName);
+                if (!_context.AthleteImageProfile.Any(_ => _.AthleteName == fileEntity.AthleteName))
+                {
+                    fileEntity = new FileEntity()
+                    {
+                        FileName = filename,
+                        ContentType = request.Image.ContentType,
+                        AthleteName = username,
+                    };
+                    fileEntity = _context.AthleteImageProfile.Add(fileEntity).Entity;
+                }
+                else
+                {
+                    fileEntity = _context.AthleteImageProfile.Where(_ => _.AthleteName == fileEntity.AthleteName).FirstOrDefault();
+                    fileEntity.FileName = filename;
+                    fileEntity.ContentType = request.Image.ContentType;
 
-        //TODO
+                }
+                _context.SaveChanges();
 
-        //public Task<IActionResult> PostFile(ImageModel request, string username)
-        //{
-        //    try
-        //    {
-        //        FileEntity fileEntity;                
-        //        string filename = carId + Path.GetExtension(request.Image.FileName);
-        //        if (!_context.AthleteImageProfile.Any(_ => _.AthleteId == request.))
-        //        {
-        //            fileEntity = new FileEntity()
-        //            {
-        //                carId = carId,
-        //                FileName = filename,
-        //                ContentType = request.Image.ContentType,
-        //            };
-        //            fileEntity = _context.File.Add(fileEntity).Entity;
-        //        }
-        //        else
-        //        {
-        //            fileEntity = _context.File.Where(_ => _.carId == carId).FirstOrDefault();
-        //            fileEntity.FileName = filename;
-        //            fileEntity.ContentType = request.Image.ContentType;
+                using (FileStream stream = new FileStream(Path.Combine(getImagePath(username), fileEntity.FileName), FileMode.Create))
+                {
+                    request.Image.CopyTo(stream);
+                }
 
-        //        }
-        //        _context.SaveChanges();
-
-        //        using (FileStream stream = new FileStream(Path.Combine(getImagePath(username), fileEntity.FileName), FileMode.Create))
-        //        {
-        //            request.Image.CopyTo(stream);
-        //        }
-
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return BadRequest(new ErrorResponse() { message = ErrorMessages.IMAGE_WAS_NOT_SAVED });
-        //    }
-        //    return Ok("This is ");
-        //}
+            }
+            catch (Exception)
+            {
+                return BadRequest(string.Format("Something gone wrong"));
+            }
+            return Ok();
+        }
 
         private string getImagePath(string username)
         {

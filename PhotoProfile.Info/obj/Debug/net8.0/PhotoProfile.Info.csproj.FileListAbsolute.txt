@@ -1,0 +1,6 @@
+C:\Users\karac\source\repos\ActyIn\PhotoProfile.Info\obj\Debug\net8.0\PhotoProfile.Info.csproj.AssemblyReference.cache
+C:\Users\karac\source\repos\ActyIn\PhotoProfile.Info\obj\Debug\net8.0\PhotoProfile.Info.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\karac\source\repos\ActyIn\PhotoProfile.Info\obj\Debug\net8.0\PhotoProfile.Info.AssemblyInfoInputs.cache
+C:\Users\karac\source\repos\ActyIn\PhotoProfile.Info\obj\Debug\net8.0\PhotoProfile.Info.AssemblyInfo.cs
+C:\Users\karac\source\repos\ActyIn\PhotoProfile.Info\obj\Debug\net8.0\PhotoProfile.Info.csproj.CoreCompileInputs.cache
+C:\Users\karac\source\repos\ActyIn\PhotoProfile.Info\obj\Debug\net8.0\PhotoProfile.Info.sourcelink.json

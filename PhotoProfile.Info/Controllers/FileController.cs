@@ -2,15 +2,15 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PhotoProfile.Info.Model;
-using System.IO.Abstractions;
+using IFile = PhotoProfile.Info.Interface.IFile;
 
-namespace MatchActivity.Info.Controller
+namespace PhotoProfile.Info.Controllers
 {
     [Route(ActionNames.Controller)]
     [ApiController]
     public class FileController : ControllerBase
     {
-        IFile _file;
+        private readonly IFile _file;
         public FileController(IFile file)
         {
             _file = file;
@@ -18,16 +18,16 @@ namespace MatchActivity.Info.Controller
 
         [HttpPost]
         [Authorize(Roles = "Upload")]
-        public async Task<IActionResult> PostFile([FromForm] ImageModel request)
+        public async Task<IActionResult> PostFile([FromForm] ImageModel request , string username)
         {
-            return await _file.PostFile(this, request);
+            return await _file.PostFile(request, username);
         }
 
         [HttpGet("{carId}")]
         [Authorize(Roles = "Download")]
-        public async Task<IActionResult> GetFile(int carId)
+        public async Task<IActionResult> GetFile(string username)
         {
-            return await _file.GetFile(this, carId);
+            return await _file.GetFile(username);
         }
     }
 }

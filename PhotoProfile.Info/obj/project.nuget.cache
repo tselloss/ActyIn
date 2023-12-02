@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "W74lNPBdamuHUlxTwlNDE67dVqHYtit3wUmH2SNMGC62TiFHmBZLxhddY3iVxHp5nNckO9wfjLOydkGgKY6o6w==",
+  "dgSpecHash": "o3+DVgLva/OlXghihyd4RcnKJz8+d39iqGruCDgywU6dzbXYitzc9k3f1L9c3bMyM8kwQ9kmWj5paG2qad6eJg==",
   "success": true,
   "projectFilePath": "C:\\Users\\karac\\source\\repos\\ActyIn\\PhotoProfile.Info\\PhotoProfile.Info.csproj",
   "expectedPackageFiles": [
@@ -35,8 +35,8 @@
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
-    "C:\\Users\\karac\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
-    "C:\\Users\\karac\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\karac\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "C:\\Users\\karac\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.extensions.dependencymodel\\2.1.0\\microsoft.extensions.dependencymodel.2.1.0.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.extensions.diagnostics.healthchecks\\7.0.12\\microsoft.extensions.diagnostics.healthchecks.7.0.12.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.extensions.diagnostics.healthchecks.abstractions\\7.0.12\\microsoft.extensions.diagnostics.healthchecks.abstractions.7.0.12.nupkg.sha512",

@@ -1,0 +1,9 @@
+C:\Users\karac\source\repos\ActyIn\ActyInImageHandler\obj\Debug\net8.0\ActyInImageHandler.csproj.AssemblyReference.cache
+C:\Users\karac\source\repos\ActyIn\ActyInImageHandler\obj\Debug\net8.0\ActyInImageHandler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\karac\source\repos\ActyIn\ActyInImageHandler\obj\Debug\net8.0\ActyInImageHandler.AssemblyInfoInputs.cache
+C:\Users\karac\source\repos\ActyIn\ActyInImageHandler\obj\Debug\net8.0\ActyInImageHandler.AssemblyInfo.cs
+C:\Users\karac\source\repos\ActyIn\ActyInImageHandler\obj\Debug\net8.0\ActyInImageHandler.csproj.CoreCompileInputs.cache
+C:\Users\karac\source\repos\ActyIn\ActyInImageHandler\obj\Debug\net8.0\ActyInImageHandler.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\karac\source\repos\ActyIn\ActyInImageHandler\obj\Debug\net8.0\ActyInImageHandler.RazorAssemblyInfo.cache
+C:\Users\karac\source\repos\ActyIn\ActyInImageHandler\obj\Debug\net8.0\ActyInImageHandler.RazorAssemblyInfo.cs
+C:\Users\karac\source\repos\ActyIn\ActyInImageHandler\obj\Debug\net8.0\ActyInImageHandler.sourcelink.json
