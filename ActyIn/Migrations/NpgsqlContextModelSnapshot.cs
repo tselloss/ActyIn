@@ -109,6 +109,33 @@ namespace ActyIn.Migrations
                     b.ToTable("ChooseActivityInfo");
                 });
 
+            modelBuilder.Entity("Postgres.Context.Entities.FileEntity", b =>
+                {
+                    b.Property<int>("AthleteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AthleteId"));
+
+                    b.Property<string>("AthleteName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ContentType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<byte[]>("Photo")
+                        .HasColumnType("bytea");
+
+                    b.HasKey("AthleteId");
+
+                    b.ToTable("AthleteImageProfile");
+                });
+
             modelBuilder.Entity("Postgres.Context.Entities.MatchModelEntity", b =>
                 {
                     b.Property<int>("MatchModelId")

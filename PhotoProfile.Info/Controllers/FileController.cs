@@ -31,5 +31,5 @@ namespace PhotoProfile.Info.Controllers
         }
     }
 }
-}
+
 
