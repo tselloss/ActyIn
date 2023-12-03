@@ -7,5 +7,8 @@ namespace PhotoProfile.Info.Interface
     {
         Task<IActionResult> PostFile(ImageModel request);
         Task<IActionResult> GetFile(string username);
+
+        Task<IActionResult> PostApplicationFile(ApplicationImageModel request);
+        Task<IActionResult> GetApplicationFiles(string sport);
     }
 }

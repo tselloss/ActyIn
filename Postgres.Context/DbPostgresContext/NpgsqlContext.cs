@@ -13,6 +13,7 @@ namespace Postgres.Context.DBContext
         public DbSet<BookingEntity> Bookings { get; set; }
 
         public DbSet<FileEntity> AthleteImageProfile { get; set; }
+        public DbSet<ApplicationFileEntity> ApplicationImages { get; set; }
 
         public NpgsqlContext(DbContextOptions<NpgsqlContext> options) : base(options) { }
 

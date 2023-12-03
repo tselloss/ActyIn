@@ -21,6 +21,30 @@ namespace ActyIn.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Postgres.Context.Entities.ApplicationFileEntity", b =>
+                {
+                    b.Property<int>("SportId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SportId"));
+
+                    b.Property<string>("ContentType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("SportName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("SportId");
+
+                    b.ToTable("ApplicationImages");
+                });
+
             modelBuilder.Entity("Postgres.Context.Entities.AthletesEntity", b =>
                 {
                     b.Property<int>("AthletesId")
@@ -127,9 +151,6 @@ namespace ActyIn.Migrations
                     b.Property<string>("FileName")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<byte[]>("Photo")
-                        .HasColumnType("bytea");
 
                     b.HasKey("AthleteId");
 

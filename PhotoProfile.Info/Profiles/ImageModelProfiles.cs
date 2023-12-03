@@ -9,6 +9,7 @@ namespace PhotoProfile.Info.Profiles
         public ImageModelProfiles()
         {
             CreateMap<FileEntity, ImageModel>().ReverseMap();
+            CreateMap<ApplicationFileEntity, ApplicationImageModel>().ReverseMap();
         }
     }
 }

@@ -31,6 +31,19 @@ namespace PhotoProfile.Info.Controllers
         {
             return await _file.GetFile(username);
         }
+
+        [HttpPost("applicationPhotos")]
+        public async Task<IActionResult> PostFileForApplication([FromForm] ApplicationImageModel request)
+        {
+            var mapper = _mapper.Map<ApplicationImageModel>(request);
+            return await _file.PostApplicationFile(mapper);
+        }
+
+        [HttpGet("getPhotoForSports")]
+        public async Task<IActionResult> GetApplicationFilesFile(string sport)
+        {
+            return await _file.GetApplicationFiles(sport);
+        }
     }
 }
 
