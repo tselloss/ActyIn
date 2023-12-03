@@ -8,6 +8,7 @@ namespace PhotoProfile.Info.Model
         [Required]
         public IFormFile Image { get; set; }
 
-        public string FileEntity { get; set; }
+        [Required] 
+        public string Username { get; set; }
     }
 }

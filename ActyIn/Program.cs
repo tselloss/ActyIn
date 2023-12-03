@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using PhotoProfile.Info.Interface;
+using PhotoProfile.Info.Repository;
 using Postgres.Context.DBContext;
 using System.Text;
 using User.Authorization.Interface;
@@ -61,6 +63,8 @@ builder.Services.AddScoped<IBookingInfo, BookingInfoService>();
 builder.Services.AddScoped<BookingInfoService>();
 builder.Services.AddScoped<IMatchModel, MatchModelService>();
 builder.Services.AddScoped<MatchModelService>();
+builder.Services.AddScoped<IFile, ImageService>();
+builder.Services.AddScoped<ImageService>();
 
 // Enable CORS to allow all origins, headers, and methods
 builder.Services.AddMvcCore().AddCors(options =>

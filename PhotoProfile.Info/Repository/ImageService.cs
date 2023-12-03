@@ -1,4 +1,5 @@
-﻿using Define.Common.Exceptions;
+﻿using Castle.Core.Internal;
+using Define.Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -15,6 +16,7 @@ namespace PhotoProfile.Info.Repository
     {
         private NpgsqlContext _context;
         private IHttpContextAccessor _httpContext;
+        private FileEntity fileEntity;
 
         public ImageService(NpgsqlContext context, IHttpContextAccessor httpContext)
         {
@@ -59,19 +61,19 @@ namespace PhotoProfile.Info.Repository
             return File(b, fileEntity.ContentType);
         }
 
-        public async Task<IActionResult> PostFile(ImageModel request, string username)
+        public async Task<IActionResult> PostFile(ImageModel request)
         {
             try
-            {
-                FileEntity fileEntity = JsonConvert.DeserializeObject<FileEntity>(request.FileEntity);
-                string filename = username + Path.GetExtension(request.Image.FileName);
-                if (!_context.AthleteImageProfile.Any(_ => _.AthleteName == fileEntity.AthleteName))
+            {                
+                string filename = request.Username + Path.GetExtension(request.Image.FileName);
+                var username = getUsername(request.Username);
+                if (!username)
                 {
                     fileEntity = new FileEntity()
                     {
                         FileName = filename,
                         ContentType = request.Image.ContentType,
-                        AthleteName = username,
+                        AthleteName = request.Username,
                     };
                     fileEntity = _context.AthleteImageProfile.Add(fileEntity).Entity;
                 }
@@ -84,7 +86,7 @@ namespace PhotoProfile.Info.Repository
                 }
                 _context.SaveChanges();
 
-                using (FileStream stream = new FileStream(Path.Combine(getImagePath(username), fileEntity.FileName), FileMode.Create))
+                using (FileStream stream = new FileStream(Path.Combine(getImagePath(request.Username), filename), FileMode.Create))
                 {
                     request.Image.CopyTo(stream);
                 }
@@ -95,6 +97,11 @@ namespace PhotoProfile.Info.Repository
                 return BadRequest(string.Format("Something gone wrong"));
             }
             return Ok();
+        }
+
+        private bool getUsername(string username)
+        {
+            return _context.AthleteImageProfile.Any(_ => _.AthleteName == username);
         }
 
         private string getImagePath(string username)

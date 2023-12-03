@@ -29,6 +29,7 @@
     <ProjectReference Include="..\Athletes.Info\Athletes.Info.csproj" />
     <ProjectReference Include="..\BookingModel.Info\BookingModel.Info.csproj" />
     <ProjectReference Include="..\ChooseActivity.Info\ChooseActivity.Info.csproj" />
+    <ProjectReference Include="..\PhotoProfile.Info\PhotoProfile.Info.csproj" />
     <ProjectReference Include="..\Postgres.Context\Postgres.Context.csproj" />
     <ProjectReference Include="..\User.Authorization\User.Authorization.csproj" />
   </ItemGroup>

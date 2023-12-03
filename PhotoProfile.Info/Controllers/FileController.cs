@@ -1,5 +1,5 @@
-﻿using Define.Common.Extension.Routes;
-using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Define.Common.Extension.Routes;
 using Microsoft.AspNetCore.Mvc;
 using PhotoProfile.Info.Model;
 using IFile = PhotoProfile.Info.Interface.IFile;
@@ -11,20 +11,22 @@ namespace PhotoProfile.Info.Controllers
     public class FileController : ControllerBase
     {
         private readonly IFile _file;
-        public FileController(IFile file)
+        private readonly IMapper _mapper;
+
+        public FileController(IFile file, IMapper mapper)
         {
-            _file = file;
+            _file = file ?? throw new ArgumentException(nameof(file));
+            _mapper = mapper ?? throw new ArgumentException(nameof(mapper));
         }
 
         [HttpPost]
-        [Authorize(Roles = "Upload")]
-        public async Task<IActionResult> PostFile([FromForm] ImageModel request , string username)
+        public async Task<IActionResult> PostFile([FromForm] ImageModel request)
         {
-            return await _file.PostFile(request, username);
+            var mapper = _mapper.Map<ImageModel>(request);
+            return await _file.PostFile(mapper);
         }
 
-        [HttpGet("{carId}")]
-        [Authorize(Roles = "Download")]
+        [HttpGet("getPhotoByUsername")]
         public async Task<IActionResult> GetFile(string username)
         {
             return await _file.GetFile(username);

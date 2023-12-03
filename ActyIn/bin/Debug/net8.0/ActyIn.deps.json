@@ -22,6 +22,7 @@
           "Newtonsoft.Json": "9.0.1",
           "Npgsql": "7.0.6",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11",
+          "PhotoProfile.Info": "1.0.0",
           "Postgres.Context": "1.0.0",
           "Swashbuckle.AspNetCore": "6.4.0",
           "User.Authorization": "1.0.0"
@@ -622,6 +623,25 @@
           }
         }
       },
+      "Polly/8.2.0": {
+        "dependencies": {
+          "Polly.Core": "8.2.0"
+        },
+        "runtime": {
+          "lib/net6.0/Polly.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.2.0.2702"
+          }
+        }
+      },
+      "Polly.Core/8.2.0": {
+        "runtime": {
+          "lib/net8.0/Polly.Core.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.2.0.2702"
+          }
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
@@ -912,6 +932,18 @@
           "System.Runtime": "4.3.0",
           "System.Text.Encoding": "4.3.0",
           "System.Threading.Tasks": "4.3.0"
+        }
+      },
+      "System.IO.Abstractions/19.2.87": {
+        "dependencies": {
+          "TestableIO.System.IO.Abstractions": "19.2.87",
+          "TestableIO.System.IO.Abstractions.Wrappers": "19.2.87"
+        },
+        "runtime": {
+          "lib/net7.0/System.IO.Abstractions.dll": {
+            "assemblyVersion": "19.0.0.0",
+            "fileVersion": "19.2.87.22897"
+          }
         }
       },
       "System.IO.Compression/4.3.0": {
@@ -1389,6 +1421,25 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
+      "TestableIO.System.IO.Abstractions/19.2.87": {
+        "runtime": {
+          "lib/net8.0/TestableIO.System.IO.Abstractions.dll": {
+            "assemblyVersion": "19.0.0.0",
+            "fileVersion": "19.2.87.22897"
+          }
+        }
+      },
+      "TestableIO.System.IO.Abstractions.Wrappers/19.2.87": {
+        "dependencies": {
+          "TestableIO.System.IO.Abstractions": "19.2.87"
+        },
+        "runtime": {
+          "lib/net8.0/TestableIO.System.IO.Abstractions.Wrappers.dll": {
+            "assemblyVersion": "19.0.0.0",
+            "fileVersion": "19.2.87.22897"
+          }
+        }
+      },
       "Athletes.Info/1.0.0": {
         "dependencies": {
           "AutoMapper": "12.0.1",
@@ -1447,6 +1498,19 @@
         },
         "runtime": {
           "MatchActivity.Info.dll": {}
+        }
+      },
+      "PhotoProfile.Info/1.0.0": {
+        "dependencies": {
+          "Define.Common": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.1.38",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
+          "Polly": "8.2.0",
+          "Postgres.Context": "1.0.0",
+          "System.IO.Abstractions": "19.2.87"
+        },
+        "runtime": {
+          "PhotoProfile.Info.dll": {}
         }
       },
       "Postgres.Context/1.0.0": {
@@ -1945,6 +2009,20 @@
       "path": "npgsql.entityframeworkcore.postgresql/7.0.11",
       "hashPath": "npgsql.entityframeworkcore.postgresql.7.0.11.nupkg.sha512"
     },
+    "Polly/8.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KZm8iG29y6Mse7YntYYJSf5fGWuhYLliWgZaG/8NcuXS4gN7SPdtPYpjCxQlHqxvMGubkWVrGp3MvUaI7SkyKA==",
+      "path": "polly/8.2.0",
+      "hashPath": "polly.8.2.0.nupkg.sha512"
+    },
+    "Polly.Core/8.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gnKp3+mxGFmkFs4eHcD9aex0JOF8zS1Y18c2A5ckXXTVqbs6XLcDyLKgSa/mUFqAnH3mn9+uVIM0RhAec/d3kA==",
+      "path": "polly.core/8.2.0",
+      "hashPath": "polly.core.8.2.0.nupkg.sha512"
+    },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -2245,6 +2323,13 @@
       "sha512": "sha512-3qjaHvxQPDpSOYICjUoTsmoq5u6QJAFRUITgeT/4gqkF1bajbSmb1kwSxEA8AHlofqgcKJcM8udgieRNhaJ5Cg==",
       "path": "system.io/4.3.0",
       "hashPath": "system.io.4.3.0.nupkg.sha512"
+    },
+    "System.IO.Abstractions/19.2.87": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/plRdBOQzS2vGuoD+u9yjcjpxivFvbnB791xLvGIaxU8EWdjzNWt185kfaj6/HKFLxrkc3lKhjUbl5DzqZ069w==",
+      "path": "system.io.abstractions/19.2.87",
+      "hashPath": "system.io.abstractions.19.2.87.nupkg.sha512"
     },
     "System.IO.Compression/4.3.0": {
       "type": "package",
@@ -2561,6 +2646,20 @@
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
     },
+    "TestableIO.System.IO.Abstractions/19.2.87": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wxsAThFm6cvvoht4hV++DvHrmLLCpEKwywzNxgJJEmXKkvnEDGCkRWyoAKmrBNKhxwX8QGoBT9cOYCCX7vrt4Q==",
+      "path": "testableio.system.io.abstractions/19.2.87",
+      "hashPath": "testableio.system.io.abstractions.19.2.87.nupkg.sha512"
+    },
+    "TestableIO.System.IO.Abstractions.Wrappers/19.2.87": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2Fa0guLdRYRCpQte/TNVvLCTMRfaTxFZS/32OugutLpymvQV8qQmBwgb9fM9nPcn/Kt11oZ2kRfiuLlLlZRLew==",
+      "path": "testableio.system.io.abstractions.wrappers/19.2.87",
+      "hashPath": "testableio.system.io.abstractions.wrappers.19.2.87.nupkg.sha512"
+    },
     "Athletes.Info/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -2582,6 +2681,11 @@
       "sha512": ""
     },
     "MatchActivity.Info/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PhotoProfile.Info/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
