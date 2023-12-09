@@ -7,7 +7,7 @@
         {
 
         }
-        public ControllerExceptionMessage(string athletesExceptionMesseges, string message) : base(String.Format(athletesExceptionMesseges, message))
+        public ControllerExceptionMessage(string athletesExceptionMessages, string message) : base(String.Format(athletesExceptionMessages, message))
         {
 
         }

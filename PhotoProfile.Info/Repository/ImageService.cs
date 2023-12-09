@@ -1,28 +1,25 @@
-﻿using Castle.Core.Internal;
-using Define.Common.Exceptions;
-using Microsoft.AspNetCore.Http;
+﻿using Define.Common.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Logging;
 using PhotoProfile.Info.Interface;
 using PhotoProfile.Info.Model;
 using Polly;
 using Postgres.Context.DBContext;
 using Postgres.Context.Entities;
-using System.Security.Claims;
 
 namespace PhotoProfile.Info.Repository
 {
     public class ImageService : ControllerBase, IFile
     {
         private NpgsqlContext _context;
-        private IHttpContextAccessor _httpContext;
         private ApplicationFileEntity appFileEntity;
+        private readonly ILogger<ImageService> _logger;
 
-        public ImageService(NpgsqlContext context, IHttpContextAccessor httpContext)
+        public ImageService(NpgsqlContext context, ILogger logger)
         {
-            _context = context;
-            _httpContext = httpContext;
+            _context = context ?? throw new ArgumentException(nameof(context));
+            _logger = (ILogger<ImageService>)(logger ?? throw new ArgumentException(nameof(logger)));
         }
 
         public async Task<IActionResult> GetFile(string username)
@@ -32,7 +29,7 @@ namespace PhotoProfile.Info.Repository
 
             if (fileEntity == null)
             {
-                return NotFound(AthletesExceptionMessages.UndefinedUserEmail);
+                return NotFound(FilesMessages.EmptyFileEntity);
             }
 
             var retryPolicy = Policy.Handle<Exception>()
@@ -41,7 +38,7 @@ namespace PhotoProfile.Info.Repository
                     sleepDurationProvider: (attemptCount) => TimeSpan.FromSeconds(attemptCount * 2),
                     onRetryAsync: (exception, sleepDuration, attemptNumber, context) =>
                     {
-                        Console.WriteLine("Retry Policy");
+                        _logger.LogInformation(FilesMessages.RetryPolicy);
                         return Task.CompletedTask;
                     }
                 );
@@ -55,8 +52,8 @@ namespace PhotoProfile.Info.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred: {ex}");
-                return BadRequest(string.Format("Something gone wrong"));
+                _logger.LogInformation(FilesMessages.ErrorGetFile + $"{ex}");
+                return BadRequest(string.Format(FilesMessages.ErrorGetPhotoProfileMessage));
             }
 
             return File(b, fileEntity.ContentType);
@@ -100,10 +97,11 @@ namespace PhotoProfile.Info.Repository
                 {
                     await request.Image.CopyToAsync(stream);
                 }
+                _logger.LogInformation(FilesMessages.PostPhotoProfileSuccess);
             }
             catch (Exception)
             {
-                return BadRequest("Something gone wrong");
+                return BadRequest(FilesMessages.PostPhotoProfileError);
             }
 
             return Ok();
@@ -139,11 +137,11 @@ namespace PhotoProfile.Info.Repository
                 {
                     request.Image.CopyTo(stream);
                 }
-
+                _logger.LogInformation(FilesMessages.PostAppPhotoSuccess);
             }
             catch (Exception)
             {
-                return BadRequest(string.Format("Something gone wrong"));
+                return BadRequest(string.Format(FilesMessages.PostAppPhotoError));
             }
             return Ok();
         }
@@ -164,7 +162,7 @@ namespace PhotoProfile.Info.Repository
                     sleepDurationProvider: (attemptCount) => TimeSpan.FromSeconds(attemptCount * 2),
                     onRetryAsync: (exception, sleepDuration, attemptNumber, context) =>
                     {
-                        Console.WriteLine("Retry Policy");
+                        Console.WriteLine(FilesMessages.RetryPolicy);
                         return Task.CompletedTask;
                     }
                 );
@@ -175,11 +173,12 @@ namespace PhotoProfile.Info.Repository
                 {
                     b = await System.IO.File.ReadAllBytesAsync(Path.Combine(getApplicationImagePath(sportName), fileEntity.FileName));
                 });
+                _logger.LogInformation(FilesMessages.AppGetPhotoMessage);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred: {ex}");
-                return BadRequest(string.Format("Something gone wrong"));
+                _logger.LogInformation(FilesMessages.ErrorGetFile + $"{ex}");
+                return BadRequest(string.Format(FilesMessages.AppErrorGetPhotoMessage));
             }
 
             return File(b, fileEntity.ContentType);
