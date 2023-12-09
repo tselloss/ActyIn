@@ -1,8 +1,7 @@
 ﻿using Athletes.Info.Model;
 
-namespace Athletes.Info.Request.EditRequests
+namespace Athletes.Info.Request.EditRequests;
+
+public record AthleteEditUsernameAndEmailRequest : AthleteInfoBase
 {
-    public record AthleteEditUsernameAndEmailRequest : AthleteInfoBase
-    {
-    }
 }

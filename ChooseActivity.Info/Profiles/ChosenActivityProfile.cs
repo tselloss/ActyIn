@@ -2,14 +2,12 @@
 using ChooseActivity.Info.Model;
 using Postgres.Context.Entities;
 
-namespace MatchActivityInfo.Profiles
+namespace MatchActivityInfo.Profiles;
+
+public class ChosenActivityProfile : Profile
 {
-    public class ChosenActivityProfile : Profile
+    public ChosenActivityProfile()
     {
-        public ChosenActivityProfile()
-        {
-            CreateMap<ChooseActivityInfo, ChosenActivityEntity>().ReverseMap();
-            CreateMap<ChosenActivityEntity, ChooseActivityInfo>().ReverseMap();
-        }
+        CreateMap<ChooseActivityInfo, ChosenActivityEntity>().ReverseMap();
     }
 }

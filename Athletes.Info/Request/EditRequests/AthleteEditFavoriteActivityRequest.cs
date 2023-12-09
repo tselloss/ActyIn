@@ -2,11 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Athletes.Info.Request.EditRequests
+namespace Athletes.Info.Request.EditRequests;
+
+public record AthleteEditFavoriteActivityRequest : AthleteInfoBase
 {
-    public record AthleteEditFavoriteActivityRequest : AthleteInfoBase
-    {
-        [Required]
-        public string FavoriteActivity { get; set; }
-    }
+    [Required]
+    public string FavoriteActivity { get; set; }
 }

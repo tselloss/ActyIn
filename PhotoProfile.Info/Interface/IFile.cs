@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PhotoProfile.Info.Model;
 
-namespace PhotoProfile.Info.Interface
+namespace PhotoProfile.Info.Interface;
+public interface IFile
 {
-    public interface IFile
-    {
-        Task<IActionResult> PostFile(ImageModel request);
-        Task<IActionResult> GetFile(string username);
+    Task<IActionResult> PostFile(ImageModel request);
+    Task<IActionResult> GetFile(string username);
 
-        Task<IActionResult> PostApplicationFile(ApplicationImageModel request);
-        Task<IActionResult> GetApplicationFiles(string sport);
-    }
+    Task<IActionResult> PostApplicationFile(ApplicationImageModel request);
+    Task<IActionResult> GetApplicationFiles(string sport);
 }

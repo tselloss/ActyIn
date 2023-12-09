@@ -1,14 +1,13 @@
 ﻿using Postgres.Context.Entities;
 using User.Authorization.Request.ComesInRequests;
 
-namespace User.Authorization.Interface
+namespace User.Authorization.Interface;
+
+public interface IAuthorizationToken
 {
-    public interface IAuthorizationToken
-    {
-        TokenForRegister GenerateTokenForRegister(AthletesEntity registeredAthlete);
+    TokenForRegister GenerateTokenForRegister(AthletesEntity registeredAthlete);
 
-        TokenForLogin GenerateTokenForLogin(AthleteLoginRequest athleteLoginRequest);
+    TokenForLogin GenerateTokenForLogin(AthleteLoginRequest athleteLoginRequest);
 
-        AthleteLoginRequest Login(AthletesEntity loginRequest);
-    }
+    AthleteLoginRequest Login(AthletesEntity loginRequest);
 }

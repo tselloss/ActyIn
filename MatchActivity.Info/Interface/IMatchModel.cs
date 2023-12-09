@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Postgres.Context.Entities;
 
-namespace MatchActivity.Info.Interface
+namespace MatchActivity.Info.Interface;
+public interface IMatchModel
 {
-    public interface IMatchModel
-    {
-        Task<IEnumerable<MatchModelEntity>> GetAllMatchModelsOfAthletesAsync();
-        Task<MatchModelEntity> GetMatchModelsOfAthletesInfoByIdAsync(int matchModelId);
-        IActionResult SaveMatchModelOfUser(MatchModelEntity matchModel);
-        void DeleteMatchModelOfAthleteByIdAsync(MatchModelEntity matchModel);
-    }
+    Task<IEnumerable<MatchModelEntity>> GetAllMatchModelsOfAthletesAsync();
+    Task<MatchModelEntity> GetMatchModelsOfAthletesInfoByIdAsync(int matchModelId);
+    IActionResult SaveMatchModelOfUser(MatchModelEntity matchModel);
+    void DeleteMatchModelOfAthleteByIdAsync(MatchModelEntity matchModel);
 }

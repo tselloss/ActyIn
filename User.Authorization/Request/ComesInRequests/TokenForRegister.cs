@@ -1,7 +1,6 @@
-﻿namespace User.Authorization.Request.ComesInRequests
+﻿namespace User.Authorization.Request.ComesInRequests;
+
+public record TokenForRegister : AthleteRegisterRequest
 {
-    public record TokenForRegister : AthleteRegisterRequest
-    {
-        public string Token { get; set; } = null; 
-    }
+    public string Token { get; set; } = null;
 }

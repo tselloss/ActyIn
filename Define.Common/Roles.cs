@@ -1,8 +1,7 @@
-﻿namespace Define.Common
+﻿namespace Define.Common;
+
+public enum Roles
 {
-    public enum Roles
-    {
-        Admin = 1,
-        User = 2
-    }
+    Admin = 1,
+    User = 2
 }
