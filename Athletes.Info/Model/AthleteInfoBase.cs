@@ -5,7 +5,7 @@ public record AthleteInfoBase
 {
     [Required]
     [RegularExpression(@"^[a-zA-Z0-9]*$")]
-    [MaxLength(10)]
+    [MaxLength(15)]
     public string Username { get; set; }
     [Required]
     [EmailAddress]

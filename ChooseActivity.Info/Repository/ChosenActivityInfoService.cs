@@ -9,7 +9,7 @@ using Postgres.Context.Entities;
 
 namespace ChooseActivity.Info.Repository;
 
-public class ChosenActivityInfoService : ControllerBase, IChooseActivity
+public class ChosenActivityInfoService : ControllerBase, IChooseActivity 
 {
     private readonly NpgsqlContext _context;
     private readonly ILogger<ChosenActivityInfoService> _logger;

@@ -21,7 +21,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var config = builder.Configuration;
 
-
+builder.Services.AddLogging(logging => logging.AddConsole());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 // Security Config
@@ -52,18 +52,30 @@ builder.Services.AddDbContext<NpgsqlContext>(options =>
 options.UseNpgsql(config["ConnectionStrings:PostgreSQL"], b => b.MigrationsAssembly("ActyIn")));
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
+
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
 builder.Services.AddScoped<IAthletes, AthleteInfoService>();
-builder.Services.AddScoped<AthleteInfoService>();
 builder.Services.AddScoped<IAuthorizationToken, AuthorizationToken>();
 builder.Services.AddScoped<IChooseActivity, ChosenActivityInfoService>();
+builder.Services.AddScoped<IBookingInfo, BookingInfoService>();
+builder.Services.AddScoped<IMatchModel, MatchModelService>();
+builder.Services.AddScoped<IFile, ImageService>();
+
+// Register the logger for the scoped services
+builder.Services.AddScoped<ILogger>(provider =>
+{
+    var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
+    return loggerFactory.CreateLogger("ScopedServices");
+});
+
+builder.Services.AddScoped<AthleteInfoService>();
 builder.Services.AddScoped<AuthorizationToken>();
 builder.Services.AddScoped<ChosenActivityInfoService>();
-builder.Services.AddScoped<IBookingInfo, BookingInfoService>();
 builder.Services.AddScoped<BookingInfoService>();
-builder.Services.AddScoped<IMatchModel, MatchModelService>();
 builder.Services.AddScoped<MatchModelService>();
-builder.Services.AddScoped<IFile, ImageService>();
 builder.Services.AddScoped<ImageService>();
 
 // Enable CORS to allow all origins, headers, and methods
@@ -118,6 +130,7 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = "swagger";
     });
 }
+
 
 app.UseHttpsRedirection();
 
