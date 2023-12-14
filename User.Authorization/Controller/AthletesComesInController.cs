@@ -40,7 +40,7 @@ public class AthletesComesInController : ControllerBase
     /// <returns></returns>
 
     [HttpPost(ActionNames.RegisterUser)]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(TokenForRegister), StatusCodes.Status200OK)]
     public ActionResult<TokenForRegister> RegisterUser([FromBody] AthleteRegisterRequest registerRequest)
     {
         var register = _mapper.Map<AthletesEntity>(registerRequest);

@@ -110,19 +110,12 @@ public class AuthorizationToken : IAuthorizationToken
     private TokenForLogin ToLoginAthlete(AthleteLoginRequest athleteLoginRequest) => new TokenForLogin
     {
         Email = athleteLoginRequest.Email,
-        Password = athleteLoginRequest.Password,
         Username = athleteLoginRequest.Username
     };
 
     private TokenForRegister ToRegisterAthlete(AthletesEntity athleteRegisterRequest) => new TokenForRegister
     {
-        Address = athleteRegisterRequest.Address,
-        City = athleteRegisterRequest.City,
         Email = athleteRegisterRequest.Email,
-        Password = athleteRegisterRequest.Password,
-        PostalCode = athleteRegisterRequest.PostalCode,
-        Role = athleteRegisterRequest.Role,
         Username = athleteRegisterRequest.Username,
-        FavoriteActivity = athleteRegisterRequest?.FavoriteActivity,
     };
 }

@@ -12,11 +12,10 @@ namespace ChooseActivity.Info.Repository;
 public class ChosenActivityInfoService : ControllerBase, IChooseActivity 
 {
     private readonly NpgsqlContext _context;
-    private readonly ILogger<ChosenActivityInfoService> _logger;
 
     public ChosenActivityInfoService(NpgsqlContext context, ILogger logger)
     {
-        _logger = (ILogger<ChosenActivityInfoService>)(logger ?? throw new ArgumentException(nameof(logger)));
+        //_logger = (ILogger<ChosenActivityInfoService>)(logger ?? throw new ArgumentException(nameof(logger)));
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
@@ -25,11 +24,11 @@ public class ChosenActivityInfoService : ControllerBase, IChooseActivity
         try
         {
             _context.ChooseActivityInfo.Remove(chosenActivityEntity);
-            _logger.LogInformation(ChosenActivityLoggerMessages.SuccessRemoveChosenActivity);
+            //_logger.LogInformation(ChosenActivityLoggerMessages.SuccessRemoveChosenActivity);
         }
         catch
         {
-            _logger.LogInformation(ChosenActivityLoggerMessages.RemoveException);
+            //_logger.LogInformation(ChosenActivityLoggerMessages.RemoveException);
         }
     }
 
@@ -42,7 +41,7 @@ public class ChosenActivityInfoService : ControllerBase, IChooseActivity
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ChosenActivityLoggerMessages.GetAllChosenActivityException);
+            //_logger.LogError(ex, ChosenActivityLoggerMessages.GetAllChosenActivityException);
             throw;
         }
     }
@@ -55,7 +54,7 @@ public class ChosenActivityInfoService : ControllerBase, IChooseActivity
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ChosenActivityLoggerMessages.GetAllChosenActivityException);
+            //_logger.LogError(ex, ChosenActivityLoggerMessages.GetAllChosenActivityException);
             throw;
         }
     }
@@ -76,7 +75,7 @@ public class ChosenActivityInfoService : ControllerBase, IChooseActivity
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ChosenActivityLoggerMessages.GetAllChosenActivityException);
+            //_logger.LogError(ex, ChosenActivityLoggerMessages.GetAllChosenActivityException);
             throw;
         }
     }

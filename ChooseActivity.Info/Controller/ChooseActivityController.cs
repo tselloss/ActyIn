@@ -37,7 +37,7 @@ public class ChooseActivityController : ControllerBase
             _logger.LogInformation("We have no activities on db");
             return NoContent();
         }
-        return Ok(_mapper.Map<IEnumerable<ChosenActivityEntity>>(activities));
+        return Ok(activities);
     }
 
     [HttpGet(ActionNames.GetUserById)]

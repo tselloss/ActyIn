@@ -13,12 +13,10 @@ public class ImageService : ControllerBase, IFile
 {
     private NpgsqlContext _context;
     private ApplicationFileEntity appFileEntity;
-    private readonly ILogger<ImageService> _logger;
 
     public ImageService(NpgsqlContext context, ILogger logger)
     {
         _context = context ?? throw new ArgumentException(nameof(context));
-        _logger = (ILogger<ImageService>)(logger ?? throw new ArgumentException(nameof(logger)));
     }
 
     public async Task<IActionResult> GetFile(string username)
@@ -37,7 +35,6 @@ public class ImageService : ControllerBase, IFile
                 sleepDurationProvider: (attemptCount) => TimeSpan.FromSeconds(attemptCount * 2),
                 onRetryAsync: (exception, sleepDuration, attemptNumber, context) =>
                 {
-                    _logger.LogInformation(FilesMessages.RetryPolicy);
                     return Task.CompletedTask;
                 }
             );
@@ -49,9 +46,8 @@ public class ImageService : ControllerBase, IFile
                 b = await System.IO.File.ReadAllBytesAsync(Path.Combine(getImagePath(username), fileEntity.FileName));
             });
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            _logger.LogInformation(FilesMessages.ErrorGetFile + $"{ex}");
             return BadRequest(string.Format(FilesMessages.ErrorGetPhotoProfileMessage));
         }
 
@@ -81,7 +77,7 @@ public class ImageService : ControllerBase, IFile
             {
                 fileEntity = await _context.AthleteImageProfile
                     .Where(_ => _.AthleteName == request.Username)
-                    .FirstOrDefaultAsync(); // Assuming Entity Framework and AthleteImageProfile is IQueryable.
+                    .FirstOrDefaultAsync();
 
                 if (fileEntity != null)
                 {
@@ -96,7 +92,6 @@ public class ImageService : ControllerBase, IFile
             {
                 await request.Image.CopyToAsync(stream);
             }
-            _logger.LogInformation(FilesMessages.PostPhotoProfileSuccess);
         }
         catch (Exception)
         {
@@ -113,6 +108,8 @@ public class ImageService : ControllerBase, IFile
         {
             string filename = request.Sport + Path.GetExtension(request.Image.FileName);
             var sportName = getSport(request.Sport);
+            ApplicationFileEntity appFileEntity;
+
             if (!sportName)
             {
                 appFileEntity = new ApplicationFileEntity()
@@ -125,25 +122,34 @@ public class ImageService : ControllerBase, IFile
             }
             else
             {
-                appFileEntity = _context.ApplicationImages.Where(_ => _.SportName == appFileEntity.SportName).FirstOrDefault();
+                appFileEntity = _context.ApplicationImages
+                    .Where(_ => _.SportName == request.Sport)
+                    .FirstOrDefault();
+
+                if (appFileEntity == null)
+                {
+                    return NotFound();
+                }
+
                 appFileEntity.FileName = filename;
                 appFileEntity.ContentType = request.Image.ContentType;
-
             }
-            _context.SaveChanges();
+
+            await _context.SaveChangesAsync();
 
             using (FileStream stream = new FileStream(Path.Combine(getApplicationImagePath(request.Sport), filename), FileMode.Create))
             {
-                request.Image.CopyTo(stream);
+                await request.Image.CopyToAsync(stream);
             }
-            _logger.LogInformation(FilesMessages.PostAppPhotoSuccess);
         }
         catch (Exception)
         {
             return BadRequest(string.Format(FilesMessages.PostAppPhotoError));
         }
+
         return Ok();
     }
+
 
     public async Task<IActionResult> GetApplicationFiles(string sportName)
     {
@@ -172,11 +178,9 @@ public class ImageService : ControllerBase, IFile
             {
                 b = await System.IO.File.ReadAllBytesAsync(Path.Combine(getApplicationImagePath(sportName), fileEntity.FileName));
             });
-            _logger.LogInformation(FilesMessages.AppGetPhotoMessage);
         }
-        catch (Exception ex)
+        catch
         {
-            _logger.LogInformation(FilesMessages.ErrorGetFile + $"{ex}");
             return BadRequest(string.Format(FilesMessages.AppErrorGetPhotoMessage));
         }
 

@@ -1,6 +1,8 @@
-﻿namespace User.Authorization.Request.ComesInRequests;
+﻿using Athletes.Info.Model;
 
-public record TokenForLogin : AthleteLoginRequest
+namespace User.Authorization.Request.ComesInRequests;
+
+public record TokenForLogin : AthleteInfoBase
 {
     public string Token { get; set; } = null;
 }

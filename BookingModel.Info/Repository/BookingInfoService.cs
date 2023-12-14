@@ -17,7 +17,7 @@ public class BookingInfoService : ControllerBase, IBookingInfo
     public BookingInfoService(NpgsqlContext context, ILogger logger)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
-        _logger = (ILogger<BookingInfoService>)(logger ?? throw new ArgumentException(nameof(logger)));
+        //_logger = (ILogger<BookingInfoService>)(logger ?? throw new ArgumentException(nameof(logger)));
     }
 
     public void CancelBooking(BookingEntity athletesEntity)
@@ -29,12 +29,12 @@ public class BookingInfoService : ControllerBase, IBookingInfo
             {
                 athletesEntity.IsCanceled = true;
                 _context.SaveChanges();
-                _logger.LogInformation(BookingServiceMessages.CancelExceptionSuccess);
+                //_logger.LogInformation(BookingServiceMessages.CancelExceptionSuccess);
             }
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, BookingServiceMessages.CancelExceptionError);
+            //_logger.LogError(ex, BookingServiceMessages.CancelExceptionError);
             throw;
         }
     }
@@ -44,13 +44,13 @@ public class BookingInfoService : ControllerBase, IBookingInfo
         try
         {
             var getAll = await _context.Bookings.Where(b => !b.IsCanceled).OrderBy(_ => _.BookingId).ToListAsync();
-            _logger.LogInformation(BookingServiceMessages.GetAllExceptionSuccess);
+            //_logger.LogInformation(BookingServiceMessages.GetAllExceptionSuccess);
 
             return getAll;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, BookingServiceMessages.GetAllExceptionError);
+            //_logger.LogError(ex, BookingServiceMessages.GetAllExceptionError);
             throw;
         }
     }
@@ -60,12 +60,12 @@ public class BookingInfoService : ControllerBase, IBookingInfo
         try
         {
             var getById = await _context.Bookings.Where(b => !b.IsCanceled).Where(_ => _.BookingId == bookingId).FirstOrDefaultAsync();
-            _logger.LogInformation(BookingServiceMessages.GetByIdExceptionSuccess);
+            //_logger.LogInformation(BookingServiceMessages.GetByIdExceptionSuccess);
             return getById;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, BookingServiceMessages.GetByIdExceptionError);
+            //_logger.LogError(ex, BookingServiceMessages.GetByIdExceptionError);
             throw;
         }
     }
@@ -81,13 +81,13 @@ public class BookingInfoService : ControllerBase, IBookingInfo
 
             _context.Bookings.Add(bookingEntity);
             _context.SaveChanges();
-            _logger.LogInformation(BookingServiceMessages.CreateBookingSucceed);
+           // _logger.LogInformation(BookingServiceMessages.CreateBookingSucceed);
 
             return Ok(AthletesMessages.CompletedRequest);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, BookingServiceMessages.CreateBookingError);
+            //_logger.LogError(ex, BookingServiceMessages.CreateBookingError);
             throw;
         }
     }
