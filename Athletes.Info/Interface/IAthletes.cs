@@ -7,6 +7,7 @@ public interface IAthletes
 {
     Task<IEnumerable<AthletesEntity>> GetAllAthletesAsync();
     Task<AthletesEntity> GetAthletesInfoByIdAsync(int athleteId);
+    Task<AthletesEntity> GetAthletesInfoByUsernameAsync(string username);
     IActionResult RegisterAthlete(AthletesEntity registerRequest);
     void DeleteAthletesByIdAsync(AthletesEntity athletesEntity);
     IActionResult EditAthletesPassword(AthleteEditPasswordRequest athleteEditPasswordRequest);

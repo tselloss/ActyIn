@@ -103,4 +103,19 @@ public class BookingInfoService : ControllerBase, IBookingInfo
             throw new ControllerExceptionMessage(message);
         }
     }
+
+    public async Task<BookingEntity> GetBookingOfAthletesInfoByUsernameAsync(string username)
+    {
+        try
+        {
+            var getByUsername = await _context.Bookings.Where(b => !b.IsCanceled).Where(_ => _.UsernamePicker == username).FirstOrDefaultAsync();
+            //_logger.LogInformation(BookingServiceMessages.GetByIdExceptionSuccess);
+            return getByUsername;
+        }
+        catch (Exception ex)
+        {
+            //_logger.LogError(ex, BookingServiceMessages.GetByIdExceptionError);
+            throw;
+        }
+    }
 }

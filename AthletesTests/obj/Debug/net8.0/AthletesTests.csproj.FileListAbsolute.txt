@@ -139,3 +139,5 @@ C:\Users\karac\source\repos\ActyIn\AthletesTests\obj\Debug\net8.0\refint\Athlete
 C:\Users\karac\source\repos\ActyIn\AthletesTests\obj\Debug\net8.0\AthletesTests.pdb
 C:\Users\karac\source\repos\ActyIn\AthletesTests\obj\Debug\net8.0\AthletesTests.genruntimeconfig.cache
 C:\Users\karac\source\repos\ActyIn\AthletesTests\obj\Debug\net8.0\ref\AthletesTests.dll
+C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\User.Authorization.dll
+C:\Users\karac\source\repos\ActyIn\AthletesTests\bin\Debug\net8.0\User.Authorization.pdb

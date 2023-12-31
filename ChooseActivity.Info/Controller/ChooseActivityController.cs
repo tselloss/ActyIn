@@ -29,9 +29,9 @@ public class ChooseActivityController : ControllerBase
     }
 
     [HttpGet(ActionNames.GetAllChosenActivities)]
-    public async Task<ActionResult<IEnumerable<ChooseActivityInfo>>> GetAllChosenActivitiesAsync()
+    public async Task<ActionResult<IEnumerable<ChosenActivityEntity>>> GetAllChosenActivitiesAsync()
     {
-        var activities = await _chosenActivityInfoService.GetAllChosenActivityOfAthletesAsync();
+        var activities = await _chooseActivity.GetAllChosenActivityOfAthletesAsync();
         if (activities == null)
         {
             _logger.LogInformation("We have no activities on db");
@@ -72,10 +72,10 @@ public class ChooseActivityController : ControllerBase
 
     [HttpPost(ActionNames.CreateNewActivity)]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public ActionResult RegisterUser([FromBody] ChooseActivityInfo chooseActivityInfo)
+    public ActionResult ChooseActivityByUser([FromBody] ChooseActivityInfo chooseActivityInfo)
     {
-        var mapper = _mapper.Map<ChosenActivityEntity>(chooseActivityInfo);
-        var entity = _chosenActivityInfoService.CreateAnActivity(mapper);
+        
+        var entity = _chosenActivityInfoService.CreateAnActivity(chooseActivityInfo);
 
         if (entity is BadRequestObjectResult badRequest)
         {

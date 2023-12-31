@@ -93,6 +93,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(option =>
 {
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "ActyIn", Version = "v1" });
+    option.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
     option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -120,6 +121,8 @@ builder.Services.AddSwaggerGen(option =>
 
 var app = builder.Build();
 
+app.UseDeveloperExceptionPage();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -130,7 +133,6 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = "swagger";
     });
 }
-
 
 app.UseHttpsRedirection();
 

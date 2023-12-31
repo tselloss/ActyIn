@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Postgres.Context.Entities;
 
@@ -12,6 +13,4 @@ public record AthletesEntity : AthletesSecretCred
     public string FavoriteActivity { get; set; }
     [NotMapped]
     public IFormFile ProfileImage { get; set; }
-
-    public ICollection<ChosenActivityEntity> ChosenActivities { get; set; }
 }

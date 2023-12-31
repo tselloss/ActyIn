@@ -19,6 +19,7 @@ public class FileController : ControllerBase
     }
 
     [HttpPost]
+    [Route("UploadProfilePhoto")]
     public async Task<IActionResult> PostFile([FromForm] ImageModel request)
     {
         var mapper = _mapper.Map<ImageModel>(request);

@@ -20,6 +20,7 @@
           "NUnit.Analyzers": "3.6.1",
           "NUnit3TestAdapter": "4.2.1",
           "Postgres.Context": "1.0.0",
+          "User.Authorization": "1.0.0",
           "coverlet.collector": "6.0.0"
         },
         "runtime": {
@@ -931,6 +932,14 @@
         "runtime": {
           "Postgres.Context.dll": {}
         }
+      },
+      "User.Authorization/1.0.0": {
+        "dependencies": {
+          "Athletes.Info": "1.0.0"
+        },
+        "runtime": {
+          "User.Authorization.dll": {}
+        }
       }
     }
   },
@@ -1539,6 +1548,11 @@
       "sha512": ""
     },
     "Postgres.Context/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "User.Authorization/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

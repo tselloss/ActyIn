@@ -1,13 +1,10 @@
 using Athletes.Info.Controller;
 using Athletes.Info.Interface;
-using Athletes.Info.Model;
 using Athletes.Info.Repository;
 using AutoMapper;
 using Define.Common;
-using Define.Common.Exceptions;
 using FakeItEasy;
 using FluentAssertions;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -17,7 +14,6 @@ using Npgsql;
 using NUnit.Framework;
 using Postgres.Context.DBContext;
 using Postgres.Context.Entities;
-using System.Net;
 
 namespace AthletesTests
 {

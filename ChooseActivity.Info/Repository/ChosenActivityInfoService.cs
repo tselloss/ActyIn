@@ -1,5 +1,7 @@
-﻿using Castle.Core.Internal;
+﻿using AutoMapper;
+using Castle.Core.Internal;
 using ChooseActivity.Info.Interface;
+using ChooseActivity.Info.Model;
 using Define.Common.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,11 +14,13 @@ namespace ChooseActivity.Info.Repository;
 public class ChosenActivityInfoService : ControllerBase, IChooseActivity 
 {
     private readonly NpgsqlContext _context;
+    private readonly IMapper _mapper;
 
-    public ChosenActivityInfoService(NpgsqlContext context, ILogger logger)
+    public ChosenActivityInfoService(NpgsqlContext context, ILogger logger, IMapper mapper)
     {
         //_logger = (ILogger<ChosenActivityInfoService>)(logger ?? throw new ArgumentException(nameof(logger)));
         _context = context ?? throw new ArgumentNullException(nameof(context));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
     public void DeleteChosenActivityOfAthletesByIdAsync(ChosenActivityEntity chosenActivityEntity)
@@ -32,12 +36,14 @@ public class ChosenActivityInfoService : ControllerBase, IChooseActivity
         }
     }
 
-    public async Task<IEnumerable<ChosenActivityEntity>> GetAllChosenActivityOfAthletesAsync()
+    //TODO Create the chooseActivityInfo return correct things
+    public async Task<IEnumerable<ChooseActivityInfo>> GetAllChosenActivityOfAthletesAsync()
     {
         try
-        {
+        {            
             var getAll = await _context.ChooseActivityInfo.OrderBy(_ => _.ChosenActivityId).ToListAsync();
-            return getAll;
+            var mapper = _mapper.Map<List<ChooseActivityInfo>>(getAll);
+            return mapper;
         }
         catch (Exception ex)
         {
@@ -59,16 +65,16 @@ public class ChosenActivityInfoService : ControllerBase, IChooseActivity
         }
     }
 
-    public IActionResult CreateAnActivity(ChosenActivityEntity chosenActivityEntityRequest)
+    public IActionResult CreateAnActivity([FromBody] ChooseActivityInfo chosenActivityEntityRequest)
     {
         try
-        {
-            if (chosenActivityEntityRequest.ChosenActivityName.IsNullOrEmpty())
+        {   
+            var mapper = _mapper.Map<ChosenActivityEntity>(chosenActivityEntityRequest);
+            if (chosenActivityEntityRequest.Activity.IsNullOrEmpty())
             {
                 return BadRequest(ChosenActivityLoggerMessages.EmptyChosenActivityRequest);
             }
-
-            _context.ChooseActivityInfo.Add(chosenActivityEntityRequest);
+            _context.ChooseActivityInfo.Add(mapper);
             _context.SaveChanges();
 
             return Ok(ChosenActivityLoggerMessages.SaveChosenActivityException);

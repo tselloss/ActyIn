@@ -28,9 +28,10 @@ public class BookingController : ControllerBase
         _bookingInfoService = bookingInfoService ?? throw new ArgumentNullException(nameof(bookingInfoService));
     }
 
-    [Authorize]
+    //[Authorize]
+    [ProducesResponseType(typeof(BookingEntity), StatusCodes.Status200OK)]
     [HttpGet(ActionNames.GetAllBookings)]
-    public async Task<ActionResult<IEnumerable<BookingModelInfo>>> GetAllBookingsAsync()
+    public async Task<ActionResult<IEnumerable<BookingEntity>>> GetAllBookingsAsync()
     {
         var bookings = await _bookingInfo.GetAllBookingsAsync();
         if (bookings == null)
@@ -38,12 +39,14 @@ public class BookingController : ControllerBase
             _logger.LogInformation(BookingServiceMessages.EmptyBookingsList);
             return NoContent();
         }
-        return Ok(_mapper.Map<IEnumerable<BookingModelInfo>>(bookings));
+        var results = _mapper.Map<BookingModelInfo>(bookings);
+        return Ok(results);
     }
 
-    [Authorize]
+    //[Authorize]
+    [ProducesResponseType(typeof(BookingEntity), StatusCodes.Status200OK)]
     [HttpGet(ActionNames.GetBookingsById)]
-    public async Task<ActionResult<BookingModelInfo>> GetBookingInfoByIdAsync(int id)
+    public async Task<ActionResult<BookingEntity>> GetBookingInfoByIdAsync(int id)
     {
         var booking = await _bookingInfo.GetBookingOfAthletesInfoByIdAsync(id);
         if (booking == null)
@@ -51,11 +54,11 @@ public class BookingController : ControllerBase
             _logger.LogInformation(BookingServiceMessages.EmptyBookingsByID + $"{id}");
             return NoContent();
         }
-        var getUser = _mapper.Map<BookingModelInfo>(booking);
-        return Ok(getUser);
+        return Ok(booking);
     }
 
     [Authorize]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [HttpDelete(ActionNames.CancelBooking)]
     public async Task<ActionResult> CancelBooking(int id)
     {
@@ -74,7 +77,7 @@ public class BookingController : ControllerBase
     }
 
     [HttpPost(ActionNames.SaveBooking)]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(BookingModelInfo), StatusCodes.Status200OK)]
     public ActionResult SaveMatchModel([FromBody] BookingModelInfo bookingModelInfo)
     {
         var mapper = _mapper.Map<BookingEntity>(bookingModelInfo);

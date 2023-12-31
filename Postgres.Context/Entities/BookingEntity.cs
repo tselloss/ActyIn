@@ -8,10 +8,14 @@ public record BookingEntity
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int BookingId { get; set; }
-
-    public int MatchModelId { get; set; }
-    public MatchModelEntity MatchModel { get; set; }
-
+    [Required]
+    public string UsernamePicker { get; set; }
+    [Required]
+    public string UsernameSelected { get; set; }
+    [Required]
+    public DateTime SelectedDate { get; set; }
+    [Required]
+    public string ActivityName { get; set; }
     [Required]
     public bool IsCanceled { get; set; }
 }

@@ -184,4 +184,9 @@ public class AthleteInfoService : ControllerBase, IAthletes
             throw new ControllerExceptionMessage(message);
         }
     }
+
+    public async Task<AthletesEntity> GetAthletesInfoByUsernameAsync(string username)
+    {
+        return await _context.AthletesInfo.Where(_ => _.Username == username).FirstOrDefaultAsync();
+    }
 }

@@ -1658,6 +1658,19 @@
         "runtime": {
           "bin/placeholder/Postgres.Context.dll": {}
         }
+      },
+      "User.Authorization/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Athletes.Info": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/User.Authorization.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/User.Authorization.dll": {}
+        }
       }
     }
   },
@@ -3860,6 +3873,11 @@
       "type": "project",
       "path": "../Postgres.Context/Postgres.Context.csproj",
       "msbuildProject": "../Postgres.Context/Postgres.Context.csproj"
+    },
+    "User.Authorization/1.0.0": {
+      "type": "project",
+      "path": "../User.Authorization/User.Authorization.csproj",
+      "msbuildProject": "../User.Authorization/User.Authorization.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3876,6 +3894,7 @@
       "NUnit.Analyzers >= 3.6.1",
       "NUnit3TestAdapter >= 4.2.1",
       "Postgres.Context >= 1.0.0",
+      "User.Authorization >= 1.0.0",
       "coverlet.collector >= 6.0.0"
     ]
   },
@@ -3917,6 +3936,9 @@
             },
             "C:\\Users\\karac\\source\\repos\\ActyIn\\Postgres.Context\\Postgres.Context.csproj": {
               "projectPath": "C:\\Users\\karac\\source\\repos\\ActyIn\\Postgres.Context\\Postgres.Context.csproj"
+            },
+            "C:\\Users\\karac\\source\\repos\\ActyIn\\User.Authorization\\User.Authorization.csproj": {
+              "projectPath": "C:\\Users\\karac\\source\\repos\\ActyIn\\User.Authorization\\User.Authorization.csproj"
             }
           }
         }

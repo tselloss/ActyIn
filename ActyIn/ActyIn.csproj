@@ -34,4 +34,8 @@
     <ProjectReference Include="..\User.Authorization\User.Authorization.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AppPhotos\" />
+  </ItemGroup>
+
 </Project>

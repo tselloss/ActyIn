@@ -6,7 +6,4 @@ public record MatchModelInfo
 {
     [Required]
     public bool LikeTheUser { get; set; }
-
-    [Required]
-    public IEnumerable<ChooseActivityInfo> ChooseActivityInfo { get; set; }
 }

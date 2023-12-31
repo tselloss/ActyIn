@@ -17,17 +17,6 @@ public class NpgsqlContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<AthletesEntity>()
-            .HasMany(e => e.ChosenActivities)
-            .WithOne(e => e.AthletesEntity)
-            .HasForeignKey(e => e.ChosenActivityId)
-            .HasPrincipalKey(e => e.AthletesId);
-
-        modelBuilder.Entity<ChosenActivityEntity>()
-            .HasOne(e => e.AthletesEntity)
-            .WithMany(e => e.ChosenActivities)
-            .HasForeignKey(e => e.AthletesEntityId)
-            .HasPrincipalKey(e => e.AthletesId);
     }
 }
 

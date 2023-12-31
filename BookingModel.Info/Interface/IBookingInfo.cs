@@ -7,6 +7,7 @@ public interface IBookingInfo
 {
     Task<IEnumerable<BookingEntity>> GetAllBookingsAsync();
     Task<BookingEntity> GetBookingOfAthletesInfoByIdAsync(int athleteId);
+    Task<BookingEntity> GetBookingOfAthletesInfoByUsernameAsync(string username);
     IActionResult CreateABooking(BookingEntity bookingEntity);
     void CancelBooking(BookingEntity bookingEntity);
 }

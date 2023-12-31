@@ -55,6 +55,20 @@ public class AthletesController : ControllerBase
     }
 
     [Authorize]
+    [HttpGet(ActionNames.GetUserById)]
+    public async Task<ActionResult<AthleteInfoDTO>> GetUserInfoByUsernameAsync(int id)
+    {
+        var user = await _athletesInfo.GetAthletesInfoByIdAsync(id);
+        if (user == null)
+        {
+            _logger.LogInformation(AthletesExceptionMessages.UndefinedUserId + $"{id}");
+            return NoContent();
+        }
+        var getUser = _mapper.Map<AthleteInfoDTO>(user);
+        return Ok(getUser);
+    }
+
+    [Authorize]
     [HttpDelete(ActionNames.DeleteUser)]
     public async Task<ActionResult> DeleteUser(int id)
     {
