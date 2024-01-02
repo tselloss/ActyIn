@@ -39,8 +39,7 @@ public class BookingController : ControllerBase
             _logger.LogInformation(BookingServiceMessages.EmptyBookingsList);
             return NoContent();
         }
-        var results = _mapper.Map<BookingModelInfo>(bookings);
-        return Ok(results);
+        return Ok(bookings);
     }
 
     //[Authorize]
@@ -52,6 +51,20 @@ public class BookingController : ControllerBase
         if (booking == null)
         {
             _logger.LogInformation(BookingServiceMessages.EmptyBookingsByID + $"{id}");
+            return NoContent();
+        }
+        return Ok(booking);
+    }
+
+    //[Authorize]
+    [ProducesResponseType(typeof(BookingModelInfo), StatusCodes.Status200OK)]
+    [HttpGet(ActionNames.GetBookingsByUsername)]
+    public async Task<ActionResult<IEnumerable<BookingModelInfo>>> GetBookingInfoByUserNameAsync(string username)
+    {
+        var booking = await _bookingInfo.GetBookingOfAthletesInfoByUsernameAsync(username);
+        if (booking == null)
+        {
+            _logger.LogInformation(BookingServiceMessages.EmptyBookingsByID + $"{username}");
             return NoContent();
         }
         return Ok(booking);

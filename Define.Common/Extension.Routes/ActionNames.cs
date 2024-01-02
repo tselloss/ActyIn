@@ -30,5 +30,6 @@ public static class ActionNames
     public const string GetAllBookings = "actyin/getBookings";
     public const string SaveBooking = "actyin/saveBooking";
     public const string GetBookingsById = "actyin/getBookingsById";
+    public const string GetBookingsByUsername = "actyin/getBookingsByUsername";
     public const string CancelBooking = "actyin/cancelBooking";
 }

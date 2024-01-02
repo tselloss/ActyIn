@@ -1,4 +1,6 @@
-﻿using BookingModel.Info.Interface;
+﻿using AutoMapper;
+using BookingModel.Info.Interface;
+using BookingModel.Info.Model;
 using Define.Common.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,16 +14,17 @@ public class BookingInfoService : ControllerBase, IBookingInfo
 
     private readonly NpgsqlContext _context;
     private readonly ILogger<BookingInfoService> _logger;
+    private readonly IMapper _mapper;
 
-
-    public BookingInfoService(NpgsqlContext context, ILogger logger)
+    public BookingInfoService(NpgsqlContext context, ILogger logger, IMapper mapper)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
         //_logger = (ILogger<BookingInfoService>)(logger ?? throw new ArgumentException(nameof(logger)));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
     public void CancelBooking(BookingEntity athletesEntity)
-    {        
+    {
         try
         {
             var result = _context.Bookings.FirstOrDefault(x => x.BookingId == athletesEntity.BookingId);
@@ -39,14 +42,14 @@ public class BookingInfoService : ControllerBase, IBookingInfo
         }
     }
 
-    public async Task<IEnumerable<BookingEntity>> GetAllBookingsAsync()
-    {        
+    public async Task<IEnumerable<BookingModelInfo>> GetAllBookingsAsync()
+    {
         try
         {
-            var getAll = await _context.Bookings.Where(b => !b.IsCanceled).OrderBy(_ => _.BookingId).ToListAsync();
+            var getAll = await _context.Bookings.OrderBy(_ => _.BookingId).ToListAsync();
             //_logger.LogInformation(BookingServiceMessages.GetAllExceptionSuccess);
-
-            return getAll;
+            var results = _mapper.Map<List<BookingModelInfo>>(getAll);
+            return results;
         }
         catch (Exception ex)
         {
@@ -55,13 +58,14 @@ public class BookingInfoService : ControllerBase, IBookingInfo
         }
     }
 
-    public async Task<BookingEntity> GetBookingOfAthletesInfoByIdAsync(int bookingId)
+    public async Task<BookingModelInfo> GetBookingOfAthletesInfoByIdAsync(int bookingId)
     {
         try
         {
-            var getById = await _context.Bookings.Where(b => !b.IsCanceled).Where(_ => _.BookingId == bookingId).FirstOrDefaultAsync();
+            var getById = await _context.Bookings.Where(b => !b.IsCanceled).Where(_ => _.BookingId == bookingId).ToListAsync();
             //_logger.LogInformation(BookingServiceMessages.GetByIdExceptionSuccess);
-            return getById;
+            var mapper = _mapper.Map<BookingModelInfo>(getById);
+            return mapper;
         }
         catch (Exception ex)
         {
@@ -81,7 +85,7 @@ public class BookingInfoService : ControllerBase, IBookingInfo
 
             _context.Bookings.Add(bookingEntity);
             _context.SaveChanges();
-           // _logger.LogInformation(BookingServiceMessages.CreateBookingSucceed);
+            // _logger.LogInformation(BookingServiceMessages.CreateBookingSucceed);
 
             return Ok(AthletesMessages.CompletedRequest);
         }
@@ -104,13 +108,15 @@ public class BookingInfoService : ControllerBase, IBookingInfo
         }
     }
 
-    public async Task<BookingEntity> GetBookingOfAthletesInfoByUsernameAsync(string username)
+    public async Task<IEnumerable<BookingModelInfo>> GetBookingOfAthletesInfoByUsernameAsync(string username)
     {
         try
         {
-            var getByUsername = await _context.Bookings.Where(b => !b.IsCanceled).Where(_ => _.UsernamePicker == username).FirstOrDefaultAsync();
+            var dateTimeNow = DateTime.Now;
+            var getByUsername = await _context.Bookings.Where(b => b.SelectedDate >= dateTimeNow).Where(_ => _.UsernamePicker == username).ToListAsync();
             //_logger.LogInformation(BookingServiceMessages.GetByIdExceptionSuccess);
-            return getByUsername;
+            var mapper = _mapper.Map<List<BookingModelInfo>>(getByUsername);
+            return mapper;
         }
         catch (Exception ex)
         {

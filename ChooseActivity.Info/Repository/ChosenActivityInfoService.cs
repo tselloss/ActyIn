@@ -56,7 +56,11 @@ public class ChosenActivityInfoService : ControllerBase, IChooseActivity
     {
         try
         {
-            return await _context.ChooseActivityInfo.Where(_ => _.ChosenActivityId == chosenActivityId).FirstOrDefaultAsync();
+            var activitiesById = await _context.ChooseActivityInfo.Where(_ => _.ChosenActivityId == chosenActivityId).FirstOrDefaultAsync();
+
+            var getActivity = _mapper.Map<ChosenActivityEntity>(activitiesById);
+
+            return getActivity;
         }
         catch (Exception ex)
         {

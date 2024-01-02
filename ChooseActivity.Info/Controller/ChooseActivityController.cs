@@ -29,7 +29,7 @@ public class ChooseActivityController : ControllerBase
     }
 
     [HttpGet(ActionNames.GetAllChosenActivities)]
-    public async Task<ActionResult<IEnumerable<ChosenActivityEntity>>> GetAllChosenActivitiesAsync()
+    public async Task<ActionResult<IEnumerable<ChooseActivityInfo>>> GetAllChosenActivitiesAsync()
     {
         var activities = await _chooseActivity.GetAllChosenActivityOfAthletesAsync();
         if (activities == null)
@@ -49,8 +49,7 @@ public class ChooseActivityController : ControllerBase
             _logger.LogInformation("This is the chosen activity with id: " + $"{id}");
             return NoContent();
         }
-        var getActivity = _mapper.Map<ChosenActivityEntity>(activitiesById);
-        return Ok(getActivity);
+        return Ok(activitiesById);
     }
 
     [HttpDelete(ActionNames.DeleteUser)]

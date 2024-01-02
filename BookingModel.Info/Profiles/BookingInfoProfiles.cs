@@ -9,5 +9,6 @@ public class BookingInfoProfiles : Profile
     public BookingInfoProfiles()
     {
         CreateMap<BookingEntity, BookingModelInfo>().ReverseMap();
+        CreateMap<BookingModelInfo, BookingEntity>().ReverseMap();
     }
 }

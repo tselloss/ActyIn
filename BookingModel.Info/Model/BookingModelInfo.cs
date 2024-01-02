@@ -10,7 +10,7 @@ public record BookingModelInfo
     [Required]
     public string UsernameSelected { get; set; }
     [Required]
-    public DateTime SelectedDate { get; set; }
+    public string SelectedDate { get; set; }
     [Required]
     public string ActivityName { get; set; }
     [Required]
