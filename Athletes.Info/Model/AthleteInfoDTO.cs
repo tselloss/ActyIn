@@ -7,7 +7,6 @@ namespace Athletes.Info.Model;
 
 public record AthleteInfoDTO : AthleteInfoBase
 {
-    [JsonIgnore]
     public string Address { get; set; }
     [Required]
     public string City { get; set; }

@@ -9,12 +9,14 @@ public static class ActionNames
     public const string DeleteUser = "actyin/deleteUserById/{id}";
 
     public const string GetUserById = "actyin/getUserById/{id}";
+    public const string GetUserByUsername = "actyin/getUserByUsername";
     public const string GetAllUsers = "actyin/getAllUsers";
 
     public const string EditFavoriteActivity = "actyin/editFavoriteActivity";
     public const string EditAthleteLocation = "actyin/editAthleteLocation";
     public const string EditAthletePassword = "actyin/editAthletePassword";
     public const string EditAthleteUsernameAndEmailRequest = "actyin/editAthleteUsernameAndEmailRequest";
+    public const string EditAthleteInfo = "actyin/editAthleteInfo";
 
     public const string GetAllChosenActivities = "actyin/getAllChosenActivities";
     public const string GetChosenActivitiesById = "actyin/getChosenActivitiesById";

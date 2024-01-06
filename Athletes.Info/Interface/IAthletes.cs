@@ -14,5 +14,6 @@ public interface IAthletes
     IActionResult EditAthletesEmail(AthleteEditUsernameAndEmailRequest editUsernameAndEmailRequest);
     IActionResult EditAthletesFavoriteActivity(AthleteEditFavoriteActivityRequest editFavoriteActivityRequest);
     IActionResult EditAthletesLocation(AthleteEditLocationRequest athleteEditLocationRequest);
+    IActionResult EditAthletesInfo(AthleteEditInfoRequest athleteEditInfoRequest);
 }
 

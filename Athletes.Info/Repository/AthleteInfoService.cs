@@ -1,7 +1,9 @@
 ﻿using Athletes.Info.Interface;
 using Athletes.Info.Request.EditRequests;
+using Castle.Core.Internal;
 using Define.Common.Exceptions;
 using Define.Common.Extension.Methods;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Postgres.Context.DBContext;
@@ -23,6 +25,33 @@ public class AthleteInfoService : ControllerBase, IAthletes
     public void DeleteAthletesByIdAsync(AthletesEntity athletesEntity)
     {
         _context.AthletesInfo.Remove(athletesEntity);
+    }
+
+    public IActionResult EditAthletesInfo(AthleteEditInfoRequest athleteEditInfoRequest)
+    {
+        var editInfo = _context.AthletesInfo.Where(_ => _.Username == athleteEditInfoRequest.Username).First();
+        if (athleteEditInfoRequest.Password != null)
+        {
+            var hashedPass = PasswordHash.CreatePasswordHash(athleteEditInfoRequest.Password);
+            editInfo.Password = hashedPass;
+        }
+        
+        if (editInfo.FavoriteActivity != null)
+        {
+            editInfo.FavoriteActivity = athleteEditInfoRequest.FavoriteActivity;
+        }
+        if (editInfo.City != null)
+        {
+            editInfo.City = athleteEditInfoRequest.City;
+        }
+        if (editInfo.PostalCode != null)
+        {
+            editInfo.PostalCode = athleteEditInfoRequest.PostalCode;
+        }
+
+        _context.SaveChanges();
+
+        return Ok(AthletesMessages.CompletedRequest);
     }
 
     public IActionResult EditAthletesFavoriteActivity(AthleteEditFavoriteActivityRequest editFavoriteActivityRequest)
@@ -187,6 +216,7 @@ public class AthleteInfoService : ControllerBase, IAthletes
 
     public async Task<AthletesEntity> GetAthletesInfoByUsernameAsync(string username)
     {
-        return await _context.AthletesInfo.Where(_ => _.Username == username).FirstOrDefaultAsync();
+        var user = await _context.AthletesInfo.Where(_ => _.Username == username).FirstOrDefaultAsync();
+        return user;
     }
 }

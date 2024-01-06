@@ -1,6 +1,7 @@
 ﻿using Athletes.Info.Interface;
 using Athletes.Info.Model;
 using Athletes.Info.Repository;
+using Athletes.Info.Request.EditRequests;
 using AutoMapper;
 using Define.Common.Exceptions;
 using Define.Common.Extension.Routes;
@@ -54,18 +55,30 @@ public class AthletesController : ControllerBase
         return Ok(getUser);
     }
 
-    [Authorize]
-    [HttpGet(ActionNames.GetUserById)]
-    public async Task<ActionResult<AthleteInfoDTO>> GetUserInfoByUsernameAsync(int id)
+    //[Authorize]
+    [HttpGet(ActionNames.GetUserByUsername)]
+    public async Task<ActionResult<AthleteInfoDTO>> GetUserInfoByUsernameAsync(string username)
     {
-        var user = await _athletesInfo.GetAthletesInfoByIdAsync(id);
+        var user = await _athletesInfo.GetAthletesInfoByUsernameAsync(username);
         if (user == null)
         {
-            _logger.LogInformation(AthletesExceptionMessages.UndefinedUserId + $"{id}");
+            _logger.LogInformation(AthletesExceptionMessages.UndefinedUserId + $"{username}");
             return NoContent();
         }
         var getUser = _mapper.Map<AthleteInfoDTO>(user);
         return Ok(getUser);
+    }
+
+    [HttpPut(ActionNames.EditAthleteInfo)]
+    public IActionResult EditAthletesInfo(AthleteEditInfoRequest request)
+    {
+        var user = _athletesInfo.EditAthletesInfo(request);
+        if (user == null)
+        {
+            _logger.LogInformation(AthletesExceptionMessages.UndefinedUserId + $"{request}");
+            return NoContent();
+        }
+        return Ok();
     }
 
     [Authorize]

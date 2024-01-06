@@ -16,7 +16,6 @@ public record AthletesSecretCred
     [JsonIgnore]
     public string Password { get; set; }
     [JsonIgnore]
-    [MaxLength(50)]
     public string Address { get; set; }
     [JsonIgnore]
     public int PostalCode { get; set; }
