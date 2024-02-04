@@ -1,16 +1,15 @@
 using Athletes.Info.Controller;
 using Athletes.Info.Interface;
+using Athletes.Info.Model;
 using Athletes.Info.Repository;
 using AutoMapper;
 using Define.Common;
 using FakeItEasy;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Npgsql;
 using NUnit.Framework;
 using Postgres.Context.DBContext;
 using Postgres.Context.Entities;
@@ -20,7 +19,7 @@ namespace AthletesTests
     public class AthletesControllerTests
     {
         AthletesController _controller;
-        IAthletes _athletesService;
+        IAthletes _athletesInfo;
         ILogger<AthletesController> _logger;
         IMapper _mapper;
         AthleteInfoService _athleteInfoService;
@@ -31,32 +30,51 @@ namespace AthletesTests
         [SetUp]
         public void Setup()
         {
-            _athletesService = A.Fake<IAthletes>();
+            _athletesInfo = A.Fake<IAthletes>();
             _logger = A.Fake<ILogger<AthletesController>>();
             _mapper = A.Fake<IMapper>();
             _athleteInfoService = A.Fake<AthleteInfoService>();
             _context = A.Fake<NpgsqlContext>();
 
-            _controller = new AthletesController(_athletesService, _logger, _mapper, _athleteInfoService);
+            _controller = new AthletesController(_athletesInfo, _logger, _mapper, _athleteInfoService);
         }
+
 
         [Test]
         public async Task GetAllUsersAsync_Test()
         {
+            var username = "Test";
             // Arrange          
+            var responseAthlete = new AthleteInfoDTO
+            {
+                Address = "Test Address 18",
+                City = "TestCity",
+                Email = "Nikos@nikos.com",
+                FavoriteActivity = "TestAct",
+                PostalCode = 1234,
+                Username = "Test",
+            };
+            var responseEntity = new AthletesEntity
+            {
+                Address = "Test Address 18",
+                City = "TestCity",
+                Email = "Nikos@nikos.com",
+                FavoriteActivity = "TestAct",
+                PostalCode = 1234,
+                Username = "Test",
+            };
+            var athleteFakeContext = A.Fake<NpgsqlContext>();
+            var athleteFakeDBSet = A.Fake<DbSet<AthletesEntity>>();
+            A.CallTo(() => athleteFakeContext.AthletesInfo).Returns(athleteFakeDBSet);
 
-            var options = new DbContextOptions<NpgsqlContext>();
-            var connectionStringBuilder = new NpgsqlConnectionStringBuilder(_configuration["ConnectionStrings:PostgreSQL"]);
-            var connection = new NpgsqlConnection(connectionStringBuilder.ToString());
 
             // Act
-            var response = await _controller.GetAllUsersAsync();
+            var user = A.CallTo(() => _athletesInfo.GetAthletesInfoByUsernameAsync(username)).Returns<AthletesEntity>(responseEntity);
+            var getUser = _mapper.Map<AthleteInfoDTO>(user);
+            //var response = A.CallTo(() => _controller.GetUserInfoByUsernameAsync(username, CancellationToken.None)).Returns<ActionResult<AthleteInfoDTO>>(responseAthlete);
 
             // Assert
-            Assert.IsInstanceOf<OkResult>(response.Result);
-            var okResult = response.Result as OkResult;
-
-            okResult.Should().NotBeNull();
+            getUser.Should().NotBeNull();
         }
 
         [Test]

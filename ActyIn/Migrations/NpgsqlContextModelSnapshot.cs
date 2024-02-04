@@ -44,6 +44,64 @@ namespace ActyIn.Migrations
                     b.HasKey("SportId");
 
                     b.ToTable("ApplicationImages");
+
+                    b.HasData(
+                        new
+                        {
+                            SportId = 1,
+                            ContentType = "application/json",
+                            FileName = "hiking.jpg",
+                            SportName = "hiking"
+                        },
+                        new
+                        {
+                            SportId = 2,
+                            ContentType = "application/json",
+                            FileName = "basketball.jpg",
+                            SportName = "basketball"
+                        },
+                        new
+                        {
+                            SportId = 3,
+                            ContentType = "application/json",
+                            FileName = "chess.jpg",
+                            SportName = "chess"
+                        },
+                        new
+                        {
+                            SportId = 4,
+                            ContentType = "application/json",
+                            FileName = "bicycle.jpg",
+                            SportName = "bicycle"
+                        },
+                        new
+                        {
+                            SportId = 5,
+                            ContentType = "application/json",
+                            FileName = "billiards.jpg",
+                            SportName = "billiards"
+                        },
+                        new
+                        {
+                            SportId = 6,
+                            ContentType = "application/json",
+                            FileName = "roadtrip.jpg",
+                            SportName = "roadtrip"
+                        },
+                        new
+                        {
+                            SportId = 7,
+                            ContentType = "application/json",
+                            FileName = "running.jpg",
+                            SportName = "running"
+                        },
+                        new
+                        {
+                            SportId = 8,
+                            ContentType = "application/json",
+                            FileName = "tennis.jpg",
+                            SportName = "tennis"
+                        });
                 });
 
             modelBuilder.Entity("Postgres.Context.Entities.AthletesEntity", b =>
@@ -55,8 +113,7 @@ namespace ActyIn.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AthletesId"));
 
                     b.Property<string>("Address")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
                     b.Property<string>("City")
                         .HasColumnType("text");
@@ -97,8 +154,14 @@ namespace ActyIn.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("AthletesId")
+                        .HasColumnType("integer");
+
                     b.Property<bool>("IsCanceled")
                         .HasColumnType("boolean");
+
+                    b.Property<int>("MatchModelId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("SelectedDate")
                         .HasColumnType("timestamp without time zone");
@@ -112,6 +175,10 @@ namespace ActyIn.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("BookingId");
+
+                    b.HasIndex("AthletesId");
+
+                    b.HasIndex("MatchModelId");
 
                     b.ToTable("Bookings");
                 });
@@ -128,9 +195,8 @@ namespace ActyIn.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("DateTime")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -179,6 +245,33 @@ namespace ActyIn.Migrations
                     b.HasKey("MatchModelId");
 
                     b.ToTable("MatchModels");
+                });
+
+            modelBuilder.Entity("Postgres.Context.Entities.BookingEntity", b =>
+                {
+                    b.HasOne("Postgres.Context.Entities.AthletesEntity", "Athletes")
+                        .WithMany("Bookings")
+                        .HasForeignKey("AthletesId");
+
+                    b.HasOne("Postgres.Context.Entities.MatchModelEntity", "MatchModel")
+                        .WithMany("BookingEntities")
+                        .HasForeignKey("MatchModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Athletes");
+
+                    b.Navigation("MatchModel");
+                });
+
+            modelBuilder.Entity("Postgres.Context.Entities.AthletesEntity", b =>
+                {
+                    b.Navigation("Bookings");
+                });
+
+            modelBuilder.Entity("Postgres.Context.Entities.MatchModelEntity", b =>
+                {
+                    b.Navigation("BookingEntities");
                 });
 #pragma warning restore 612, 618
         }

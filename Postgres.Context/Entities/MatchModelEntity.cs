@@ -13,4 +13,7 @@ public record MatchModelEntity
 
     [Required]
     public bool LikeThePotentialAthlete { get; set; }
+
+    [JsonIgnore]
+    public virtual List<BookingEntity> BookingEntities { get; set; } = new List<BookingEntity>();
 }

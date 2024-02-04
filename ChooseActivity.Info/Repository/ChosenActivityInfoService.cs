@@ -5,20 +5,18 @@ using ChooseActivity.Info.Model;
 using Define.Common.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Postgres.Context.DBContext;
 using Postgres.Context.Entities;
 
 namespace ChooseActivity.Info.Repository;
 
-public class ChosenActivityInfoService : ControllerBase, IChooseActivity 
+public class ChosenActivityInfoService : ControllerBase, IChooseActivity
 {
     private readonly NpgsqlContext _context;
     private readonly IMapper _mapper;
 
-    public ChosenActivityInfoService(NpgsqlContext context, ILogger logger, IMapper mapper)
+    public ChosenActivityInfoService(NpgsqlContext context, IMapper mapper)
     {
-        //_logger = (ILogger<ChosenActivityInfoService>)(logger ?? throw new ArgumentException(nameof(logger)));
         _context = context ?? throw new ArgumentNullException(nameof(context));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
@@ -28,11 +26,9 @@ public class ChosenActivityInfoService : ControllerBase, IChooseActivity
         try
         {
             _context.ChooseActivityInfo.Remove(chosenActivityEntity);
-            //_logger.LogInformation(ChosenActivityLoggerMessages.SuccessRemoveChosenActivity);
         }
         catch
         {
-            //_logger.LogInformation(ChosenActivityLoggerMessages.RemoveException);
         }
     }
 
@@ -40,14 +36,13 @@ public class ChosenActivityInfoService : ControllerBase, IChooseActivity
     public async Task<IEnumerable<ChooseActivityInfo>> GetAllChosenActivityOfAthletesAsync()
     {
         try
-        {            
+        {
             var getAll = await _context.ChooseActivityInfo.OrderBy(_ => _.ChosenActivityId).ToListAsync();
             var mapper = _mapper.Map<List<ChooseActivityInfo>>(getAll);
             return mapper;
         }
         catch (Exception ex)
         {
-            //_logger.LogError(ex, ChosenActivityLoggerMessages.GetAllChosenActivityException);
             throw;
         }
     }
@@ -64,15 +59,43 @@ public class ChosenActivityInfoService : ControllerBase, IChooseActivity
         }
         catch (Exception ex)
         {
-            //_logger.LogError(ex, ChosenActivityLoggerMessages.GetAllChosenActivityException);
             throw;
         }
     }
 
+    public async Task<List<ChooseActivityInfo>> GetChosenActivityOfAthletesInfoByDateAsync(string date, string activity)
+    {
+        try
+        {
+            if (DateTime.TryParse(date, out var parsedDate))
+            {
+                // Filter activities by date
+                var activities = await _context.ChooseActivityInfo
+                    .Where(_ => _.DateTime == parsedDate.Date && _.Activity == activity)
+                    .ToListAsync();
+
+                var getActivity = _mapper.Map<List<ChooseActivityInfo>>(activities);
+
+                return getActivity;
+            }
+            else
+            {
+                // Handle invalid date format
+                throw new ArgumentException("Invalid date format.");
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions
+            throw;
+        }
+    }
+
+
     public IActionResult CreateAnActivity([FromBody] ChooseActivityInfo chosenActivityEntityRequest)
     {
         try
-        {   
+        {
             var mapper = _mapper.Map<ChosenActivityEntity>(chosenActivityEntityRequest);
             if (chosenActivityEntityRequest.Activity.IsNullOrEmpty())
             {
@@ -85,7 +108,6 @@ public class ChosenActivityInfoService : ControllerBase, IChooseActivity
         }
         catch (Exception ex)
         {
-            //_logger.LogError(ex, ChosenActivityLoggerMessages.GetAllChosenActivityException);
             throw;
         }
     }
@@ -101,4 +123,6 @@ public class ChosenActivityInfoService : ControllerBase, IChooseActivity
             throw new ControllerExceptionMessage(message);
         }
     }
+
+
 }

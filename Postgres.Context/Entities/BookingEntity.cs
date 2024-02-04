@@ -18,4 +18,8 @@ public record BookingEntity
     public string ActivityName { get; set; }
     [Required]
     public bool IsCanceled { get; set; }
+
+    public virtual MatchModelEntity MatchModel { get; set; }
+
+    public virtual AthletesEntity Athletes { get; set; }
 }

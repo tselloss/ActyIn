@@ -17,6 +17,76 @@ public class NpgsqlContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<BookingEntity>()
+                .HasOne(r => r.MatchModel)
+                .WithMany(c => c.BookingEntities)
+                .IsRequired();
+
+        modelBuilder.Entity<MatchModelEntity>()
+                .HasMany(c => c.BookingEntities)
+                .WithOne(r => r.MatchModel)
+                .IsRequired();
+
+
+        modelBuilder.Entity<ApplicationFileEntity>()
+    .HasData(
+        new ApplicationFileEntity
+        {
+            ContentType = "application/json",
+            FileName = "hiking.jpg",
+            SportId = 1,
+            SportName = "hiking"
+        },
+        new ApplicationFileEntity
+        {
+            ContentType = "application/json",
+            FileName = "basketball.jpg",
+            SportId = 2,
+            SportName = "basketball"
+        },
+        new ApplicationFileEntity
+        {
+            ContentType = "application/json",
+            FileName = "chess.jpg",
+            SportId = 3,
+            SportName = "chess"
+        },
+        new ApplicationFileEntity
+        {
+            ContentType = "application/json",
+            FileName = "bicycle.jpg",
+            SportId = 4,
+            SportName = "bicycle"
+        },
+        new ApplicationFileEntity
+        {
+            ContentType = "application/json",
+            FileName = "billiards.jpg",
+            SportId = 5,
+            SportName = "billiards"
+        },
+        new ApplicationFileEntity
+        {
+            ContentType = "application/json",
+            FileName = "roadtrip.jpg",
+            SportId = 6,
+            SportName = "roadtrip"
+        },
+        new ApplicationFileEntity
+        {
+            ContentType = "application/json",
+            FileName = "running.jpg",
+            SportId = 7,
+            SportName = "running"
+        },
+        new ApplicationFileEntity
+        {
+            ContentType = "application/json",
+            FileName = "tennis.jpg",
+            SportId = 8,
+            SportName = "tennis"
+        }
+    );
     }
 }
 

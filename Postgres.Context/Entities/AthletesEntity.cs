@@ -13,4 +13,6 @@ public record AthletesEntity : AthletesSecretCred
     public string FavoriteActivity { get; set; }
     [NotMapped]
     public IFormFile ProfileImage { get; set; }
+
+    public virtual List<BookingEntity> Bookings { get; set; } = new List<BookingEntity>();
 }

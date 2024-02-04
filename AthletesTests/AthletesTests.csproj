@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ActyIn\ActyIn.csproj" />
     <ProjectReference Include="..\Athletes.Info\Athletes.Info.csproj" />
     <ProjectReference Include="..\Postgres.Context\Postgres.Context.csproj" />
     <ProjectReference Include="..\User.Authorization\User.Authorization.csproj" />

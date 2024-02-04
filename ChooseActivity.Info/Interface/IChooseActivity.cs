@@ -8,6 +8,7 @@ public interface IChooseActivity
 {
     Task<IEnumerable<ChooseActivityInfo>> GetAllChosenActivityOfAthletesAsync();
     Task<ChosenActivityEntity> GetChosenActivityOfAthletesInfoByIdAsync(int chosenActivityId);
+    Task<List<ChooseActivityInfo>> GetChosenActivityOfAthletesInfoByDateAsync(string date, string activity);
     IActionResult CreateAnActivity(ChooseActivityInfo chosenActivityEntity);
     void DeleteChosenActivityOfAthletesByIdAsync(ChosenActivityEntity chosenActivityEntity);
 }

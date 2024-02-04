@@ -22,6 +22,7 @@ public static class ActionNames
     public const string GetChosenActivitiesById = "actyin/getChosenActivitiesById";
     public const string DeleteActivityUser = "actyin/deleteActivityUser";
     public const string CreateNewActivity = "actyin/createNewActivity";
+    public const string GetChosenActivitiesByDate = "actyin/getChosenActivitiesByDate";
 
     public const string GetAllMatchModel = "actyin/getMatchModel";
     public const string SaveMatchModel = "actyin/saveMatchModel";

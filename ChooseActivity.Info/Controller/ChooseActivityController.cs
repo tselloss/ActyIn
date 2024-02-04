@@ -52,6 +52,18 @@ public class ChooseActivityController : ControllerBase
         return Ok(activitiesById);
     }
 
+    [HttpGet(ActionNames.GetChosenActivitiesByDate)]
+    public async Task<ActionResult<List<ChooseActivityInfo>>> GetUserActivityChoosenByDate(string date, string activity)
+    {
+        var activitiesByDate = await _chooseActivity.GetChosenActivityOfAthletesInfoByDateAsync(date, activity);
+        if (activitiesByDate == null)
+        {
+            _logger.LogInformation("This is the chosen activity with this date: " + $"{date}");
+            return NoContent();
+        }
+        return Ok(activitiesByDate);
+    }
+
     [HttpDelete(ActionNames.DeleteUser)]
     public async Task<ActionResult> DeleteActivityUser(int id)
     {
