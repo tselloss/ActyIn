@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "HealthCheck/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "7.0.12"
+        },
+        "runtime": {
+          "HealthCheck.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/7.0.12": {
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.1223.47922"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "HealthCheck/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/7.0.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BRGQqLf22sQndpgJcaMcqdiGxOVY4H/pjnZncU3/mUDljsaIbicNGFEcujI2o5y8Yz0jrIrtUIbrWpgfSBhy7g==",
+      "path": "microsoft.extensions.diagnostics.healthchecks.abstractions/7.0.12",
+      "hashPath": "microsoft.extensions.diagnostics.healthchecks.abstractions.7.0.12.nupkg.sha512"
+    }
+  }
+}

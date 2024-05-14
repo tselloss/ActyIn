@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "fCSahwReT6NP6mBzQMywI3AWk9HgD6AqhEpGMUljqSyT3mI7cIEw/ur4L9X4lhUktI4wMOpvVwS8uxCeouztwQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\karac\\source\\repos\\ActyIn\\HealthCheck\\HealthCheck.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\karac\\.nuget\\packages\\microsoft.extensions.diagnostics.healthchecks.abstractions\\7.0.12\\microsoft.extensions.diagnostics.healthchecks.abstractions.7.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}

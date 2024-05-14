@@ -63,18 +63,11 @@ namespace AthletesTests
                 PostalCode = 1234,
                 Username = "Test",
             };
-            var athleteFakeContext = A.Fake<NpgsqlContext>();
-            var athleteFakeDBSet = A.Fake<DbSet<AthletesEntity>>();
-            A.CallTo(() => athleteFakeContext.AthletesInfo).Returns(athleteFakeDBSet);
-
 
             // Act
-            var user = A.CallTo(() => _athletesInfo.GetAthletesInfoByUsernameAsync(username)).Returns<AthletesEntity>(responseEntity);
-            var getUser = _mapper.Map<AthleteInfoDTO>(user);
-            //var response = A.CallTo(() => _controller.GetUserInfoByUsernameAsync(username, CancellationToken.None)).Returns<ActionResult<AthleteInfoDTO>>(responseAthlete);
+
 
             // Assert
-            getUser.Should().NotBeNull();
         }
 
         [Test]

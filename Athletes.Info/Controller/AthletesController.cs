@@ -57,7 +57,7 @@ public class AthletesController : ControllerBase
 
     //[Authorize]
     [HttpGet(ActionNames.GetUserByUsername)]
-    public async Task<ActionResult<AthleteInfoDTO>> GetUserInfoByUsernameAsync(string username, CancellationToken none)
+    public async Task<ActionResult<AthleteInfoDTO>> GetUserInfoByUsernameAsync(string username , CancellationToken cancellationToken)
     {
         var user = await _athletesInfo.GetAthletesInfoByUsernameAsync(username);
         if (user == null)

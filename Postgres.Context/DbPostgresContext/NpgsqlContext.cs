@@ -16,18 +16,7 @@ public class NpgsqlContext : DbContext
     public NpgsqlContext(DbContextOptions<NpgsqlContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<BookingEntity>()
-                .HasOne(r => r.MatchModel)
-                .WithMany(c => c.BookingEntities)
-                .IsRequired();
-
-        modelBuilder.Entity<MatchModelEntity>()
-                .HasMany(c => c.BookingEntities)
-                .WithOne(r => r.MatchModel)
-                .IsRequired();
-
-
+    {     
         modelBuilder.Entity<ApplicationFileEntity>()
     .HasData(
         new ApplicationFileEntity

@@ -1,0 +1,13 @@
+C:\Users\karac\source\repos\ActyIn\HealthCheck\bin\Debug\net8.0\HealthCheck.deps.json
+C:\Users\karac\source\repos\ActyIn\HealthCheck\bin\Debug\net8.0\HealthCheck.dll
+C:\Users\karac\source\repos\ActyIn\HealthCheck\bin\Debug\net8.0\HealthCheck.pdb
+C:\Users\karac\source\repos\ActyIn\HealthCheck\obj\Debug\net8.0\HealthCheck.csproj.AssemblyReference.cache
+C:\Users\karac\source\repos\ActyIn\HealthCheck\obj\Debug\net8.0\HealthCheck.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\karac\source\repos\ActyIn\HealthCheck\obj\Debug\net8.0\HealthCheck.AssemblyInfoInputs.cache
+C:\Users\karac\source\repos\ActyIn\HealthCheck\obj\Debug\net8.0\HealthCheck.AssemblyInfo.cs
+C:\Users\karac\source\repos\ActyIn\HealthCheck\obj\Debug\net8.0\HealthCheck.csproj.CoreCompileInputs.cache
+C:\Users\karac\source\repos\ActyIn\HealthCheck\obj\Debug\net8.0\HealthCheck.sourcelink.json
+C:\Users\karac\source\repos\ActyIn\HealthCheck\obj\Debug\net8.0\HealthCheck.dll
+C:\Users\karac\source\repos\ActyIn\HealthCheck\obj\Debug\net8.0\refint\HealthCheck.dll
+C:\Users\karac\source\repos\ActyIn\HealthCheck\obj\Debug\net8.0\HealthCheck.pdb
+C:\Users\karac\source\repos\ActyIn\HealthCheck\obj\Debug\net8.0\ref\HealthCheck.dll

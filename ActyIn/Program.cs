@@ -4,12 +4,16 @@ using BookingModel.Info.Interface;
 using BookingModel.Info.Repository;
 using ChooseActivity.Info.Interface;
 using ChooseActivity.Info.Repository;
+using HealthCheck;
 using MatchActivity.Info.Interface;
 using MatchActivity.Info.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using PhotoProfile.Info.Interface;
 using PhotoProfile.Info.Repository;
 using Postgres.Context.DBContext;
@@ -20,6 +24,8 @@ using User.Authorization.Repository;
 var builder = WebApplication.CreateBuilder(args);
 
 var config = builder.Configuration;
+
+builder.Services.AddHealthChecks().AddCheck<HealthChecks>("CustomCheck");
 
 builder.Services.AddLogging(logging => logging.AddConsole());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -143,5 +149,32 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.UseCors();
+
+app.MapHealthChecks("/health", new HealthCheckOptions
+{
+    ResultStatusCodes =
+    {
+        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+        [HealthStatus.Degraded] = StatusCodes.Status200OK,
+        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable,
+    },
+    ResponseWriter = async (context, report) =>
+    {
+        var result = new
+        {
+            Status = report.Status.ToString(),
+            Checks = report.Entries.Select(entry => new
+            {
+                Component = entry.Key,
+                Description = entry.Value.Description,
+                Duration = entry.Value.Duration.TotalMilliseconds
+            }),
+        };
+
+        context.Response.ContentType = "application/json";
+        await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
+    }
+
+});
 
 app.Run();

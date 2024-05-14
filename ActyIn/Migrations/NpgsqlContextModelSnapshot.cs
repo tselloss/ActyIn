@@ -160,7 +160,7 @@ namespace ActyIn.Migrations
                     b.Property<bool>("IsCanceled")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("MatchModelId")
+                    b.Property<int?>("MatchModelId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("SelectedDate")
@@ -255,9 +255,7 @@ namespace ActyIn.Migrations
 
                     b.HasOne("Postgres.Context.Entities.MatchModelEntity", "MatchModel")
                         .WithMany("BookingEntities")
-                        .HasForeignKey("MatchModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MatchModelId");
 
                     b.Navigation("Athletes");
 

@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingModel.Info", "Bookin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoProfile.Info", "PhotoProfile.Info\PhotoProfile.Info.csproj", "{EF4C2C35-F4C3-48ED-9F08-16C24F1A92D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck", "HealthCheck\HealthCheck.csproj", "{60AF27B9-3502-4610-B5EE-C3C541AD7F5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{EF4C2C35-F4C3-48ED-9F08-16C24F1A92D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF4C2C35-F4C3-48ED-9F08-16C24F1A92D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF4C2C35-F4C3-48ED-9F08-16C24F1A92D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60AF27B9-3502-4610-B5EE-C3C541AD7F5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60AF27B9-3502-4610-B5EE-C3C541AD7F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60AF27B9-3502-4610-B5EE-C3C541AD7F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60AF27B9-3502-4610-B5EE-C3C541AD7F5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

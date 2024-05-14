@@ -15,6 +15,7 @@
           "ChooseActivity.Info": "1.0.0",
           "FakeItEasy": "7.4.0",
           "FluentAssertions": "6.12.0",
+          "HealthCheck": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.13",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.12",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
@@ -1492,6 +1493,14 @@
           "Define.Common.dll": {}
         }
       },
+      "HealthCheck/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "7.0.12"
+        },
+        "runtime": {
+          "HealthCheck.dll": {}
+        }
+      },
       "MatchActivity.Info/1.0.0": {
         "dependencies": {
           "ChooseActivity.Info": "1.0.0"
@@ -2676,6 +2685,11 @@
       "sha512": ""
     },
     "Define.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HealthCheck/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
