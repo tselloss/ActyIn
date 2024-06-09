@@ -63,7 +63,11 @@ namespace AthletesTests
 
             // Assert
             var retrievedAthlete = dbContext.AthletesInfo.FirstOrDefault(a => a.AthletesId == 1);
-            retrievedAthlete.Username.Should().Be(athlete.Username);
+            retrievedAthlete?.Username.Should().Be(athlete.Username);
+            retrievedAthlete?.Email.Should().Be(athlete.Email);
+            retrievedAthlete?.Address.Should().Be(athlete.Address);
+            retrievedAthlete?.PostalCode.Should().Be(athlete.PostalCode);
+            retrievedAthlete?.FavoriteActivity.Should().Be(athlete.FavoriteActivity);
             retrievedAthlete.Should().NotBeNull();
         }
 
