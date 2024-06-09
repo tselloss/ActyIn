@@ -23,8 +23,6 @@ namespace AthletesTests
         IMapper _mapper;
         AthleteInfoService _athleteInfoService;
         NpgsqlContext _context;
-        IConfiguration _configuration;
-
 
         [SetUp]
         public void Setup()
@@ -65,7 +63,8 @@ namespace AthletesTests
 
             // Assert
             var retrievedAthlete = dbContext.AthletesInfo.FirstOrDefault(a => a.AthletesId == 1);
-            Assert.NotNull(retrievedAthlete);
+            retrievedAthlete.Username.Should().Be(athlete.Username);
+            retrievedAthlete.Should().NotBeNull();
         }
 
 
