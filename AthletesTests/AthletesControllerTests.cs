@@ -41,7 +41,7 @@ namespace AthletesTests
         }
 
         [Test]
-        public void CanSaveAndRetrieveData()
+        public void SaveAndRetrieve_Data_From_Database()
         {
             // Arrange
             var athlete = new AthletesEntity
