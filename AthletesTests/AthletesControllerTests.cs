@@ -8,7 +8,6 @@ using FakeItEasy;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Postgres.Context.DBContext;
@@ -33,79 +32,81 @@ namespace AthletesTests
             _athletesInfo = A.Fake<IAthletes>();
             _logger = A.Fake<ILogger<AthletesController>>();
             _mapper = A.Fake<IMapper>();
-            _athleteInfoService = A.Fake<AthleteInfoService>();
-            _context = A.Fake<NpgsqlContext>();
 
+            var options = new DbContextOptionsBuilder<NpgsqlContext>()
+                              .UseInMemoryDatabase(databaseName: "TestDatabase")
+                              .Options;
+            _context = new NpgsqlContext(options);
+
+            _athleteInfoService = new AthleteInfoService(_context);
             _controller = new AthletesController(_athletesInfo, _logger, _mapper, _athleteInfoService);
-        }
-
-
-        [Test]
-        public async Task GetAllUsersAsync_Test()
-        {
-            var username = "Test";
-            // Arrange          
-            var responseAthlete = new AthleteInfoDTO
-            {
-                Address = "Test Address 18",
-                City = "TestCity",
-                Email = "Nikos@nikos.com",
-                FavoriteActivity = "TestAct",
-                PostalCode = 1234,
-                Username = "Test",
-            };
-            var responseEntity = new AthletesEntity
-            {
-                Address = "Test Address 18",
-                City = "TestCity",
-                Email = "Nikos@nikos.com",
-                FavoriteActivity = "TestAct",
-                PostalCode = 1234,
-                Username = "Test",
-            };
-
-            // Act
-
-
-            // Assert
         }
 
         [Test]
         public void CanSaveAndRetrieveData()
         {
             // Arrange
-            var serviceProvider = new ServiceCollection()
-                .AddDbContext<NpgsqlContext>(options =>
-                    options.UseNpgsql("Server=localhost;Database=ActyInV100;Username=postgres;Password=admin;"))
-                .BuildServiceProvider();
-
-            using (var scope = serviceProvider.CreateScope())
+            var athlete = new AthletesEntity
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<NpgsqlContext>();
+                Username = "user1",
+                Email = "user1@example.com",
+                Password = "password1",
+                Address = "123 Main St",
+                City = "City1",
+                PostalCode = 12345,
+                FavoriteActivity = "Running",
+                Role = Roles.User
+            };
 
-                // Act
-                // Perform actions that involve saving or retrieving data from the database
-                var athlete = new AthletesEntity
-                {
-                    Username = "user1",
-                    Email = "user1@example.com",
-                    Password = "password1",
-                    Address = "123 Main St",
-                    City = "City1",
-                    PostalCode = 12345,
-                    FavoriteActivity = "Running",
-                    Role = Roles.User
-                };
+            // Act
+            var dbContext = _context;
+            dbContext.AthletesInfo.Add(athlete);
+            dbContext.SaveChanges();
 
-                dbContext.AthletesInfo.Add(athlete);
-                dbContext.SaveChanges();
+            // Assert
+            var retrievedAthlete = dbContext.AthletesInfo.FirstOrDefault(a => a.AthletesId == 1);
+            Assert.NotNull(retrievedAthlete);
+        }
 
-                // Assert
-                // Verify that the data was saved and can be retrieved
-                var retrievedAthlete = dbContext.AthletesInfo.FirstOrDefault(a => a.AthletesId == 1);
-                Assert.NotNull(retrievedAthlete);
-                // Additional assertions as needed
-            }
+
+        [Test]
+        public void Constructor_Should_Throw_Exception_When_Logger_Is_Null()
+        {
+            // Act
+            Action act = () => new AthletesController(_athletesInfo, null, _mapper, _athleteInfoService);
+
+            // Assert
+            act.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("logger");
+        }
+
+        [Test]
+        public void Constructor_Should_Throw_Exception_When_IAthletesInfo_Is_Null()
+        {
+            // Act
+            Action act = () => new AthletesController(null, _logger, _mapper, _athleteInfoService);
+
+            // Assert
+            act.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("athleteInfo");
+        }
+
+        [Test]
+        public void Constructor_Should_Throw_Exception_When_AthleteInfoService_Is_Null()
+        {
+            // Act
+            Action act = () => new AthletesController(_athletesInfo, _logger, _mapper, null);
+
+            // Assert
+            act.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("athletesInfoService");
+        }
+
+        [Test]
+        public void Constructor_Should_Throw_Exception_When_mapper_Is_Null()
+        {
+            // Act
+            Action act = () => new AthletesController(_athletesInfo, _logger, null, _athleteInfoService);
+
+            // Assert
+            act.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("mapper");
         }
     }
 }

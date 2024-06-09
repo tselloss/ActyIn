@@ -22,8 +22,8 @@ public class AthletesController : ControllerBase
 
     public AthletesController(IAthletes athleteInfo, ILogger<AthletesController> logger, IMapper mapper, AthleteInfoService athletesInfoService)
     {
-        _logger = logger ?? throw new ArgumentException(nameof(logger));
-        _athletesInfo = athleteInfo ?? throw new ArgumentException(nameof(athleteInfo));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _athletesInfo = athleteInfo ?? throw new ArgumentNullException(nameof(athleteInfo));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         _athleteInfoService = athletesInfoService ?? throw new ArgumentNullException(nameof(athletesInfoService));
     }
