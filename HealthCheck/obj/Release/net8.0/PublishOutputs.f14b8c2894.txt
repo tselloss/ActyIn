@@ -1,0 +1,4 @@
+C:\Users\karac\source\repos\ActyIn\HealthCheck\bin\Release\net8.0\publish\HealthCheck.dll
+C:\Users\karac\source\repos\ActyIn\HealthCheck\bin\Release\net8.0\publish\HealthCheck.deps.json
+C:\Users\karac\source\repos\ActyIn\HealthCheck\bin\Release\net8.0\publish\HealthCheck.pdb
+C:\Users\karac\source\repos\ActyIn\HealthCheck\bin\Release\net8.0\publish\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll

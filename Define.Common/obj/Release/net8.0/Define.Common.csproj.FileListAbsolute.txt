@@ -1,0 +1,15 @@
+C:\Users\karac\source\repos\ActyIn\Define.Common\bin\Release\net8.0\Define.Common.deps.json
+C:\Users\karac\source\repos\ActyIn\Define.Common\bin\Release\net8.0\Define.Common.runtimeconfig.json
+C:\Users\karac\source\repos\ActyIn\Define.Common\bin\Release\net8.0\Define.Common.dll
+C:\Users\karac\source\repos\ActyIn\Define.Common\bin\Release\net8.0\Define.Common.pdb
+C:\Users\karac\source\repos\ActyIn\Define.Common\obj\Release\net8.0\Define.Common.csproj.AssemblyReference.cache
+C:\Users\karac\source\repos\ActyIn\Define.Common\obj\Release\net8.0\Define.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\karac\source\repos\ActyIn\Define.Common\obj\Release\net8.0\Define.Common.AssemblyInfoInputs.cache
+C:\Users\karac\source\repos\ActyIn\Define.Common\obj\Release\net8.0\Define.Common.AssemblyInfo.cs
+C:\Users\karac\source\repos\ActyIn\Define.Common\obj\Release\net8.0\Define.Common.csproj.CoreCompileInputs.cache
+C:\Users\karac\source\repos\ActyIn\Define.Common\obj\Release\net8.0\Define.Common.sourcelink.json
+C:\Users\karac\source\repos\ActyIn\Define.Common\obj\Release\net8.0\Define.Common.dll
+C:\Users\karac\source\repos\ActyIn\Define.Common\obj\Release\net8.0\refint\Define.Common.dll
+C:\Users\karac\source\repos\ActyIn\Define.Common\obj\Release\net8.0\Define.Common.pdb
+C:\Users\karac\source\repos\ActyIn\Define.Common\obj\Release\net8.0\Define.Common.genruntimeconfig.cache
+C:\Users\karac\source\repos\ActyIn\Define.Common\obj\Release\net8.0\ref\Define.Common.dll

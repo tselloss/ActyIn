@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BXipPaYjYYlKupDOK04qXY3HlnQ+kV9ICk2HkDnp9SZdqkdndadsb2qPciIdoB/AHKHb1wfGseNSKjMLfN+d8w==",
+  "dgSpecHash": "E+9HWQvuMp4IRR9/cJrQwYyC9qZEvQ0ldurO3cJZbkYozgPYeU4RDcnKg5isnvvmU/Aw1B3OEYa7dcFv62a6Jw==",
   "success": true,
   "projectFilePath": "C:\\Users\\karac\\source\\repos\\ActyIn\\AthletesTests\\AthletesTests.csproj",
   "expectedPackageFiles": [
@@ -68,6 +68,7 @@
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.6.0\\microsoft.testplatform.objectmodel.17.6.0.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.testplatform.testhost\\17.6.0\\microsoft.testplatform.testhost.17.6.0.nupkg.sha512",
+    "C:\\Users\\karac\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\microsoft.web.infrastructure\\1.0.0\\microsoft.web.infrastructure.1.0.0.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\karac\\.nuget\\packages\\moq\\4.20.69\\moq.4.20.69.nupkg.sha512",
