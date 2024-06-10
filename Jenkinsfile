@@ -45,10 +45,8 @@ pipeline {
        stage('Sonarqube Analysis') {
             steps {
                 withSonarQubeEnv('sonar'){
-                sh '''mvn clean verify sonar-scanner:sonar-scanner -X \
-                -Dsonar.projectName=ActyIn \
-                -Dsonar.java.binaries=. \
-                -Dsonar.projectKey=ActyIn'''
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=ActyIn \
+                    -Dsonar.projectKey=ActyIn '''
             }
         }
        }
