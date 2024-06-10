@@ -46,9 +46,9 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonar'){
                 sh '''mvn clean verify sonar-scanner:sonar-scanner -X \
-                -Dsonar.projectName=httpClientApp \
+                -Dsonar.projectName=ActyIn \
                 -Dsonar.java.binaries=. \
-                -Dsonar.projectKey=httpClientApp'''
+                -Dsonar.projectKey=ActyIn'''
             }
         }
        }
