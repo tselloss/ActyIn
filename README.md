@@ -93,6 +93,3 @@ The back-end and database provide the API and relational database infrastructure
 2. It clearly separates the installation and running of the **front-end** and **back-end** with their respective commands and environments.
 3. Each step now provides a clear direction, especially for PostgreSQL and running the **back-end** in Visual Studio.
 4. The **Usage** section is simplified and directed towards accessing APIs and basic functionality.
-
-This layout is fully readable and functional for a typical **GitHub README.md** file for both repositories.
-
